@@ -58,5 +58,11 @@ public class User {
 			joinColumns = @JoinColumn(name="userId",referencedColumnName= "id"),//
 			inverseJoinColumns = @JoinColumn(name="roleId", referencedColumnName = "id")) //
 	private Set<Role> roles;
-	
+
+
+	@ManyToMany(cascade= CascadeType.ALL)
+	@JoinTable(name="user_project", 
+			joinColumns = @JoinColumn(name="userId",referencedColumnName= "id"),//
+			inverseJoinColumns = @JoinColumn(name="projectId", referencedColumnName = "id")) //
+	private Set<Project> projects;
 }

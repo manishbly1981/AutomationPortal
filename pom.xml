@@ -73,6 +73,11 @@
 		    <artifactId>jasypt-spring-boot-starter</artifactId>
 		    <version>3.0.5</version>
 		</dependency>
+		<dependency>
+			<groupId>com.student</groupId>
+			<artifactId>RestTemplateSample-2</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
 	</dependencies>
 	<build>
 		<plugins>

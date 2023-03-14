@@ -1,6 +1,7 @@
 package com.student.AutomationPortal.serviceImpl;
 
 
+import java.util.List;
 import java.util.logging.Logger;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -109,7 +110,11 @@ public class UserServiceImpl implements UserService{
 		return CompactServiceImpl.reportResponse(HttpStatus.OK, "Check your mail to unlock the user");
 	}
 
-	
+	public List<User> userList(){
+		List<User> userList= userRepository.findAll();
+		return userList;
+		//return CompactServiceImpl.reportResponse(HttpStatus.OK, userList);
+	}
 
 	public void sendConfirmationMail(User user) {
 		String mailText="Hello "+ user.getFirstName()+ ",\n You are registered successfully.\n Next time use '"+ user.getConfirmationCode()+ "' confirmation code to access your account";
@@ -122,4 +127,6 @@ public class UserServiceImpl implements UserService{
 		String subject= "User Activation details";
 		emailServiceImpl.sendSimpleEmail(user.getEmail(), subject, mailText);
 	}
+	
+	
 }

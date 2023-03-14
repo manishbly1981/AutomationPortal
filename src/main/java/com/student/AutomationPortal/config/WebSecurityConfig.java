@@ -1,3 +1,4 @@
+
 package com.student.AutomationPortal.config;
 
 import javax.sql.DataSource;
@@ -26,18 +27,18 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		 * .permitAll() .and() .logout() .permitAll()
 		 */
 		;
-		http.authorizeRequests().antMatchers("/api/v1/auth/**").fullyAuthenticated().and().httpBasic();
-		/*
-		 * http.authorizeRequests().antMatchers("/api/admin/**")
-		 * .hasAnyRole("admin").anyRequest().fullyAuthenticated() .and().httpBasic();
-		 */
+		//http.authorizeRequests().antMatchers("/api/v1/auth/**").fullyAuthenticated().and().httpBasic();
+		
+		 http.authorizeRequests().antMatchers("/api/v1/auth/**")
+		 .hasAnyRole("admin").anyRequest().fullyAuthenticated() .and().httpBasic();
+		 
 
 		// unlocking functionality and security configuration
 	}
 
 	public void configure(AuthenticationManagerBuilder auth) throws Exception {
-		// auth.inMemoryAuthentication().withUser("manish").password("manish").roles("admin");
-		// auth.inMemoryAuthentication().withUser("arti").password("arti").roles("user");
+		 auth.inMemoryAuthentication().withUser("manish").password("manish").roles("admin");
+		 auth.inMemoryAuthentication().withUser("arti").password("arti").roles("user");
 
 		/*
 		auth.jdbcAuthentication()//.passwordEncoder(new AttributeEncrypter())

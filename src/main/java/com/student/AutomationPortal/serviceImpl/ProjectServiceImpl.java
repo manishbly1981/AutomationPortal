@@ -1,6 +1,7 @@
 package com.student.AutomationPortal.serviceImpl;
 
 
+import java.util.List;
 import java.util.logging.Logger;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -72,6 +73,12 @@ public class ProjectServiceImpl implements ProjectService{
 //			List<Project> projects = userRepository.findAssignedProjects(email);
 //			return CompactServiceImpl.reportResponse(HttpStatus.OK, projects.toString());
 		return CompactServiceImpl.reportResponse(HttpStatus.FAILED_DEPENDENCY, "Need to write logic to get project list");
+	}
+
+	@Override
+	public List<Project> getAllProjects() {
+		List<Project> projectList=projectRepository.findAll(); 
+		return projectList;
 	}
 
 }

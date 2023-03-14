@@ -1,10 +1,16 @@
 package com.student.AutomationPortal.model;
 
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 import lombok.Data;
@@ -21,7 +27,13 @@ public class TestStep {
 	private String stepDescription;
 	private String action;
 	private String logicalName;
-	private String locatorId;
+
+	@ManyToMany(cascade= CascadeType.ALL)
+	@JoinTable(name="TS_LR", 
+			joinColumns = @JoinColumn(name="testStepId",referencedColumnName= "id"),//
+			inverseJoinColumns = @JoinColumn(name="locatorId", referencedColumnName = "id"))
+	private Set<LocatorObjects> locatorId;
+	
 	private String value; //if value is in curly bracket means parameterize from test Data, else hard coded
 	private String exitIfFail;
 	

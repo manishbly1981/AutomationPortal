@@ -1,7 +1,11 @@
 package com.student.AutomationPortal.controller;
 
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -9,13 +13,18 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.student.AutomationPortal.dto.RawData;
 import com.student.AutomationPortal.model.User;
+import com.student.AutomationPortal.repository.UserRepository;
 import com.student.AutomationPortal.service.UserService;
 
 @RestController
 @RequestMapping("/api/v1")
 public class UserController {
 	private UserService userService;
+
+	@Autowired
+	private RawData rawData;
 	
 	public UserController(UserService userService) {
 		this.userService= userService;
@@ -54,5 +63,14 @@ public class UserController {
 		return userService.unlockUser(email);
 	}
 	
+	@PostMapping("/testData")
+	public ResponseEntity<String> testDataGenerator(){
+		rawData.RawDataGenerator();
+		return ResponseEntity.ok("Test Data Generated");
+	}
 	
+	@GetMapping("/auth/users")
+	public ResponseEntity<List<User>> getUserList(){
+		return ResponseEntity.ok(userService.userList());
+	}
 }

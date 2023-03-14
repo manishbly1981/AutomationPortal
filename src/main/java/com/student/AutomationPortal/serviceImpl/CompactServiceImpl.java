@@ -15,7 +15,8 @@ public class CompactServiceImpl {
 	}
 	
 	public static String generateConfirmationCode() {
-		return generateRandNumberAsStr(1000, 9999);
+		//return generateRandNumberAsStr(1000, 9999);
+		return "1234";
 	}
 	
 	public static ResponseEntity<String> reportResponse(HttpStatus statusCode, String msgToWrite) {

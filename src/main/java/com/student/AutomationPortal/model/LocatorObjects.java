@@ -25,12 +25,8 @@ public class LocatorObjects {
 	@Column(name="id")
 	private Long id;
 	
-	private String type;
-	private String property;
+	private String locatorName;
+	private String locatorValue;
 	
-	@ManyToMany(cascade= CascadeType.ALL)
-	@JoinTable(name="LR_TS", 
-			joinColumns = @JoinColumn(name="LocatorId",referencedColumnName= "id"),//
-			inverseJoinColumns = @JoinColumn(name="testStepId", referencedColumnName = "id"))
-	private Set<TestStep> TestSteps;
+	
 }

@@ -26,7 +26,7 @@ public class EmailServiceImpl implements EMailService{
 		simpleMailMessage.setTo(toMail);
 		simpleMailMessage.setSubject(subject);
 		simpleMailMessage.setText(body);
-		javaMailSender.send(simpleMailMessage);
+		//javaMailSender.send(simpleMailMessage);
 		
 	}
 	

@@ -45,8 +45,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	}
 
 	public void configure(AuthenticationManagerBuilder auth) throws Exception {
-		 auth.inMemoryAuthentication().withUser("manish").password("manish").roles("admin");
-		 auth.inMemoryAuthentication().withUser("arti").password("arti").roles("user");
+		 auth.inMemoryAuthentication().withUser("vikas@vikas.com").password("Niit@123").roles("admin");
+		 auth.inMemoryAuthentication().withUser("arti@arti.com").password("Niit@123").roles("user");
 
 		/*
 		auth.jdbcAuthentication()//.passwordEncoder(new AttributeEncrypter())

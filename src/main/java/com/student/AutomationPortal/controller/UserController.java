@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.student.AutomationPortal.dto.RawData;
 import com.student.AutomationPortal.model.User;
-import com.student.AutomationPortal.repository.UserRepository;
 import com.student.AutomationPortal.service.UserService;
 
 @RestController

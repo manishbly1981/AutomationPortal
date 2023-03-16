@@ -2,14 +2,21 @@ package com.student.AutomationPortal.serviceImpl;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 
 public class CompactServiceImpl {
+	Logger logger= Logger.getLogger(this.getClass().getName());
+
 	public static String generateRandNumberAsStr(int min, int max) {
 		return Integer.toString((int)Math.floor(Math.random() * (max-min)+1));
 	}
@@ -34,13 +41,14 @@ public class CompactServiceImpl {
 		return ResponseEntity.status(statusCode).contentType(MediaType.APPLICATION_JSON).body(msgToWrite);
 	}
 	
-	public static ResponseEntity<String> reportResponse(HttpStatus statusCode, Object object) {
+	public static ResponseEntity<String> reportResponse(HttpStatus statusCode, Set set) {
 		try {
-			ObjectMapper mapper = new ObjectMapper();
-			String response= mapper.writeValueAsString(object);
-			return ResponseEntity.status(statusCode).contentType(MediaType.APPLICATION_JSON).body(response);
+			ObjectMapper mapper= new ObjectMapper();
+			mapper.enable(SerializationFeature.INDENT_OUTPUT);
+			String json= mapper.writeValueAsString(set);
+			return ResponseEntity.status(statusCode).contentType(MediaType.APPLICATION_JSON).body(json);
 		}catch(Exception e) {
-			return reportResponse(HttpStatus.BAD_REQUEST, "Cannot convert Object to JSON");
+			return reportResponse(HttpStatus.BAD_REQUEST, "Cannot convert value to JSON");
 		}
 	}
 }

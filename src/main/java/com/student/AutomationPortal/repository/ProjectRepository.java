@@ -7,4 +7,5 @@ import com.student.AutomationPortal.model.Project;
 public interface ProjectRepository extends JpaRepository<Project, Long>{
 	Project findByProjectCode(String projectCode);
 	Project findByProjectName(String projectName);
+	
 }

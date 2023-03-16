@@ -1,7 +1,5 @@
 package com.student.AutomationPortal.service;
 
-import java.util.List;
-
 import org.springframework.http.ResponseEntity;
 
 import com.student.AutomationPortal.model.Project;
@@ -11,6 +9,6 @@ public interface ProjectService {
 	ResponseEntity<String> allocateProject(String email, String projectCode);
 	ResponseEntity<String> deAllocateProject(String email, String projectCode);
 	ResponseEntity<String> getAssignedProjects(String email);
-	List<Project> getAllProjects();
+	ResponseEntity<String> getAllProjects();
 	
 }

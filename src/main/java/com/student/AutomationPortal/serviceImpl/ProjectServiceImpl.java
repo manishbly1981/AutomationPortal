@@ -7,6 +7,7 @@ import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 
 import com.student.AutomationPortal.model.Project;
 import com.student.AutomationPortal.model.User;
@@ -14,6 +15,7 @@ import com.student.AutomationPortal.repository.ProjectRepository;
 import com.student.AutomationPortal.repository.UserRepository;
 import com.student.AutomationPortal.service.ProjectService;
 
+@Service
 public class ProjectServiceImpl implements ProjectService{
 	@Autowired
 	ProjectRepository projectRepository;

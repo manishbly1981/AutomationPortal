@@ -1,7 +1,9 @@
 package com.student.AutomationPortal.serviceImpl;
 
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.logging.Logger;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +12,11 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import com.student.AutomationPortal.model.Project;
+import com.student.AutomationPortal.model.Role;
 import com.student.AutomationPortal.model.User;
+import com.student.AutomationPortal.repository.ProjectRepository;
+import com.student.AutomationPortal.repository.RoleRepository;
 import com.student.AutomationPortal.repository.UserRepository;
 import com.student.AutomationPortal.service.UserService;
 
@@ -22,8 +28,13 @@ public class UserServiceImpl implements UserService{
 	EmailServiceImpl emailServiceImpl;
 	
 	UserRepository userRepository;
-	public UserServiceImpl(UserRepository userRepository) {
+	RoleRepository roleRepository;
+	ProjectRepository projectRepository;
+	
+	public UserServiceImpl(UserRepository userRepository, RoleRepository roleRepository, ProjectRepository projectRepository) {
 		this.userRepository= userRepository;
+		this.roleRepository= roleRepository;
+		this.projectRepository= projectRepository;
 	}
 	@Override
 	public ResponseEntity<String> registerUser(User user) {
@@ -35,6 +46,33 @@ public class UserServiceImpl implements UserService{
 			user.setAttempts(0);
 //			user.setConfirmationCode(UUID.randomUUID().toString());
 			user.setConfirmationCode(CompactServiceImpl.generateConfirmationCode());
+			/****************************************************/
+			if (user.getRoles()!=null) {
+				Set<Role> roles= new HashSet<>();
+				for(Role role:user.getRoles()) {
+					Role currentRole= roleRepository.findByRole(role.getRole());
+					if (currentRole!=null)
+						roles.add(currentRole);
+					else
+						roles.add(role);
+				}
+				user.setRoles(roles);
+			}
+			if (user.getProjects()!=null) {
+				Set<Project> projects= new HashSet<>();
+				for(Project currentProject:user.getProjects()) {
+					Project repoProjectCode=projectRepository.findByProjectCode(currentProject.getProjectCode());
+					Project repoProjectName=projectRepository.findByProjectName(currentProject.getProjectName());
+					if(repoProjectCode!=null)
+						projects.add(repoProjectCode);
+					else if(repoProjectName!=null)
+						projects.add(repoProjectName);
+					else
+						projects.add(currentProject);
+				}
+				user.setProjects(projects);
+			}
+			/****************************************************/
 			userRepository.save(user);
 		}catch(Exception e) {
 			log.warning("User registration issue"+ e.getMessage()+ "/n" + e.getStackTrace());

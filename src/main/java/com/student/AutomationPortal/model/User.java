@@ -57,13 +57,6 @@ public class User {
 	@Column(name= "confirmationCode")
 	private String confirmationCode;
 
-	/*
-	@ManyToMany(cascade= CascadeType.ALL)
-	@JoinTable(name="user_role", 
-			joinColumns = @JoinColumn(name="userId",referencedColumnName= "id"),//
-			inverseJoinColumns = @JoinColumn(name="roleId", referencedColumnName = "id")) //
-	private Set<Role> roles;
-	 */
 	@ManyToMany(cascade=CascadeType.ALL)//cascade= CascadeType.ALL, fetch=FetchType.LAZY
 	@JoinTable(name="user_role", joinColumns = { 
 		@JoinColumn(name="userId",referencedColumnName= "id")}, inverseJoinColumns = {
@@ -71,15 +64,7 @@ public class User {
 		,uniqueConstraints= @UniqueConstraint(columnNames = {"userId","roleId"})
 		)
 	private Set<Role> roles;
-//	@ManyToOne(cascade= CascadeType.ALL, fetch=FetchType.LAZY)
-//	private Role roles;
-	/*@ManyToMany(cascade= CascadeType.ALL)
-	@JoinTable(name="user_project", 
-			joinColumns = @JoinColumn(name="userId",referencedColumnName= "id"),//
-			inverseJoinColumns = @JoinColumn(name="projectId", referencedColumnName = "id")) //
-	private Set<Project> projects;
-	*/
-	
+
 	@ManyToMany(cascade= CascadeType.ALL)
 	@JoinTable(name="user_project", joinColumns = { 
 		@JoinColumn(name="userId",referencedColumnName= "id")}, inverseJoinColumns = {

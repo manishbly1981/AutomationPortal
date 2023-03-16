@@ -10,6 +10,8 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 
 @Configuration
@@ -29,9 +31,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		;
 		//http.authorizeRequests().antMatchers("/api/v1/auth/**").fullyAuthenticated().and().httpBasic();
 		
-		 http.authorizeRequests().antMatchers("/api/v1/auth/**")
+		 /*http.authorizeRequests().antMatchers("/api/v1/auth/**")
 		 .hasAnyRole("admin").anyRequest().fullyAuthenticated() .and().httpBasic();
-		 
+		 */
+		http.authorizeRequests()
+	    //.antMatchers("/**/auth/**").authenticated() 
+		//.antMatchers("/**/auth/**").hasAnyRole("admin")
+	    .antMatchers("/auth/**").hasRole("admin") // Allow access to "/auth/" path only for users with "ADMIN" role
+	    .antMatchers("/admin/**").hasRole("admin") // Allow access to "/auth/" path only for users with "ADMIN" role
+	    .anyRequest().permitAll();
 
 		// unlocking functionality and security configuration
 	}
@@ -46,6 +54,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		.usersByUsernameQuery("select email, password, enabled from users where username=?")
 		.authoritiesByUsernameQuery("select username, role from users where username=?");
 		*/
+		 /*auth.jdbcAuthentication()
+		 .dataSource(dataSource)
+		 .withDefaultSchema()
+		 .withUser(User.withUsername("manish").password(new AttributeEncrypter().convertToEntityAttribute(""))
+				 .roles("admin"));
+		 */
+		 
+
+		 
 	}
 
 	

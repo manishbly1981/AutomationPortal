@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -76,11 +77,20 @@ public class ProjectServiceImpl implements ProjectService{
 		//Check if project is already not assigned
 		if (user.getProjects().contains(project))
 			return CompactServiceImpl.reportResponse(HttpStatus.FOUND, project.getProjectCode() + " is already allocated to user "+ user.getFirstName() + " " + user.getLastName());
-
-		Set<Project> projects= new HashSet<>();
-		projects.add(project);
-		user.setProjects(projects);
 		
+		Project projectByCode = projectRepository.findByProjectCode(projectCode);
+		Project projectByName = projectRepository.findByProjectName(projectCode);
+		Set<Project> projects= user.getProjects();
+		if (projectByCode!=null) {
+			projects.add(projectByCode);
+		}
+		else if (projectByName!=null) {
+			projects.add(projectByName);
+		}
+		else {
+			projects.add(project);
+		}
+		user.setProjects(projects);
 		userRepository.save(user);
 		return CompactServiceImpl.reportResponse(HttpStatus.ACCEPTED, project.getProjectCode() + " Project is allocated to user "+ user.getFirstName() + " " + user.getLastName());
 	}
@@ -132,5 +142,46 @@ public class ProjectServiceImpl implements ProjectService{
 		return CompactServiceImpl.reportResponse(HttpStatus.OK, projects);
 	}
 
+	//Method to be used across the framework internally
+	public Set<Project> getProject(String email, String projectCode) {
+		User user= userRepository.findByEmail(email);
+		if (user==null)
+			return null;
+		
+		Set<Project> projects= user.getProjects();
+		if(projects==null|| projects.size()<=0)
+			return null;
+		
+		Set<Project> matchingProject= projects.stream().filter(p-> p.getProjectCode().equalsIgnoreCase(projectCode)||p.getProjectName().equalsIgnoreCase(projectCode)).collect(Collectors.toSet());
+		if(matchingProject==null||matchingProject.size()<=0)
+			return null;
+		else
+			return matchingProject;
+	}
+
+	@Override
+	public ResponseEntity<String> deleteProject(String email, String projectCode) {
+		User user= userRepository.findByEmail(email);
+		if (user==null)
+			return CompactServiceImpl.reportResponse(HttpStatus.NOT_FOUND, "Email id is not registered");
+		
+		Project project= projectRepository.findByProjectCode(projectCode);
+		if (project==null)
+			project= projectRepository.findByProjectName(projectCode);
+			if(project==null)
+				return CompactServiceImpl.reportResponse(HttpStatus.NOT_FOUND, "Project is not registered");	
+		
+		//Check if project is not allocated to user
+		if (!user.getProjects().contains(project))
+			return CompactServiceImpl.reportResponse(HttpStatus.NOT_FOUND, project.getProjectCode() + " is is not allocated to user "+ user.getFirstName() + " " + user.getLastName());
+		
+		//Deallocated project
+		Set<Project> projects=user.getProjects();
+		user.getProjects().remove(project);
+		user.setProjects(projects);
+		userRepository.save(user);
+		projectRepository.delete(project);
+		return CompactServiceImpl.reportResponse(HttpStatus.ACCEPTED, projectCode+ " Project deallocated  to user "+ user.getFirstName() + " " + user.getLastName());
+	}
 }
 

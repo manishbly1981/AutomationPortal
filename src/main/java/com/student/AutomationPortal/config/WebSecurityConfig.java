@@ -23,7 +23,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	public void configure(HttpSecurity http) throws Exception {
 		http.csrf().disable();
 //		http.authorizeRequests().anyRequest().fullyAuthenticated().and().httpBasic();
-		http.authorizeRequests().antMatchers("/js/**", "/css/**").permitAll()
+		//http.authorizeRequests().antMatchers("/js/**", "/css/**").permitAll()
 		/*
 		 * .anyRequest().authenticated() .and() .formLogin() .loginPage("/index")
 		 * .permitAll() .and() .logout() .permitAll()
@@ -34,19 +34,23 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		 /*http.authorizeRequests().antMatchers("/api/v1/auth/**")
 		 .hasAnyRole("admin").anyRequest().fullyAuthenticated() .and().httpBasic();
 		 */
-		http.authorizeRequests()
-	    //.antMatchers("/**/auth/**").authenticated() 
-		//.antMatchers("/**/auth/**").hasAnyRole("admin")
-	    .antMatchers("/auth/**").hasRole("admin") // Allow access to "/auth/" path only for users with "ADMIN" role
-	    .antMatchers("/admin/**").hasRole("admin") // Allow access to "/auth/" path only for users with "ADMIN" role
-	    .anyRequest().permitAll();
+//		http.authorizeRequests()
+//		.antMatchers("**/v1/**").denyAll()
+//	    //.antMatchers("/**/auth/**").authenticated() 
+//		//.antMatchers("/**/auth/**").hasAnyRole("admin")
+//		.antMatchers("**/v1/module**").hasRole("admin")
+//		.antMatchers("**/v1/module**").hasRole("user")
+//	    .antMatchers("**/auth/**").hasRole("admin") // Allow access to "/auth/" path only for users with "ADMIN" role
+//	    .antMatchers("**/admin/**").hasRole("admin"); // Allow access to "/auth/" path only for users with "ADMIN" role
+//		*/
+		//.anyRequest().permitAll();
 
 		// unlocking functionality and security configuration
 	}
 
 	public void configure(AuthenticationManagerBuilder auth) throws Exception {
-		 auth.inMemoryAuthentication().withUser("vikas@vikas.com").password("Niit@123").roles("admin");
-		 auth.inMemoryAuthentication().withUser("arti@arti.com").password("Niit@123").roles("user");
+//		 auth.inMemoryAuthentication().withUser("vikas@vikas.com").password("Niit@123").roles("admin");
+//		 auth.inMemoryAuthentication().withUser("arti@arti.com").password("Niit@123").roles("user");
 
 		/*
 		auth.jdbcAuthentication()//.passwordEncoder(new AttributeEncrypter())
@@ -60,9 +64,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		 .withUser(User.withUsername("manish").password(new AttributeEncrypter().convertToEntityAttribute(""))
 				 .roles("admin"));
 		 */
-		 
-
-		 
 	}
 
 	

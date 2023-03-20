@@ -10,5 +10,6 @@ public interface ProjectService {
 	ResponseEntity<String> deAllocateProject(String email, String projectCode);
 	ResponseEntity<String> getAssignedProjects(String email);
 	ResponseEntity<String> getAllProjects();
+	ResponseEntity<String> deleteProject(String email, String projectCode);
 	
 }

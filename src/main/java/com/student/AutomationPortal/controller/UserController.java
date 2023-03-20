@@ -22,8 +22,8 @@ import com.student.AutomationPortal.service.UserService;
 public class UserController {
 	private UserService userService;
 
-	@Autowired
-	private RawData rawData;
+	//@Autowired
+	//private RawData rawData;
 	
 	public UserController(UserService userService) {
 		this.userService= userService;
@@ -62,12 +62,12 @@ public class UserController {
 		return userService.unlockUser(email);
 	}
 	
-	@PostMapping("/testData")
+	/*@PostMapping("/testData")
 	public ResponseEntity<String> testDataGenerator(){
 		rawData.RawDataGenerator();
 		return ResponseEntity.ok("Test Data Generated");
 	}
-	
+	*/
 	@GetMapping("/auth/users")
 	public ResponseEntity<List<User>> getUserList(){
 		return ResponseEntity.ok(userService.userList());

@@ -1,6 +1,7 @@
 package com.student.AutomationPortal.serviceImpl;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.logging.Level;
@@ -46,6 +47,17 @@ public class CompactServiceImpl {
 			ObjectMapper mapper= new ObjectMapper();
 			mapper.enable(SerializationFeature.INDENT_OUTPUT);
 			String json= mapper.writeValueAsString(set);
+			return ResponseEntity.status(statusCode).contentType(MediaType.APPLICATION_JSON).body(json);
+		}catch(Exception e) {
+			return reportResponse(HttpStatus.BAD_REQUEST, "Cannot convert value to JSON");
+		}
+	}
+	
+	public static ResponseEntity<String> reportResponse(HttpStatus statusCode, List list) {
+		try {
+			ObjectMapper mapper= new ObjectMapper();
+			mapper.enable(SerializationFeature.INDENT_OUTPUT);
+			String json= mapper.writeValueAsString(list);
 			return ResponseEntity.status(statusCode).contentType(MediaType.APPLICATION_JSON).body(json);
 		}catch(Exception e) {
 			return reportResponse(HttpStatus.BAD_REQUEST, "Cannot convert value to JSON");

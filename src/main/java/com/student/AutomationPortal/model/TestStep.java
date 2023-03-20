@@ -31,8 +31,9 @@ public class TestStep {
 	@ManyToMany(cascade= CascadeType.ALL)
 	@JoinTable(name="TS_LR", 
 			joinColumns = @JoinColumn(name="testStepId",referencedColumnName= "id"),//
-			inverseJoinColumns = @JoinColumn(name="locatorId", referencedColumnName = "id"))
-	private Set<LocatorObjects> locatorId;
+			inverseJoinColumns = {@JoinColumn(name="locatorId", referencedColumnName = "id"),
+								 @JoinColumn(name="locatorSNo", referencedColumnName = "sNo")})
+	private Set<Locators> locatorId;
 	
 	private String value; //if value is in curly bracket means parameterize from test Data, else hard coded
 	private String exitIfFail;

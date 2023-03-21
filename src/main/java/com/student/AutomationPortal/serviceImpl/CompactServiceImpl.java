@@ -63,4 +63,10 @@ public class CompactServiceImpl {
 			return reportResponse(HttpStatus.BAD_REQUEST, "Cannot convert value to JSON");
 		}
 	}
+
+	public static ResponseEntity<String> reportJSONResponse(HttpStatus statusCode, String msgToWrite) {
+		  return ResponseEntity.status(statusCode).contentType(MediaType.APPLICATION_JSON).body(msgToWrite);
+	}
+	
+
 }

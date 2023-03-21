@@ -50,8 +50,14 @@ public class ModuleServiceImpl implements ModuleService{
 			 matchingModules= modules.stream().filter(m->m.getName().equalsIgnoreCase(moduleName)).collect(Collectors.toList());
 		if(matchingModules.size()>0 )
 			return CompactServiceImpl.reportResponse(HttpStatus.FOUND, moduleName + " module is already assigned to user");
-		if(moduleRepository.findByName(moduleName)!=null)
+		if(moduleRepository.findByName(moduleName)!=null) {
+//			Module module= moduleRepository.findByName(moduleName);
+//			Project project=matchingProject.get(0);
+//			modules.add(module);
+//			project.setModules(modules);
+//			projectRepository.save(project);
 			return CompactServiceImpl.reportResponse(HttpStatus.FOUND, moduleName + " module is already registered in another project");
+		}
 		Module m= new Module();
 		m.setName(moduleName);
 		modules.add(m);

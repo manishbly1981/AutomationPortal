@@ -131,7 +131,9 @@ public class ModuleServiceImpl implements ModuleService{
 		
 		List<Project> matchingProject= projects.stream().filter(p-> p.getProjectCode().equalsIgnoreCase(projectCode)||p.getProjectName().equalsIgnoreCase(projectCode)).collect(Collectors.toList());
 		if(matchingProject==null||matchingProject.size()<=0)
-			return null;
+			matchingProject= projects.stream().filter(p-> p.getProjectName().equalsIgnoreCase(projectCode)||p.getProjectName().equalsIgnoreCase(projectCode)).collect(Collectors.toList());
+			if(matchingProject==null||matchingProject.size()<=0)
+				return null;
 		
 		Set<Module> modules= matchingProject.get(0).getModules();
 		List<Module> matchingModules= modules.stream().filter(m->m.getName().equalsIgnoreCase(moduleName)).collect(Collectors.toList());

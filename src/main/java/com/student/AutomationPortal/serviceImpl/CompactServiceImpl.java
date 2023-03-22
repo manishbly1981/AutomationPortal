@@ -7,6 +7,7 @@ import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import com.student.AutomationPortal.model.TestCase;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -67,6 +68,16 @@ public class CompactServiceImpl {
 	public static ResponseEntity<String> reportJSONResponse(HttpStatus statusCode, String msgToWrite) {
 		  return ResponseEntity.status(statusCode).contentType(MediaType.APPLICATION_JSON).body(msgToWrite);
 	}
-	
+
+	public static ResponseEntity<String> reportResponse(HttpStatus statusCode, TestCase tc) {
+		try {
+			ObjectMapper mapper= new ObjectMapper();
+			mapper.enable(SerializationFeature.INDENT_OUTPUT);
+			String json= mapper.writeValueAsString(tc);
+			return ResponseEntity.status(statusCode).contentType(MediaType.APPLICATION_JSON).body(json);
+		}catch(Exception e) {
+			return reportResponse(HttpStatus.BAD_REQUEST, "Cannot convert value to JSON");
+		}
+	}
 
 }

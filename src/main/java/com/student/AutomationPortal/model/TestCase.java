@@ -1,5 +1,6 @@
 package com.student.AutomationPortal.model;
 
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -31,5 +32,5 @@ public class TestCase {
 	@JoinTable(name="testCase_TestStep", 
 			joinColumns = @JoinColumn(name="testCaseId",referencedColumnName= "id"),//
 			inverseJoinColumns = @JoinColumn(name="testStepId", referencedColumnName = "id"))
-	private Set<TestStep> TestSteps;
+	private List<TestStep> TestSteps;
 }

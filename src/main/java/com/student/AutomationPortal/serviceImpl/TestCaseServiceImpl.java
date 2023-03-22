@@ -51,11 +51,13 @@ public class TestCaseServiceImpl implements TestCaseService{
 		
 		TestCase tc= new TestCase();
 		tc.setName(testCaseName);
-		//testCaseRepository.save(tc);
 		testCases.add(tc);
 		module.setTestCases(testCases);
 		moduleRepository.save(module);
-		return  CompactServiceImpl.reportResponse(HttpStatus.ACCEPTED, testCaseName + " test case created");
+//		List<TestCase> tcs= testCaseRepository.findByName(testCaseName);
+//		tc= tcs.get(tcs.size()-1);
+
+		return  CompactServiceImpl.reportResponse(HttpStatus.ACCEPTED, testCaseName + " created");
 	}
 
 	@Override
@@ -93,8 +95,8 @@ public class TestCaseServiceImpl implements TestCaseService{
 		
 		TestCase tc= matchingTestCases.get(0);
 		tc.setName(newTestCaseName);
-			testCaseRepository.save(tc);
-		return CompactServiceImpl.reportResponse(HttpStatus.ACCEPTED, "Test case renamed");
+		testCaseRepository.save(tc);
+		return CompactServiceImpl.reportResponse(HttpStatus.ACCEPTED, tc);
 	}
 
 	@Override

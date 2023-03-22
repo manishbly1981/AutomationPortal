@@ -141,9 +141,10 @@ public class LocatorServiceImpl implements LocatorService{
 	public ResponseEntity<String> getLocator(String page, String name) {
 		try {
 		List<Locators> pageWiseLocators= locatorRepository.findByPage(page);
+
 		if (pageWiseLocators.size()>0) {
 			List<Locators> locatorList= pageWiseLocators.stream().filter(r->r.getLogicalName().equalsIgnoreCase(name)).collect(Collectors.toList());
-			if(locatorList.size()>0) {
+			if(locatorList.size()<=0) {
 				return CompactServiceImpl.reportResponse(HttpStatus.NOT_FOUND, page +" Page does not have an element with name "+ name);
 			}else {
 				return CompactServiceImpl.reportResponse(HttpStatus.OK, locatorList);

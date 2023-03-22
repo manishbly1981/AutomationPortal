@@ -23,20 +23,20 @@ public class TestStep {
 	@GeneratedValue(strategy= GenerationType.AUTO)
 	@Column(name="id")
 	private Long id;
-	private int sNo; //how to ensure it is not duplicate in test case
+	@Column(name="seq", nullable= false, unique= true)
+	private int seq;
+	@Column(name="stepDescription", nullable= false)
 	private String stepDescription;
+	@Column(name="action", nullable= false)
 	private String action;
-	private String logicalName;
 
-	/*@ManyToMany(cascade= CascadeType.ALL)
+	@ManyToMany(cascade= CascadeType.ALL)
 	@JoinTable(name="TS_LR", 
 			joinColumns = @JoinColumn(name="testStepId",referencedColumnName= "id"),//
-			inverseJoinColumns = {@JoinColumn(name="locatorId", referencedColumnName = "id"),
-								 @JoinColumn(name="locatorSNo", referencedColumnName = "sNo")})
-	private Set<Locators> locatorId;
-	*/
+			inverseJoinColumns = {@JoinColumn(name="locatorId", referencedColumnName = "id")
+								})
+	private Set<Locators> locator;
+
 	private String value; //if value is in curly bracket means parameterize from test Data, else hard coded
 	private String exitIfFail;
-	
-	
 }

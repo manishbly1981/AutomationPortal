@@ -13,7 +13,7 @@ import com.student.AutomationPortal.model.Project;
 import com.student.AutomationPortal.service.ProjectService;
 
 @RestController
-@RequestMapping("/api/v1/admin")
+@RequestMapping("/api/admin")
 public class ProjectController {
 	ProjectService projectService;
 	public ProjectController(ProjectService projectService) {

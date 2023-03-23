@@ -3,44 +3,24 @@ package com.student.AutomationPortal.controller;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.student.AutomationPortal.dto.RawData;
 import com.student.AutomationPortal.model.User;
 import com.student.AutomationPortal.service.UserService;
 
 @RestController
-@RequestMapping("/api/v1")
+@RequestMapping("/api")
 public class UserController {
 	private UserService userService;
 
-	//@Autowired
-	//private RawData rawData;
-	
 	public UserController(UserService userService) {
 		this.userService= userService;
 	}
 	
 	@PostMapping("/register")
 	public ResponseEntity<String> registerUser(@RequestBody User user) throws JsonProcessingException {
-		/*
-	 	ResponseEntity<String> dummyResponse= userService.registerUser(user);
-		 
-		Map<String, Object> object = new HashMap<>();
-		  object.put("msg", dummyResponse.getBody());
-
-		  ObjectMapper mapper = new ObjectMapper();
-		  String response= mapper.writeValueAsString(dummyResponse);
-		return ResponseEntity.status(dummyResponse.getStatusCode()).body(response);
-		*/
 		return userService.registerUser(user);
 	}
 
@@ -61,15 +41,28 @@ public class UserController {
 	public ResponseEntity<String> unlockUser(@RequestParam(name="email") String email){
 		return userService.unlockUser(email);
 	}
-	
-	/*@PostMapping("/testData")
-	public ResponseEntity<String> testDataGenerator(){
-		rawData.RawDataGenerator();
-		return ResponseEntity.ok("Test Data Generated");
-	}
-	*/
-	@GetMapping("/auth/users")
+
+	@GetMapping("/admin/users")
 	public ResponseEntity<List<User>> getUserList(){
 		return ResponseEntity.ok(userService.userList());
+	}
+
+
+//
+	@PostMapping("/admin/roles")
+	public ResponseEntity<String> addRoles(@RequestParam(name="email") String email, @RequestParam(name="role")  String role){
+		return userService.addRoles(email, role);
+	}
+
+	@DeleteMapping("/admin/roles")
+	public ResponseEntity<String> delRoles(@RequestParam(name="email") String email, @RequestParam(name="role")  String role){
+		return userService.delRoles(email, role);
+	}
+	@GetMapping("/admin/roles")
+	public ResponseEntity<String> getRoles(@RequestParam(name="email", required = false) String email){
+		if (email==null)
+			return userService.getRoles();
+		else
+			return userService.getRoles(email);
 	}
 }

@@ -1,12 +1,14 @@
 package com.student.AutomationPortal.serviceImpl;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.student.AutomationPortal.model.User;
@@ -32,10 +34,16 @@ public class ModuleServiceImpl implements ModuleService{
 	
 	@Override
 	public ResponseEntity<String> registerModule(String email, String projectCode, String moduleName) {
-		User user= userRepository.findByEmail(email);
-		if (user==null)
-			return CompactServiceImpl.reportResponse(HttpStatus.NOT_FOUND, email+ " email is not registered");
-		
+//		User user= userRepository.findByEmail(email);
+//		if (user==null)
+//			return CompactServiceImpl.reportResponse(HttpStatus.NOT_FOUND, email+ " email is not registered");
+
+		Optional<User> oUSer = userRepository.findByEmail(email);
+		oUSer.orElseThrow(()->{
+			CompactServiceImpl.reportResponse(HttpStatus.NOT_FOUND, email+ " email is not registered");
+			return new UsernameNotFoundException(email + " not found");});
+		User user= oUSer.get();
+
 		Set<Project> projects= user.getProjects();
 		if(projects==null|| projects.size()<=0)
 			return CompactServiceImpl.reportResponse(HttpStatus.NOT_FOUND, "No project has been assigned to user");
@@ -74,10 +82,14 @@ public class ModuleServiceImpl implements ModuleService{
 
 	@Override
 	public ResponseEntity<String> getModuleList(String email, String projectCode) {
-		User user= userRepository.findByEmail(email);
-		if (user==null)
-			return CompactServiceImpl.reportResponse(HttpStatus.NOT_FOUND, email+ " email is not registered");
-		
+//		User user= userRepository.findByEmail(email);
+//		if (user==null)
+//			return CompactServiceImpl.reportResponse(HttpStatus.NOT_FOUND, email+ " email is not registered");
+		Optional<User> oUSer = userRepository.findByEmail(email);
+		oUSer.orElseThrow(()->{
+			CompactServiceImpl.reportResponse(HttpStatus.NOT_FOUND, email+ " email is not registered");
+			return new UsernameNotFoundException(email + " not found");});
+		User user= oUSer.get();
 		Set<Project> projects= user.getProjects();
 		if(projects==null|| projects.size()<=0)
 			return CompactServiceImpl.reportResponse(HttpStatus.NOT_FOUND, "No project has been assigned to user");
@@ -91,10 +103,14 @@ public class ModuleServiceImpl implements ModuleService{
 
 	@Override
 	public ResponseEntity<String> deRegisterModule(String email, String projectCode, String moduleName) {
-		User user= userRepository.findByEmail(email);
-		if (user==null)
-			return CompactServiceImpl.reportResponse(HttpStatus.NOT_FOUND, email+ " email is not registered");
-		
+//		User user= userRepository.findByEmail(email);
+//		if (user==null)
+//			return CompactServiceImpl.reportResponse(HttpStatus.NOT_FOUND, email+ " email is not registered");
+		Optional<User> oUSer = userRepository.findByEmail(email);
+		oUSer.orElseThrow(()->{
+			CompactServiceImpl.reportResponse(HttpStatus.NOT_FOUND, email+ " email is not registered");
+			return new UsernameNotFoundException(email + " not found");});
+		User user= oUSer.get();
 		Set<Project> projects= user.getProjects();
 		if(projects==null|| projects.size()<=0)
 			return CompactServiceImpl.reportResponse(HttpStatus.NOT_FOUND, "No project has been assigned to user");
@@ -121,10 +137,14 @@ public class ModuleServiceImpl implements ModuleService{
 
 	//Method to be used across the framework internally
 	public Module getModule(String email, String projectCode, String moduleName) {
-		User user= userRepository.findByEmail(email);
-		if (user==null)
-			return null;
-		
+//		User user= userRepository.findByEmail(email);
+//		if (user==null)
+//			return null;
+		Optional<User> oUSer = userRepository.findByEmail(email);
+		oUSer.orElseThrow(()->{
+			CompactServiceImpl.reportResponse(HttpStatus.NOT_FOUND, email+ " email is not registered");
+			return new UsernameNotFoundException(email + " not found");});
+		User user= oUSer.get();
 		Set<Project> projects= user.getProjects();
 		if(projects==null|| projects.size()<=0)
 			return null;
@@ -147,10 +167,15 @@ public class ModuleServiceImpl implements ModuleService{
 
 	@Override
 	public ResponseEntity<String> deleteModule(String email, String projectCode, String moduleName) {
-		User user= userRepository.findByEmail(email);
-		if (user==null)
-			return CompactServiceImpl.reportResponse(HttpStatus.NOT_FOUND, email+ " email is not registered");
-		
+//		User user= userRepository.findByEmail(email);
+//		if (user==null)
+//			return CompactServiceImpl.reportResponse(HttpStatus.NOT_FOUND, email+ " email is not registered");
+		Optional<User> oUSer = userRepository.findByEmail(email);
+		oUSer.orElseThrow(()->{
+			CompactServiceImpl.reportResponse(HttpStatus.NOT_FOUND, email+ " email is not registered");
+			return new UsernameNotFoundException(email + " not found");});
+		User user= oUSer.get();
+
 		Set<Project> projects= user.getProjects();
 		if(projects==null|| projects.size()<=0)
 			return CompactServiceImpl.reportResponse(HttpStatus.NOT_FOUND, "No project has been assigned to user");

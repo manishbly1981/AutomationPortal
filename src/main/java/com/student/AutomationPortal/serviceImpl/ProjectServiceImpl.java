@@ -3,6 +3,7 @@ package com.student.AutomationPortal.serviceImpl;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
@@ -10,6 +11,7 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.student.AutomationPortal.model.Module;
@@ -65,9 +67,16 @@ public class ProjectServiceImpl implements ProjectService{
 
 	@Override
 	public ResponseEntity<String> allocateProject(String email, String projectCode) {
-		User user= userRepository.findByEmail(email);
-		if (user==null)
-			return CompactServiceImpl.reportResponse(HttpStatus.NOT_FOUND, "Email id is not registered");
+//		User user= userRepository.findByEmail(email);
+//		if (user==null)
+//			return CompactServiceImpl.reportResponse(HttpStatus.NOT_FOUND, "Email id is not registered");
+
+		Optional<User> oUSer = userRepository.findByEmail(email);
+		oUSer.orElseThrow(()->{
+			CompactServiceImpl.reportResponse(HttpStatus.NOT_FOUND, email+ " email is not registered");
+			return new UsernameNotFoundException(email + " not found");});
+		User user= oUSer.get();
+
 		Project project= projectRepository.findByProjectCode(projectCode);
 		if (project==null)
 			project= projectRepository.findByProjectName(projectCode);
@@ -97,10 +106,14 @@ public class ProjectServiceImpl implements ProjectService{
 
 	@Override
 	public ResponseEntity<String> deAllocateProject(String email, String projectCode) {
-		User user= userRepository.findByEmail(email);
-		if (user==null)
-			return CompactServiceImpl.reportResponse(HttpStatus.NOT_FOUND, "Email id is not registered");
-		
+//		User user= userRepository.findByEmail(email);
+//		if (user==null)
+//			return CompactServiceImpl.reportResponse(HttpStatus.NOT_FOUND, "Email id is not registered");
+		Optional<User> oUSer = userRepository.findByEmail(email);
+		oUSer.orElseThrow(()->{
+			CompactServiceImpl.reportResponse(HttpStatus.NOT_FOUND, email+ " email is not registered");
+			return new UsernameNotFoundException(email + " not found");});
+		User user= oUSer.get();
 		Project project= projectRepository.findByProjectCode(projectCode);
 		if (project==null)
 			project= projectRepository.findByProjectName(projectCode);
@@ -121,10 +134,15 @@ public class ProjectServiceImpl implements ProjectService{
 
 	@Override
 	public ResponseEntity<String> getAssignedProjects(String email) {
-		User user= userRepository.findByEmail(email);
-		if (user==null)
-			return CompactServiceImpl.reportResponse(HttpStatus.NOT_FOUND, "Email id is not registered");
-		
+//		User user= userRepository.findByEmail(email);
+//		if (user==null)
+//			return CompactServiceImpl.reportResponse(HttpStatus.NOT_FOUND, "Email id is not registered");
+		Optional<User> oUSer = userRepository.findByEmail(email);
+		oUSer.orElseThrow(()->{
+			CompactServiceImpl.reportResponse(HttpStatus.NOT_FOUND, email+ " email is not registered");
+			return new UsernameNotFoundException(email + " not found");});
+		User user= oUSer.get();
+
 		Set<Project> projects= user.getProjects();
 		if (projects.size()<=0)
 			return CompactServiceImpl.reportResponse(HttpStatus.NOT_FOUND, "No project is assigned to user");
@@ -144,10 +162,14 @@ public class ProjectServiceImpl implements ProjectService{
 
 	//Method to be used across the framework internally
 	public Set<Project> getProject(String email, String projectCode) {
-		User user= userRepository.findByEmail(email);
-		if (user==null)
-			return null;
-		
+//		User user= userRepository.findByEmail(email);
+//		if (user==null)
+//			return null;
+		Optional<User> oUSer = userRepository.findByEmail(email);
+		oUSer.orElseThrow(()->{
+			CompactServiceImpl.reportResponse(HttpStatus.NOT_FOUND, email+ " email is not registered");
+			return new UsernameNotFoundException(email + " not found");});
+		User user= oUSer.get();
 		Set<Project> projects= user.getProjects();
 		if(projects==null|| projects.size()<=0)
 			return null;
@@ -161,10 +183,14 @@ public class ProjectServiceImpl implements ProjectService{
 
 	@Override
 	public ResponseEntity<String> deleteProject(String email, String projectCode) {
-		User user= userRepository.findByEmail(email);
-		if (user==null)
-			return CompactServiceImpl.reportResponse(HttpStatus.NOT_FOUND, "Email id is not registered");
-		
+//		User user= userRepository.findByEmail(email);
+//		if (user==null)
+//			return CompactServiceImpl.reportResponse(HttpStatus.NOT_FOUND, "Email id is not registered");
+		Optional<User> oUSer = userRepository.findByEmail(email);
+		oUSer.orElseThrow(()->{
+			CompactServiceImpl.reportResponse(HttpStatus.NOT_FOUND, email+ " email is not registered");
+			return new UsernameNotFoundException(email + " not found");});
+		User user= oUSer.get();
 		Project project= projectRepository.findByProjectCode(projectCode);
 		if (project==null)
 			project= projectRepository.findByProjectName(projectCode);

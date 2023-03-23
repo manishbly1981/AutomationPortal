@@ -52,5 +52,4 @@ public class AttributeEncrypter implements AttributeConverter<String, String>{
 			throw new IllegalStateException();
 		}
 	}
-
 }

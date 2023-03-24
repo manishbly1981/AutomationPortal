@@ -23,7 +23,7 @@ public class TestStep {
 	@GeneratedValue(strategy= GenerationType.AUTO)
 	@Column(name="id")
 	private Long id;
-	@Column(name="seq", nullable= false, unique= true)
+	@Column(name="seq", nullable= false)
 	private int seq;
 	@Column(name="stepDescription", nullable= false)
 	private String stepDescription;

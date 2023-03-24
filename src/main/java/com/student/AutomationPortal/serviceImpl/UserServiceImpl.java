@@ -46,7 +46,6 @@ public class UserServiceImpl implements UserService{
 		try{
 			user.setActive(false);
 			user.setAttempts(0);
-//			user.setConfirmationCode(UUID.randomUUID().toString());
 			user.setConfirmationCode(CompactServiceImpl.generateConfirmationCode());
 			/****************************************************/
 			if (user.getRoles()!=null) {
@@ -89,7 +88,7 @@ public class UserServiceImpl implements UserService{
 		}catch(Exception e) {
 			return ResponseEntity.badRequest().contentType(MediaType.APPLICATION_JSON).body("Confirmation mail not send, please connect with admin");
 		}
-		return CompactServiceImpl.reportResponse(HttpStatus.CREATED, "User registered successfully");
+		return CompactServiceImpl.reportResponse(HttpStatus.OK, "User registered successfully");
 	}
 
 	@Override
@@ -245,6 +244,4 @@ public class UserServiceImpl implements UserService{
 		String subject= "User Activation details";
 		emailServiceImpl.sendSimpleEmail(user.getEmail(), subject, mailText);
 	}
-	
-	
 }

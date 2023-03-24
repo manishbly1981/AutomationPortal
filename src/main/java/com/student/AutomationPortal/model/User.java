@@ -11,15 +11,16 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name="user")
+@Table(name="user", uniqueConstraints = @UniqueConstraint(name= "email_const", columnNames = "email"))
 public class User {
 
 	@Id
+//	@SequenceGenerator(name="uidGen",sequenceName="uid_seq")
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	@Column(name="id")
 	private Long id;
 	
-	@Column(name="email", nullable= false, unique= true)
+	@Column(name="email", nullable= false)
 	private String email;
 	
 	@Column(name="firstName", nullable= false)

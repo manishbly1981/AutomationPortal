@@ -35,7 +35,7 @@ public class TestCaseController {
 			return testCaseService.addTestCase(email, projectCode, moduleName, testName);
 		}else {
 
-			return testStepService.addTestSteps(email, projectCode, moduleName, testName, testSteps);
+			return testStepService.modifyTestSteps(email, projectCode, moduleName, testName, testSteps);
 
 		}
 	}
@@ -57,7 +57,7 @@ public class TestCaseController {
 			if(entity.equalsIgnoreCase("testcase"))
 				return testCaseService.getTestCase(email, project, moduleName, testName);
 			else
-				return testStepService.getTestSteps(email, projectName, moduleName, testName);
+				return testStepService.getTestSteps(email, project, moduleName, testName);
 		}
 
 	}
@@ -77,7 +77,7 @@ public class TestCaseController {
 			testCaseService.reNameTestCase(email, project, moduleName, testName, newTestName);
 
 		if (testSteps!=null){
-			return testStepService.editTestSteps(email, project, moduleName, testName, testSteps);
+			return testStepService.modifyTestSteps(email, project, moduleName, testName, testSteps);
 		}else{
 			return CompactServiceImpl.reportResponse(HttpStatus.BAD_REQUEST, "Test Case Name or Test Steps are missing");
 		}

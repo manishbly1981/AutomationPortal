@@ -34,7 +34,7 @@ public class CompactServiceImpl {
 
 		  ObjectMapper mapper = new ObjectMapper();
 		  String response= mapper.writeValueAsString(object);
-		  return ResponseEntity.status(statusCode).contentType(MediaType.APPLICATION_JSON).body(response);
+		  return ResponseEntity.status(statusCode).contentType(MediaType.TEXT_HTML).body(response);
 		  
 		}catch(Exception e) {
 			e.printStackTrace();

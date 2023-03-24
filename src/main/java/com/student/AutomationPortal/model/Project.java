@@ -2,32 +2,23 @@ package com.student.AutomationPortal.model;
 
 import java.util.Set;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import lombok.Data;
 
 @Data
 @Entity
-@Table(name="project")
+@Table(name="project" , uniqueConstraints = {@UniqueConstraint(name= "pCodeConst", columnNames = "projectCode"),@UniqueConstraint(name= "pNameConst", columnNames = "projectName")})
 public class Project {
 	@Id
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	@Column(name="id")
 	private Long id;
 	
-	@Column(name="projectCode", nullable= false, unique= true)
+	@Column(name="projectCode", nullable= false)
 	private String projectCode;
 	
-	@Column(name="projectName", nullable= false, unique= true)
+	@Column(name="projectName", nullable= false)
 	private String projectName;
 	
 	@OneToMany(cascade= CascadeType.ALL)

@@ -23,11 +23,20 @@
 	<div class="right-panel">
 	</div>
 	<div class="center-panel">
-		<form method="post" action="/login">
-			
-			<input type="text" name="data" />
-			<button type="submit">Send</button>
-		</form>
+		<div th:if="${authenticatedUser == null}">
+			<h1>Login</h1>
+			<form method="post" th:action="@{/api/login}">
+				<label>Email:</label>
+				<input type="email" name="email" required><br>
+				<label>Password:</label>
+				<input type="password" name="password" required><br>
+				<input type="submit" value="Login">
+			</form>
+		</div>
+		<div th:if="${authenticatedUser != null}">
+			<h1>Welcome, <span th:text="${authenticatedUser.email}"></span>!</h1>
+			<a th:href="@{/homePage}">Logout</a>
+		</div>
 
 	</div>
 	<div class="lower-panel">

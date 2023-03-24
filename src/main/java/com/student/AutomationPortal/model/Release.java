@@ -1,23 +1,18 @@
 package com.student.AutomationPortal.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import lombok.Data;
 
 @Data
 @Entity
-@Table(name="executionRelease")
+@Table(name="executionRelease" , uniqueConstraints = @UniqueConstraint(name= "releaseConst", columnNames = "releaseName"))
 public class Release {
 	@Id
 	@GeneratedValue(strategy= GenerationType.AUTO)
 	@Column(name="id")
 	private Long id;
 	
-	@Column(name="releaseName", nullable= false, unique= true)
+	@Column(name="releaseName", nullable= false)
 	private String releaseName;
 }

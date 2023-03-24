@@ -67,10 +67,6 @@ public class ProjectServiceImpl implements ProjectService{
 
 	@Override
 	public ResponseEntity<String> allocateProject(String email, String projectCode) {
-//		User user= userRepository.findByEmail(email);
-//		if (user==null)
-//			return CompactServiceImpl.reportResponse(HttpStatus.NOT_FOUND, "Email id is not registered");
-
 		Optional<User> oUSer = userRepository.findByEmail(email);
 		oUSer.orElseThrow(()->{
 			CompactServiceImpl.reportResponse(HttpStatus.NOT_FOUND, email+ " email is not registered");
@@ -101,14 +97,11 @@ public class ProjectServiceImpl implements ProjectService{
 		}
 		user.setProjects(projects);
 		userRepository.save(user);
-		return CompactServiceImpl.reportResponse(HttpStatus.ACCEPTED, project.getProjectCode() + " Project is allocated to user "+ user.getFirstName() + " " + user.getLastName());
+		return CompactServiceImpl.reportResponse(HttpStatus.OK, project.getProjectCode() + " Project is allocated to user "+ user.getFirstName() + " " + user.getLastName());
 	}
 
 	@Override
 	public ResponseEntity<String> deAllocateProject(String email, String projectCode) {
-//		User user= userRepository.findByEmail(email);
-//		if (user==null)
-//			return CompactServiceImpl.reportResponse(HttpStatus.NOT_FOUND, "Email id is not registered");
 		Optional<User> oUSer = userRepository.findByEmail(email);
 		oUSer.orElseThrow(()->{
 			CompactServiceImpl.reportResponse(HttpStatus.NOT_FOUND, email+ " email is not registered");
@@ -129,14 +122,11 @@ public class ProjectServiceImpl implements ProjectService{
 		user.getProjects().remove(project);
 		user.setProjects(projects);
 		userRepository.save(user);
-			return CompactServiceImpl.reportResponse(HttpStatus.ACCEPTED, projectCode+ " Project deallocated  to user "+ user.getFirstName() + " " + user.getLastName());
+			return CompactServiceImpl.reportResponse(HttpStatus.OK, projectCode+ " Project deallocated  to user "+ user.getFirstName() + " " + user.getLastName());
 	}
 
 	@Override
 	public ResponseEntity<String> getAssignedProjects(String email) {
-//		User user= userRepository.findByEmail(email);
-//		if (user==null)
-//			return CompactServiceImpl.reportResponse(HttpStatus.NOT_FOUND, "Email id is not registered");
 		Optional<User> oUSer = userRepository.findByEmail(email);
 		oUSer.orElseThrow(()->{
 			CompactServiceImpl.reportResponse(HttpStatus.NOT_FOUND, email+ " email is not registered");
@@ -162,9 +152,6 @@ public class ProjectServiceImpl implements ProjectService{
 
 	//Method to be used across the framework internally
 	public Set<Project> getProject(String email, String projectCode) {
-//		User user= userRepository.findByEmail(email);
-//		if (user==null)
-//			return null;
 		Optional<User> oUSer = userRepository.findByEmail(email);
 		oUSer.orElseThrow(()->{
 			CompactServiceImpl.reportResponse(HttpStatus.NOT_FOUND, email+ " email is not registered");
@@ -183,9 +170,6 @@ public class ProjectServiceImpl implements ProjectService{
 
 	@Override
 	public ResponseEntity<String> deleteProject(String email, String projectCode) {
-//		User user= userRepository.findByEmail(email);
-//		if (user==null)
-//			return CompactServiceImpl.reportResponse(HttpStatus.NOT_FOUND, "Email id is not registered");
 		Optional<User> oUSer = userRepository.findByEmail(email);
 		oUSer.orElseThrow(()->{
 			CompactServiceImpl.reportResponse(HttpStatus.NOT_FOUND, email+ " email is not registered");

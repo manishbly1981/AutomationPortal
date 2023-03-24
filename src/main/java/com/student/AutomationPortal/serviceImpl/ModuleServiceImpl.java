@@ -34,10 +34,6 @@ public class ModuleServiceImpl implements ModuleService{
 	
 	@Override
 	public ResponseEntity<String> registerModule(String email, String projectCode, String moduleName) {
-//		User user= userRepository.findByEmail(email);
-//		if (user==null)
-//			return CompactServiceImpl.reportResponse(HttpStatus.NOT_FOUND, email+ " email is not registered");
-
 		Optional<User> oUSer = userRepository.findByEmail(email);
 		oUSer.orElseThrow(()->{
 			CompactServiceImpl.reportResponse(HttpStatus.NOT_FOUND, email+ " email is not registered");
@@ -59,11 +55,6 @@ public class ModuleServiceImpl implements ModuleService{
 		if(matchingModules.size()>0 )
 			return CompactServiceImpl.reportResponse(HttpStatus.FOUND, moduleName + " module is already assigned to user");
 		if(moduleRepository.findByName(moduleName)!=null) {
-//			Module module= moduleRepository.findByName(moduleName);
-//			Project project=matchingProject.get(0);
-//			modules.add(module);
-//			project.setModules(modules);
-//			projectRepository.save(project);
 			return CompactServiceImpl.reportResponse(HttpStatus.FOUND, moduleName + " module is already registered in another project");
 		}
 		Module m= new Module();
@@ -72,7 +63,7 @@ public class ModuleServiceImpl implements ModuleService{
 		Project project=matchingProject.get(0);
 		project.setModules(modules);
 		projectRepository.save(project);
-		return CompactServiceImpl.reportResponse(HttpStatus.ACCEPTED, moduleName + " module is allocated to the project " + projectCode);
+		return CompactServiceImpl.reportResponse(HttpStatus.FOUND, moduleName + " module is allocated to the project " + projectCode);
 	}
 
 	@Override
@@ -103,9 +94,6 @@ public class ModuleServiceImpl implements ModuleService{
 
 	@Override
 	public ResponseEntity<String> deRegisterModule(String email, String projectCode, String moduleName) {
-//		User user= userRepository.findByEmail(email);
-//		if (user==null)
-//			return CompactServiceImpl.reportResponse(HttpStatus.NOT_FOUND, email+ " email is not registered");
 		Optional<User> oUSer = userRepository.findByEmail(email);
 		oUSer.orElseThrow(()->{
 			CompactServiceImpl.reportResponse(HttpStatus.NOT_FOUND, email+ " email is not registered");
@@ -131,15 +119,12 @@ public class ModuleServiceImpl implements ModuleService{
 		p.setModules(modules);
 		projectRepository.save(p);
 		//moduleRepository.deleteAll(matchingModules);
-		return CompactServiceImpl.reportResponse(HttpStatus.ACCEPTED, moduleName + " module is deRegistered from the project " + projectCode);
+		return CompactServiceImpl.reportResponse(HttpStatus.OK, moduleName + " module is deRegistered from the project " + projectCode);
 	}
 
 
 	//Method to be used across the framework internally
 	public Module getModule(String email, String projectCode, String moduleName) {
-//		User user= userRepository.findByEmail(email);
-//		if (user==null)
-//			return null;
 		Optional<User> oUSer = userRepository.findByEmail(email);
 		oUSer.orElseThrow(()->{
 			CompactServiceImpl.reportResponse(HttpStatus.NOT_FOUND, email+ " email is not registered");
@@ -167,9 +152,6 @@ public class ModuleServiceImpl implements ModuleService{
 
 	@Override
 	public ResponseEntity<String> deleteModule(String email, String projectCode, String moduleName) {
-//		User user= userRepository.findByEmail(email);
-//		if (user==null)
-//			return CompactServiceImpl.reportResponse(HttpStatus.NOT_FOUND, email+ " email is not registered");
 		Optional<User> oUSer = userRepository.findByEmail(email);
 		oUSer.orElseThrow(()->{
 			CompactServiceImpl.reportResponse(HttpStatus.NOT_FOUND, email+ " email is not registered");
@@ -196,7 +178,7 @@ public class ModuleServiceImpl implements ModuleService{
 		p.setModules(modules);
 		projectRepository.save(p);
 		moduleRepository.deleteAll(matchingModules);
-		return CompactServiceImpl.reportResponse(HttpStatus.ACCEPTED, moduleName + " module is deRegistered from the project " + projectCode);
+		return CompactServiceImpl.reportResponse(HttpStatus.OK, moduleName + " module is deRegistered from the project " + projectCode);
 	}
 
 }

@@ -54,10 +54,7 @@ public class TestCaseServiceImpl implements TestCaseService{
 		testCases.add(tc);
 		module.setTestCases(testCases);
 		moduleRepository.save(module);
-//		List<TestCase> tcs= testCaseRepository.findByName(testCaseName);
-//		tc= tcs.get(tcs.size()-1);
-
-		return  CompactServiceImpl.reportResponse(HttpStatus.ACCEPTED, testCaseName + " created");
+		return  CompactServiceImpl.reportResponse(HttpStatus.OK, testCaseName + " created");
 	}
 
 	@Override
@@ -77,9 +74,9 @@ public class TestCaseServiceImpl implements TestCaseService{
 		try {
 			testCaseRepository.deleteAll(matchingTestCases);
 		}catch(Exception e) {
-			return CompactServiceImpl.reportResponse(HttpStatus.ACCEPTED, testCaseName + " test case deregistered but exist in repository as it is linked with anotehr entity");
+			return CompactServiceImpl.reportResponse(HttpStatus.OK, testCaseName + " test case deregistered but exist in repository as it is linked with anotehr entity");
 		}
-		return CompactServiceImpl.reportResponse(HttpStatus.ACCEPTED, testCaseName + " test case deleted");
+		return CompactServiceImpl.reportResponse(HttpStatus.OK, testCaseName + " test case deleted");
 	}
 
 	@Override
@@ -96,7 +93,7 @@ public class TestCaseServiceImpl implements TestCaseService{
 		TestCase tc= matchingTestCases.get(0);
 		tc.setName(newTestCaseName);
 		testCaseRepository.save(tc);
-		return CompactServiceImpl.reportResponse(HttpStatus.ACCEPTED, tc);
+		return CompactServiceImpl.reportResponse(HttpStatus.OK, tc);
 	}
 
 	@Override

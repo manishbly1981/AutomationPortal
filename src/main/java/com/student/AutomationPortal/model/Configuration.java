@@ -1,14 +1,6 @@
 package com.student.AutomationPortal.model;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import lombok.Data;
 
@@ -22,10 +14,10 @@ public class Configuration {
 	@Column(name="id")
 	private Long id;
 	
-	private String Name;
+	private String name;
 	private String value;
 	
-	@OneToOne(cascade= CascadeType.ALL)
-	@JoinColumn(name= "projectId", referencedColumnName = "id")
-	private Project projectId;
+	@ManyToOne(cascade= CascadeType.ALL)
+	@JoinColumn(name= "projectId", referencedColumnName = "id", nullable = false)
+	private Project project;
 }

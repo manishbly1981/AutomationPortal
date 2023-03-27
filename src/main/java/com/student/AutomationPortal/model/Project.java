@@ -1,5 +1,6 @@
 package com.student.AutomationPortal.model;
 
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.*;
@@ -26,4 +27,7 @@ public class Project {
 			joinColumns = @JoinColumn(name="projectId",referencedColumnName= "id"),//
 			inverseJoinColumns = @JoinColumn(name="moduleId", referencedColumnName = "id"))
 	private Set<Module> modules;
+
+	@OneToMany(mappedBy = "project",cascade = CascadeType.ALL, fetch = FetchType.LAZY)//, orphanRemoval = true, cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH,CascadeType.REFRESH
+	private List<Release> releases;
 }

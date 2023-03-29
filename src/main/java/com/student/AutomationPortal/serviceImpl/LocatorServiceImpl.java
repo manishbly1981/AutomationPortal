@@ -1,13 +1,12 @@
 package com.student.AutomationPortal.serviceImpl;
 
 
-import java.util.Iterator;
-import java.util.LinkedHashSet;
-import java.util.List;
+import java.util.*;
 import java.util.Map.Entry;
-import java.util.Set;
 import java.util.stream.Collectors;
 
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.student.AutomationPortal.repository.ProjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,114 +22,41 @@ import com.student.AutomationPortal.service.LocatorService;
 @Service
 public class LocatorServiceImpl implements LocatorService{
 
-	@Autowired 
+
+	@Autowired
+	ProjectRepository projectRepository;
+	@Autowired
 	LocatorRepository locatorRepository;
-	
-	@Override
-	public ResponseEntity<String> addLocator(String requestBody) {
-		ObjectMapper objectMapper= new ObjectMapper();
-		try {
-			Set<Locators> locators= new LinkedHashSet<>();
-			JsonNode jsonNode= objectMapper.readTree(requestBody);
-			String page= jsonNode.get("page").asText();
-			String name= jsonNode.get("name").asText();
-			List<Locators> pageWiseLocators= locatorRepository.findByPage(page);
-			if (pageWiseLocators.size()>0) {
-				List<Locators> locatorList= pageWiseLocators.stream().filter(r->r.getLogicalName().equalsIgnoreCase(name)).collect(Collectors.toList());
-				if(locatorList.size()>0) {
-					return CompactServiceImpl.reportResponse(HttpStatus.FOUND, page +" Page already has an element with name "+ name);
-				}
-			}
-			
-			JsonNode properties= jsonNode.get("properties");
-			if (properties.isArray()) {
-				Iterator<Entry<String, JsonNode>> fields = properties.get(0).fields();
-				 fields.forEachRemaining(field->{
-					 String key=field.getKey();
-					 String val=field.getValue().asText();
-					 int sNo = locators.size()+1;
-					 Locators locator= new Locators();
-					 locator.setSeq(sNo);
-					 locator.setPage(page);
-					 locator.setLogicalName(name);
-					 locator.setPriority(sNo);
-					 locator.setLocatorType(key);
-					 locator.setLocatorValue(val);
-					 locators.add(locator);
-				 });
-				 locatorRepository.saveAll(locators);
-				 return CompactServiceImpl.reportJSONResponse(HttpStatus.OK, requestBody);
-				 }
 
-			else {
-				return CompactServiceImpl.reportResponse(HttpStatus.BAD_REQUEST, "JSon format is not as expected\n" + requestBody);
-			}
-			
+	@Override
+	public ResponseEntity<String> addLocator(String projectCode, String requestBody) {
+		try{
+			objectUpdater(projectCode, requestBody);
+			return CompactServiceImpl.reportResponse(HttpStatus.OK, locatorRepository.findByProjectProjectCode(projectCode));
 		} catch (JsonProcessingException e) {
-			return CompactServiceImpl.reportResponse(HttpStatus.BAD_REQUEST, "JSon format is not as expected\n"+ requestBody);
+			return CompactServiceImpl.reportResponse(HttpStatus.BAD_REQUEST, "Please check the request body");
 		}
 	}
 
 	@Override
-	public ResponseEntity<String> editLocator(String requestBody) {
-		ObjectMapper objectMapper= new ObjectMapper();
-		try {
-			Set<Locators> locators= new LinkedHashSet<>();
-			JsonNode jsonNode= objectMapper.readTree(requestBody);
-			String page= jsonNode.get("page").asText();
-			String name= jsonNode.get("name").asText();
-			List<Locators> pageWiseLocators= locatorRepository.findByPage(page);
-			if (pageWiseLocators.size()>0) {
-				List<Locators> locatorList = pageWiseLocators.stream().filter(r -> r.getLogicalName().equalsIgnoreCase(name)).collect(Collectors.toList());
-				if (locatorList.size() > 0) {
-					locatorRepository.deleteAll(locatorList); //Delete existing object is persist in the system
-				}
-			}
-			JsonNode properties= jsonNode.get("properties");
-			if (properties.isArray()) {
-				Iterator<Entry<String, JsonNode>> fields = properties.get(0).fields();
-				fields.forEachRemaining(field->{
-					String key=field.getKey();
-					String val=field.getValue().asText();
-					int sNo = locators.size()+1;
-					Locators locator= new Locators();
-					locator.setSeq(sNo);
-					locator.setPage(page);
-					locator.setLogicalName(name);
-					locator.setPriority(sNo);
-					locator.setLocatorType(key);
-					locator.setLocatorValue(val);
-					locators.add(locator);
-				});
-				locatorRepository.saveAll(locators);
-				return CompactServiceImpl.reportJSONResponse(HttpStatus.OK, requestBody);
-			}
-
-			else {
-				return CompactServiceImpl.reportResponse(HttpStatus.BAD_REQUEST, "JSon format is not as expected\n" + requestBody);
-			}
-
+	public ResponseEntity<String> editLocator(String projectCode, String requestBody) {
+		try{
+			objectUpdater(projectCode, requestBody);
+			return CompactServiceImpl.reportResponse(HttpStatus.OK, locatorRepository.findByProjectProjectCode(projectCode));
 		} catch (JsonProcessingException e) {
-			return CompactServiceImpl.reportResponse(HttpStatus.BAD_REQUEST, "JSon format is not as expected\n"+ requestBody);
+			return CompactServiceImpl.reportResponse(HttpStatus.BAD_REQUEST, "Please check the request body");
 		}
-
 	}
 
 	@Override
-	public ResponseEntity<String> delLocator(String page, String name) {
+	public ResponseEntity<String> delLocator(String projectCode, String page, String name) {
 		try {
-		List<Locators> pageWiseLocators= locatorRepository.findByPage(page);
-		if (pageWiseLocators.size()>0) {
-			List<Locators> locatorList= pageWiseLocators.stream().filter(r->r.getLogicalName().equalsIgnoreCase(name)).collect(Collectors.toList());
-			if(locatorList.size()<=0) {
+			List<Locators> locatorList= locatorRepository.findByProjectProjectCodeAndPageAndLogicalName(projectCode, page, name);
+			if(locatorList.size()==0)
 				return CompactServiceImpl.reportResponse(HttpStatus.NOT_FOUND, page +" Page does not have an element with name "+ name);
-			}else {
-				locatorRepository.deleteAll(locatorList);
-				return CompactServiceImpl.reportResponse(HttpStatus.OK, name + " element deleted from the page " + page);
-			}
-		}else {
-			return CompactServiceImpl.reportResponse(HttpStatus.NOT_FOUND, page +" Page does not exist");
-		}
+
+			locatorRepository.deleteAll(locatorList);
+			return CompactServiceImpl.reportResponse(HttpStatus.OK, "Locator with name '"+ name + "' deleted");
 		} catch (Exception e) {
 			return CompactServiceImpl.reportResponse(HttpStatus.BAD_REQUEST, "Request is not as expected");
 		}
@@ -138,22 +64,71 @@ public class LocatorServiceImpl implements LocatorService{
 	}
 
 	@Override
-	public ResponseEntity<String> getLocator(String page, String name) {
+	public ResponseEntity<String> getLocator(String projectCode, String page, String name) {
 		try {
-		List<Locators> pageWiseLocators= locatorRepository.findByPage(page);
+		List<Locators> locatorsList= locatorRepository.findByPageAndLogicalName(page, name);
+			return CompactServiceImpl.reportResponse(HttpStatus.OK, locatorsList);
 
-		if (pageWiseLocators.size()>0) {
-			List<Locators> locatorList= pageWiseLocators.stream().filter(r->r.getLogicalName().equalsIgnoreCase(name)).collect(Collectors.toList());
-			if(locatorList.size()<=0) {
-				return CompactServiceImpl.reportResponse(HttpStatus.NOT_FOUND, page +" Page does not have an element with name "+ name);
-			}else {
-				return CompactServiceImpl.reportResponse(HttpStatus.OK, locatorList);
-			}
-		}else {
-			return CompactServiceImpl.reportResponse(HttpStatus.NOT_FOUND, page +" Page does not exist");
-		}
 		} catch (Exception e) {
 			return CompactServiceImpl.reportResponse(HttpStatus.BAD_REQUEST, "Request is not as expected");
 		}
+	}
+
+	@Override
+	public ResponseEntity<String> getLocator(String projectCode, String page, String name, int seqNo) {
+		try {
+			Locators locator= locatorRepository.findByPageAndLogicalNameAndSeq(page, name, seqNo);
+			return CompactServiceImpl.reportResponse(HttpStatus.OK, locator);
+
+		} catch (Exception e) {
+			return CompactServiceImpl.reportResponse(HttpStatus.BAD_REQUEST, "Request is not as expected");
+		}
+	}
+	private void objectUpdater(String projectCode, String propertyData) throws JsonProcessingException {
+
+		ObjectMapper objectMapper= new ObjectMapper();
+		objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
+		List<Map<String, Object>> orList= objectMapper.readValue(propertyData, List.class);
+		for(Map<String, Object> or: orList){
+			int counter=0;
+			int toDelStartSeq=99;
+			int toDelCurrentSeq=99;
+			String page=or.get("page").toString();
+			String logicalname=or.get("name").toString();
+
+			List<Locators> locatorPropertyListBeforeUpdate = locatorRepository.findByProjectProjectCodeAndPageAndLogicalName(projectCode, page, logicalname);
+
+			//To make list unique
+			if(locatorPropertyListBeforeUpdate.size()>0) {
+				for (Locators locators : locatorPropertyListBeforeUpdate) {
+					toDelCurrentSeq += 1;
+					locators.setSeq(toDelCurrentSeq);
+				}
+				locatorRepository.saveAll(locatorPropertyListBeforeUpdate);
+			}
+			Map<String, String> properties= (LinkedHashMap<String, String>) or.get("properties");
+			for(Map.Entry<String, String> es: properties.entrySet()){
+				Locators locators= new Locators();
+				if(counter<locatorPropertyListBeforeUpdate.size()) {
+					locators.setId(locatorPropertyListBeforeUpdate.get(counter).getId());
+				}
+				locators.setPage(page);
+				locators.setLogicalName(logicalname);
+				locators.setProject(projectRepository.findByProjectCode(projectCode));
+				counter+=1;
+				locators.setSeq(counter);
+				locators.setPriority(counter);
+				locators.setLocatorType(es.getKey());
+				locators.setLocatorValue(es.getValue());
+				locatorRepository.save(locators);
+			}
+			List<Locators> listToDel= new ArrayList<>();
+			for(int eleToDel=counter+1;eleToDel<=locatorPropertyListBeforeUpdate.size();eleToDel++){
+				listToDel.add(locatorRepository.findByProjectProjectCodeAndPageAndLogicalNameAndSeq(projectCode, page, logicalname, (toDelStartSeq+eleToDel) ));
+			}
+			if(listToDel.size()>0)
+				locatorRepository.deleteAll(listToDel);
+		}
+
 	}
 }

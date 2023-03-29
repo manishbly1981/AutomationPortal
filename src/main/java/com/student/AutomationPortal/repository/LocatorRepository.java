@@ -9,7 +9,10 @@ public interface LocatorRepository extends JpaRepository<Locators, Long>{
 	List<Locators> findBySeq(String seq);
 	List<Locators> findByPage(String page);
 	List<Locators> findByLogicalName(String logicalName);
-	List<Locators> findByLocatorType(String locatorType);
-	List<Locators> findByPriority(String Priority);
-	
+	List<Locators> findByProjectProjectCode(String projectCode);
+	List<Locators> findByPageAndLogicalName(String page, String logicalName);
+	List<Locators> findByProjectProjectCodeAndPageAndLogicalName(String projectCode, String page, String logicalName);
+	Locators findByProjectProjectCodeAndPageAndLogicalNameAndSeq(String projectCode, String page, String logicalName, int Seq);
+	Locators findByPageAndLogicalNameAndSeq(String page, String logicalName, int Seq);
+
 }

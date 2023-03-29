@@ -21,22 +21,22 @@ public class LocatorController {
 	LocatorService locatorService;
 	
 	@PostMapping("")
-	public ResponseEntity<String> addLocator(@RequestBody String requestBody) {
-		return locatorService.addLocator(requestBody);
+	public ResponseEntity<String> addLocator(@RequestParam(name = "projectCode") String projectCode, @RequestBody String requestBody) {
+		return locatorService.addLocator(projectCode, requestBody);
 	}
 	
 	@PutMapping("")
-	public ResponseEntity<String> editLocator(@RequestBody String requestBody) {
-		return locatorService.editLocator(requestBody);
+	public ResponseEntity<String> editLocator(@RequestParam(name = "projectCode") String projectCode, @RequestBody String requestBody) {
+		return locatorService.editLocator(projectCode, requestBody);
 	}
 	
 	@GetMapping("")
-	public ResponseEntity<String> getLocator(@RequestParam(name="page")  String page, @RequestParam(name="name") String name) {
-		return locatorService.getLocator(page, name);
+	public ResponseEntity<String> getLocator(@RequestParam(name = "projectCode") String projectCode, @RequestParam(name="page")  String page, @RequestParam(name="name") String name) {
+		return locatorService.getLocator(projectCode, page, name);
 	}
 	
 	@DeleteMapping("")
-	public ResponseEntity<String> delLocator(@RequestParam(name="page")  String page, @RequestParam(name="name") String name) {
-		return locatorService.delLocator(page, name);
+	public ResponseEntity<String> delLocator(@RequestParam(name = "projectCode") String projectCode, @RequestParam(name="page")  String page, @RequestParam(name="name") String name) {
+		return locatorService.delLocator(projectCode, page, name);
 	}
 }

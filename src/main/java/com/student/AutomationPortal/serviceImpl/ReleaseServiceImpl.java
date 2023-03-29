@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 @Service
@@ -24,8 +25,12 @@ public class ReleaseServiceImpl implements ReleaseService {
         Project project= projectRepository.findByProjectCode(projectCode);
         if(project==null)
             CompactServiceImpl.reportResponse(HttpStatus.NOT_FOUND, "Please check the Project details "+ projectCode);
-        List<ExecutionRelease> releases= releaseRepository.findByProjectId(project.getId());
+        /*//List<ExecutionRelease> releases= releaseRepository.findByProjectId(project.getId());
 
+        List<ExecutionRelease> releases= releaseRepository.findByNameAndProjectId(releaseName, project.getId());
+
+         */
+        List<ExecutionRelease> releases=releaseRepository.findByNameAndProjectProjectCode(releaseName, projectCode);
         if (releases.size()>0)
             return CompactServiceImpl.reportResponse(HttpStatus.FOUND, "Release already exist with name "+ releaseName);
         else{
@@ -33,7 +38,7 @@ public class ReleaseServiceImpl implements ReleaseService {
             release.setProject(project);
             release.setName(releaseName);
             releaseRepository.save(release);
-            return CompactServiceImpl.reportResponse(HttpStatus.OK, releaseRepository.findByProjectId(project.getId()));
+            return CompactServiceImpl.reportResponse(HttpStatus.OK, releaseRepository.findByNameAndProjectProjectCode(releaseName, projectCode));
         }
     }
 
@@ -61,14 +66,14 @@ public class ReleaseServiceImpl implements ReleaseService {
 
     @Override
     public ResponseEntity<String> getRelease(String projectCode, String releaseName) {
-        Project project= projectRepository.findByProjectCode(projectCode);
-        if(project==null)
-            CompactServiceImpl.reportResponse(HttpStatus.NOT_FOUND, "Please check the Project details "+ projectCode);
-        List<ExecutionRelease> matchingRelease= releaseRepository.findByNameAndProjectId(releaseName, project.getId());
+        List<ExecutionRelease> matchingRelease= new ArrayList<>();
+        if (releaseName.length()>0)
+            matchingRelease= releaseRepository.findByNameAndProjectProjectCode(releaseName, projectCode);
+        else
+            matchingRelease= releaseRepository.findByProjectProjectCode(projectCode);
         if(matchingRelease.size()==0)
             return CompactServiceImpl.reportResponse(HttpStatus.NOT_FOUND, "Release '"+ releaseName +"' does not exist");
-        releaseRepository.deleteAll(matchingRelease);
-        return CompactServiceImpl.reportResponse(HttpStatus.OK, "Release " + releaseName + " Deleted");
+        return CompactServiceImpl.reportResponse(HttpStatus.OK, matchingRelease);
     }
 
     @Override

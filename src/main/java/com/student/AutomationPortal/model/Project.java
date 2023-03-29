@@ -13,7 +13,7 @@ import lombok.ToString;
 @Data
 @Entity
 @Table(name="project" , uniqueConstraints = {@UniqueConstraint(name= "pCodeConst", columnNames = "projectCode"),@UniqueConstraint(name= "pNameConst", columnNames = "projectName")})
-@ToString(exclude = {"releases"})
+@ToString(exclude = {"releases","configurations"})
 public class Project {
 	@Id
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
@@ -35,4 +35,8 @@ public class Project {
 	@JsonManagedReference
 	@OneToMany(mappedBy = "project",cascade = CascadeType.ALL, fetch = FetchType.LAZY)//, orphanRemoval = true, cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH,CascadeType.REFRESH
 	private List<ExecutionRelease> releases;
+
+	@JsonManagedReference
+	@OneToMany(mappedBy = "project",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	private List<Configuration> configurations;
 }

@@ -2,6 +2,7 @@ package com.student.AutomationPortal.model;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Data;
 
 
@@ -16,8 +17,9 @@ public class Configuration {
 	
 	private String name;
 	private String value;
-	
-	@ManyToOne(cascade= CascadeType.ALL)
-	@JoinColumn(name= "projectId", referencedColumnName = "id", nullable = false)
+
+	@JsonBackReference
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+	@JoinColumn(name = "project_id", referencedColumnName = "id")
 	private Project project;
 }

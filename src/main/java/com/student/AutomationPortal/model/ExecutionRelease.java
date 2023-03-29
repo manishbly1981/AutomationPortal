@@ -2,7 +2,10 @@ package com.student.AutomationPortal.model;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
+import lombok.ToString;
 
 import java.util.List;
 import java.util.Set;
@@ -10,7 +13,8 @@ import java.util.Set;
 @Data
 @Entity
 @Table(name="executionRelease" , uniqueConstraints = @UniqueConstraint(name= "releaseConst", columnNames = "name"))
-public class Release {
+@ToString(exclude = {"cycles"})
+public class ExecutionRelease {
 	@Id
 	@GeneratedValue(strategy= GenerationType.AUTO)
 	@Column(name="id")
@@ -18,11 +22,11 @@ public class Release {
 	
 	@Column(name="name", nullable= false)
 	private String name;
-
-	@OneToMany(mappedBy = "release",cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH,
-			CascadeType.REFRESH }, orphanRemoval = true)
+	@JsonManagedReference
+	@OneToMany(mappedBy = "executionRelease",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private List<Cycle> cycles;
 
+	@JsonBackReference
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
 	@JoinColumn(name = "project_id", referencedColumnName = "id")
 	private Project project;

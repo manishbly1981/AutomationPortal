@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface CycleRepository extends JpaRepository<Cycle, Long> {
     List<Cycle> findByName(String name);
+    List<Cycle> findByNameAndExecutionReleaseId(String name, Long executionReleasedId);
 }

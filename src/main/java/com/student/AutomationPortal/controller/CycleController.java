@@ -1,7 +1,6 @@
 package com.student.AutomationPortal.controller;
 
 import com.student.AutomationPortal.service.CycleService;
-import com.student.AutomationPortal.service.ReleaseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -23,7 +22,7 @@ public class CycleController {
     }
 
     @GetMapping("")
-    public ResponseEntity<String> getCycle(@RequestParam(name = "projectCode") String projectCode, @RequestParam(name = "releaseName") String releaseName, @RequestParam(name = "cycleName") String cycleName) {
+    public ResponseEntity<String> getCycle(@RequestParam(name = "projectCode") String projectCode, @RequestParam(name = "releaseName") String releaseName, @RequestParam(name = "cycleName", required = false) String cycleName) {
         if (cycleName == null)
             return cycleService.getCycle(projectCode, releaseName, "");
         else

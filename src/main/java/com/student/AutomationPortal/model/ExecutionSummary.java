@@ -34,7 +34,7 @@ public class ExecutionSummary{
 	
 	@ManyToOne(cascade= CascadeType.ALL)
 	@JoinColumn(name="releaseId",referencedColumnName= "id")
-	private Release releases;
+	private ExecutionRelease releases;
 	
 	@ManyToOne(cascade= CascadeType.ALL)
 	@JoinColumn(name="cycleId",referencedColumnName = "id")

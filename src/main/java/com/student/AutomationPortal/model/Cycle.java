@@ -3,6 +3,7 @@ package com.student.AutomationPortal.model;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Data;
 
 import java.util.Set;
@@ -19,9 +20,9 @@ public class Cycle {
 	@Column(name="name", nullable= false)
 	private String name;
 
-
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "executionRelease_id")
-	private Release release;
+	@JsonBackReference
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)//, cascade = CascadeType.ALL
+	@JoinColumn(name = "executionRelease_id", referencedColumnName = "id")
+	private ExecutionRelease executionRelease;
 
 }

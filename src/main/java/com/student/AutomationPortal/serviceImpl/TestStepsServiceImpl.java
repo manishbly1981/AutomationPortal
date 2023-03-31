@@ -8,10 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -26,6 +23,8 @@ public class TestStepsServiceImpl implements TestStepService {
     @Autowired
     LocatorRepository locatorRepository;
 
+    @Autowired
+    ModuleRepository moduleRepository;
     @Override
     public ResponseEntity<String> modifyTestSteps(String email, String projectName, String moduleName, String testCaseName, List<TestStep> testSteps) {
         Module module= moduleServiceImpl.getModule(email, projectName, moduleName);
@@ -35,34 +34,18 @@ public class TestStepsServiceImpl implements TestStepService {
         if(tcs.size()<=0) {
             TestCase tcToAdd= new TestCase();
             tcToAdd.setName(testCaseName);
-            testCaseRepository.save(tcToAdd);
-            tcs= testCaseRepository.findByName(testCaseName);
+//            testCaseRepository.save(tcToAdd);
+            Set<TestCase> testCases = module.getTestCases();
+            testCases.add(tcToAdd);
+            module.setTestCases(testCases);
+            moduleRepository.save(module);
+//            tcs= testCaseRepository.findByName(testCaseName);
+            tcs= moduleRepository.findByName(moduleName).getTestCases().stream().filter(t->t.getName().equalsIgnoreCase(testCaseName)).collect(Collectors.toList());
         }
         TestCase tc= tcs.get(0);
-        List<TestStep> currentTS = tc.getTestSteps();
-        List<TestStep> stepsToRemove= currentTS.stream().filter(ele->!testSteps.contains(ele)).collect(Collectors.toList());
-        List<TestStep> stepsToAdd= testSteps.stream().filter(ele->!currentTS.contains(ele)).collect(Collectors.toList());
-        List<String> nonExistingElementList= new ArrayList<>();
-        stepsToAdd.stream().forEach(step->{
-            Set<Locators> currentStepLocators= step.getLocator();
 
-            String logicalName= currentStepLocators.stream().findFirst().get().getLogicalName();
-            List<Locators> existingLocatorFromDb = locatorRepository.findByLogicalName(logicalName);
-            Set<Locators> firstEle= existingLocatorFromDb.stream().filter(loc->loc.getSeq()==1).collect(Collectors.toSet());
-            if(existingLocatorFromDb.size()<=0)
-                nonExistingElementList.add(logicalName);
-            else{
-                step.setLocator(firstEle);
-            }
-        });
-        if (nonExistingElementList.size()>0)
-            return CompactServiceImpl.reportResponse(HttpStatus.NOT_FOUND,String.join(",", nonExistingElementList) + " elements are not present in Object Repository");
-        currentTS.removeAll(stepsToRemove);
-        currentTS.addAll(stepsToAdd);
-        tc.setTestSteps(currentTS);
-        testCaseRepository.save(tc);
-        testStepRepository.deleteAll(stepsToRemove);
-        return CompactServiceImpl.reportResponse(HttpStatus.OK, currentTS);
+        objectupdater(tc, tc.getTestSteps(), testSteps);
+        return CompactServiceImpl.reportResponse(HttpStatus.OK, testStepRepository.findByTestCasesIdOrderBySeqAsc(tc.getId()));
     }
 
 
@@ -90,9 +73,84 @@ public class TestStepsServiceImpl implements TestStepService {
             return CompactServiceImpl.reportResponse(HttpStatus.NOT_FOUND, "Check the project and module details");
         Optional<TestCase> testCase = module.getTestCases().stream().filter(tc -> tc.getName().equalsIgnoreCase(testCaseName)).findFirst();
         if(testCase.isPresent()) {
-            return CompactServiceImpl.reportResponse(HttpStatus.OK,testCase.get().getTestSteps());
+            return CompactServiceImpl.reportResponse(HttpStatus.OK,testStepRepository.findByTestCasesIdOrderBySeqAsc(testCase.get().getId()));
         }else{
             return CompactServiceImpl.reportResponse(HttpStatus.NOT_FOUND, "Check the test case name: " + testCaseName);
         }
+    }
+
+    private void objectupdater(TestCase tc, List<TestStep> existingTestSteps, List<TestStep> newTestSteps){
+        List<TestStep> testStepsToAdd= new ArrayList<>();
+        List<TestStep> testStepsToDel= new ArrayList<>();
+        int currentSeq=0;
+        if (existingTestSteps.size()>=newTestSteps.size()){
+            for(int counter=0;counter<newTestSteps.size();counter++){
+                final int temp=counter+1;
+                TestStep ts= existingTestSteps.stream().filter(t->(t.getSeq()==temp)).findFirst().get();
+                TestStep updatedTestStep= newTestSteps.get(counter);
+                ts.setStepDescription(updatedTestStep.getStepDescription());
+                ts.setAction(updatedTestStep.getAction());
+                ts.setSeq(++currentSeq);
+                //OR
+                Set<Locators> updatedLocators= new HashSet<>();
+                for(Locators lc:updatedTestStep.getLocators()) {
+                    Locators lr = locatorRepository.findByPageAndLogicalNameAndSeq(lc.getPage(), lc.getLogicalName(),1);
+                    if(lr==null){
+                        throw new RuntimeException("Cannot find any object with page "+ lc.getPage() + " and name " + lc.getLogicalName() + " with seq 1");
+                    }else
+                        updatedLocators.add(lr);
+                }
+
+                ts.setLocators(updatedLocators);
+                ts.setValue(updatedTestStep.getValue());
+                ts.setExitIfFail(updatedTestStep.getExitIfFail());
+                testStepsToAdd.add(ts);
+            }
+            for(int counter=newTestSteps.size();counter<existingTestSteps.size();counter++){
+                final int temp=counter+1;
+                TestStep ts= existingTestSteps.stream().filter(t->(t.getSeq()==temp)).findFirst().get();
+                testStepsToDel.add(ts);
+            }
+        }else{//if newTestSteps is greater than existing test steps
+            for(int counter=0;counter<existingTestSteps.size();counter++){
+                final int temp=counter+1;
+                TestStep ts= existingTestSteps.stream().filter(t->(t.getSeq()==temp)).findFirst().get();
+                TestStep updatedTestStep= newTestSteps.get(counter);
+                ts.setStepDescription(updatedTestStep.getStepDescription());
+                ts.setAction(updatedTestStep.getAction());
+                ts.setSeq(++currentSeq);
+                //OR
+                Set<Locators> updatedLocators= new HashSet<>();
+                for(Locators lc:updatedTestStep.getLocators()) {
+                    Locators lr = locatorRepository.findByPageAndLogicalNameAndSeq(lc.getPage(), lc.getLogicalName(),1);
+                    if(lr==null){
+                        throw new RuntimeException("Cannot find any object with page "+ lc.getPage() + " and name " + lc.getLogicalName() + " with seq 1");
+                    }else
+                        updatedLocators.add(lr);
+                }
+                ts.setLocators(updatedLocators);
+                ts.setValue(updatedTestStep.getValue());
+                ts.setExitIfFail(updatedTestStep.getExitIfFail());
+                testStepsToAdd.add(ts);
+            }
+            for(int counter=existingTestSteps.size();counter<newTestSteps.size();counter++){
+                TestStep ts= newTestSteps.get(counter);
+                ts.setTestCases(tc); //Set Test case
+                ts.setSeq(++currentSeq);
+                //Set OR
+                Set<Locators> updatedLocators= new HashSet<>();
+                for(Locators lc:ts.getLocators()) {
+                    Locators lr = locatorRepository.findByPageAndLogicalNameAndSeq(lc.getPage(), lc.getLogicalName(),1);
+                    if(lr==null){
+                        throw new RuntimeException("Cannot find any object with page "+ lc.getPage() + " and name " + lc.getLogicalName() + " with seq 1");
+                    }else
+                        updatedLocators.add(lr);
+                }
+                ts.setLocators(updatedLocators);
+                testStepsToAdd.add(ts);
+            }
+        }
+        testStepRepository.saveAll(testStepsToAdd);
+        testStepRepository.deleteAll(testStepsToDel);
     }
 }

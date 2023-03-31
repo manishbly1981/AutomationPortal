@@ -4,6 +4,7 @@ import java.util.Set;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.student.AutomationPortal.config.AttributeEncrypter;
 
 import lombok.Data;
@@ -12,6 +13,7 @@ import lombok.Data;
 @Data
 @Entity
 @Table(name="user", uniqueConstraints = @UniqueConstraint(name= "email_const", columnNames = "email"))
+@JsonIgnoreProperties({"password", "confirmationCode"})
 public class User {
 
 	@Id

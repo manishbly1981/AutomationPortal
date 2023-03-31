@@ -2,22 +2,16 @@ package com.student.AutomationPortal.model;
 
 import java.util.Set;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Data;
+import lombok.ToString;
 
 @Entity
 @Data
 @Table(name="testStep")
+@ToString(exclude = {"testCases"})
 public class TestStep {
 	@Id
 	@GeneratedValue(strategy= GenerationType.AUTO)
@@ -35,8 +29,13 @@ public class TestStep {
 			joinColumns = @JoinColumn(name="testStepId",referencedColumnName= "id"),//
 			inverseJoinColumns = {@JoinColumn(name="locatorId", referencedColumnName = "id")
 								})
-	private Set<Locators> locator;
+	private Set<Locators> locators;
 
 	private String value; //if value is in curly bracket means parameterize from test Data, else hard coded
 	private String exitIfFail;
+
+	@JsonBackReference
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)//, cascade = CascadeType.ALL
+	@JoinColumn(name = "testCaseId", referencedColumnName = "id")
+	private TestCase testCases;
 }

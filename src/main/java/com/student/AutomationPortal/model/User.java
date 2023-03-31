@@ -13,7 +13,7 @@ import lombok.Data;
 @Data
 @Entity
 @Table(name="user", uniqueConstraints = @UniqueConstraint(name= "email_const", columnNames = "email"))
-@JsonIgnoreProperties({"password", "confirmationCode"})
+//@JsonIgnoreProperties({"password", "confirmationCode"})
 public class User {
 
 	@Id

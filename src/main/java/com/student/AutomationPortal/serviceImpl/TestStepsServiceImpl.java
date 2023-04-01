@@ -88,7 +88,8 @@ public class TestStepsServiceImpl implements TestStepService {
                 final int temp=counter+1;
                 TestStep ts= existingTestSteps.stream().filter(t->(t.getSeq()==temp)).findFirst().get();
                 TestStep updatedTestStep= newTestSteps.get(counter);
-                ts.setStepDescription(updatedTestStep.getStepDescription());
+                ts.setObjective(updatedTestStep.getObjective());
+                ts.setExpected(updatedTestStep.getExpected());
                 ts.setAction(updatedTestStep.getAction());
                 ts.setSeq(++currentSeq);
                 //OR
@@ -116,7 +117,8 @@ public class TestStepsServiceImpl implements TestStepService {
                 final int temp=counter+1;
                 TestStep ts= existingTestSteps.stream().filter(t->(t.getSeq()==temp)).findFirst().get();
                 TestStep updatedTestStep= newTestSteps.get(counter);
-                ts.setStepDescription(updatedTestStep.getStepDescription());
+                ts.setObjective(updatedTestStep.getObjective());
+                ts.setExpected(updatedTestStep.getExpected());
                 ts.setAction(updatedTestStep.getAction());
                 ts.setSeq(++currentSeq);
                 //OR

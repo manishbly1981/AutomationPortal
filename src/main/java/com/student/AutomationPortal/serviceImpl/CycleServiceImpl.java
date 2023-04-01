@@ -20,22 +20,19 @@ public class CycleServiceImpl implements CycleService {
     @Autowired
     CycleRepository cycleRepository;
     @Override
-    public ResponseEntity<String> addCycle(String projectName, String releaseName, String cycleName) {
-        List<ExecutionRelease> releases = releaseService.getReleaseInternally(projectName, releaseName);
-        if(releases==null ||releases.size()==0)
+    public ResponseEntity<String> addCycle(String projectCode, String releaseName, String cycleName) {
+        ExecutionRelease release = releaseService.getReleaseInternally(projectCode, releaseName);
+        if(release==null)
             return CompactServiceImpl.reportResponse(HttpStatus.NOT_FOUND, "Please check the project and release details");
-        List<Cycle> cycles = releases.get(0).getCycles().stream().filter(c->c.getName().equalsIgnoreCase(cycleName)).collect(Collectors.toList());
+        List<Cycle> cycles = release.getCycles().stream().filter(c->c.getName().equalsIgnoreCase(cycleName)).collect(Collectors.toList());
         if(cycles.size()==0) {
             Cycle cycle = new Cycle();
-            cycle.setExecutionRelease(releases.get(0));
+            cycle.setExecutionRelease(release);
             cycle.setName(cycleName);
             cycleRepository.save(cycle);
             return CompactServiceImpl.reportResponse(HttpStatus.OK, cycleRepository.findByName(cycleName));
         }
         else{
-//            Cycle cycle= cycles.get(0);
-//            cycle.setName(releaseName);
-//            cycleRepository.save(cycle);
             return CompactServiceImpl.reportResponse(HttpStatus.FOUND, "Cycle already exist");
         }
 
@@ -43,11 +40,11 @@ public class CycleServiceImpl implements CycleService {
 
     @Override
     public ResponseEntity<String> editCycle(String projectCode, String releaseName, String cycleName, String newCycleName) {
-        List<ExecutionRelease> releases = releaseService.getReleaseInternally(projectCode, releaseName);
-        if(releases==null ||releases.size()==0){
+        ExecutionRelease release = releaseService.getReleaseInternally(projectCode, releaseName);
+        if(release==null){
             return CompactServiceImpl.reportResponse(HttpStatus.NOT_FOUND, "Release '"+ releaseName+ "' does not exist");
         }
-        List<Cycle> cycles = cycleRepository.findByNameAndExecutionReleaseId(cycleName, releases.get(0).getId());
+        List<Cycle> cycles = cycleRepository.findByNameAndExecutionReleaseId(cycleName, release.getId());
         if(cycles.size()==0){
             return CompactServiceImpl.reportResponse(HttpStatus.NOT_FOUND, "Cycle "+ cycleName +" does not exist");
         }
@@ -59,14 +56,14 @@ public class CycleServiceImpl implements CycleService {
 
     @Override
     public ResponseEntity<String> getCycle(String projectName, String releaseName, String cycleName) {
-        List<ExecutionRelease> releases = releaseService.getReleaseInternally(projectName, releaseName);
-        if(releases==null ||releases.size()==0)
+        ExecutionRelease releases = releaseService.getReleaseInternally(projectName, releaseName);
+        if(releases==null)
             return CompactServiceImpl.reportResponse(HttpStatus.NOT_FOUND, "Please check the project and release details");
         if (cycleName==null|| cycleName.equalsIgnoreCase("")){
-            return CompactServiceImpl.reportResponse(HttpStatus.OK, releases.get(0).getCycles());
+            return CompactServiceImpl.reportResponse(HttpStatus.OK, releases.getCycles());
         }
         else{
-            List<Cycle> cycles = cycleRepository.findByNameAndExecutionReleaseId(cycleName, releases.get(0).getId());
+            List<Cycle> cycles = cycleRepository.findByNameAndExecutionReleaseId(cycleName, releases.getId());
             return CompactServiceImpl.reportResponse(HttpStatus.OK, cycles);
         }
 
@@ -74,10 +71,10 @@ public class CycleServiceImpl implements CycleService {
 
     @Override
     public ResponseEntity<String> delCycle(String projectName, String releaseName, String cycleName) {
-        List<ExecutionRelease> releases = releaseService.getReleaseInternally(projectName, releaseName);
-        if(releases==null ||releases.size()==0)
+        ExecutionRelease releases = releaseService.getReleaseInternally(projectName, releaseName);
+        if(releases==null)
             return CompactServiceImpl.reportResponse(HttpStatus.NOT_FOUND, "Please check the project and release details");
-        List<Cycle> cycles = cycleRepository.findByNameAndExecutionReleaseId(cycleName, releases.get(0).getId());
+        List<Cycle> cycles = cycleRepository.findByNameAndExecutionReleaseId(cycleName, releases.getId());
         if (cycles.size()==0) {
             return CompactServiceImpl.reportResponse(HttpStatus.NOT_FOUND, "Cycle with name '"+ cycleName+"' not found");
         }else{

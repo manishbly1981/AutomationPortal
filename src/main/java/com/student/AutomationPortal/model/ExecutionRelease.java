@@ -13,17 +13,17 @@ import java.util.Set;
 @Data
 @Entity
 @Table(name="executionRelease" , uniqueConstraints = @UniqueConstraint(name= "releaseConst", columnNames = "name"))
-@ToString(exclude = {"cycles"})
+//@ToString(exclude = {"cycles"})
 public class ExecutionRelease {
 	@Id
-	@GeneratedValue(strategy= GenerationType.AUTO)
+	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	@Column(name="id")
 	private Long id;
 	
 	@Column(name="name", nullable= false)
 	private String name;
 	@JsonManagedReference
-	@OneToMany(mappedBy = "executionRelease",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "executionRelease",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private List<Cycle> cycles;
 
 	@JsonBackReference

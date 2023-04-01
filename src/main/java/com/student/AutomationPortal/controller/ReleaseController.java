@@ -23,13 +23,13 @@ public class ReleaseController {
     @GetMapping("")
     public ResponseEntity<String> getRelease(@RequestParam(name="projectCode") String projectCode,@RequestParam(name="releaseName", required = false) String releaseName){
         if(releaseName==null)
-            return releaseService.getRelease(projectCode, "");
+            return releaseService.getRelease(projectCode);
         else
             return releaseService.getRelease(projectCode, releaseName);
     }
 
     @DeleteMapping("")
     public ResponseEntity<String> delRelease(@RequestParam(name="projectCode") String projectCode,@RequestParam(name="releaseName", required = true) String releaseName){
-        return releaseService.getRelease(projectCode, releaseName);
+        return releaseService.deleteRelease(projectCode, releaseName);
     }
 }

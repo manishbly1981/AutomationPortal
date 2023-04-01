@@ -17,11 +17,10 @@ import lombok.Data;
 public class User {
 
 	@Id
-//	@SequenceGenerator(name="uidGen",sequenceName="uid_seq")
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	@Column(name="id")
 	private Long id;
-	
+
 	@Column(name="email", nullable= false)
 	private String email;
 	

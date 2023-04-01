@@ -30,21 +30,17 @@ public class ExecutionDetailResult {
 	private Long id;
 	
 	private int sNo;
-	
-	@ManyToOne(cascade= CascadeType.ALL)
-	@JoinColumn(name= "testStepId", referencedColumnName = "id")
-	private TestStep testStep;
-	
-	
-	private String description;
-	
+
+	private String objective;
+
+	private String expected;
+	private String actual;
+	private String screenshot; //server file path
 	@Enumerated(EnumType.ORDINAL)
 	private ExecutionStatus status;
-	
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date ExecutionStartDateTime;
 	
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date ExecutionEndDateTime;
-
 }

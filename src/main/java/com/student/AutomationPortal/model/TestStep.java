@@ -19,8 +19,10 @@ public class TestStep {
 	private Long id;
 	@Column(name="seq", nullable= false)
 	private int seq;
-	@Column(name="stepDescription", nullable= false)
-	private String stepDescription;
+	@Column(name="objective", nullable= false)
+	private String objective;
+	@Column(name="expected", nullable= false)
+	private String expected;
 	@Column(name="action", nullable= false)
 	private String action;
 

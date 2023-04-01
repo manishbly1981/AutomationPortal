@@ -8,9 +8,9 @@ import java.util.List;
 public interface ReleaseRepository extends JpaRepository<ExecutionRelease, Long> {
     List<ExecutionRelease> findByName(String name);
     List<ExecutionRelease> findByProjectId(Long projectId);
-    List<ExecutionRelease> findByNameAndProjectId(String name, Long projectId);
-    List<ExecutionRelease> findByNameAndProjectProjectCode(String name, String projectCode);
     List<ExecutionRelease> findByProjectProjectCode(String projectCode);
-    List<ExecutionRelease> findByNameAndProjectProjectName(String name, String projectName);
+    ExecutionRelease findByProjectIdAndName(String name, Long projectId);
+    ExecutionRelease findByProjectProjectCodeAndName(String name, String projectCode);
+    ExecutionRelease findByProjectProjectNameAndName(String name, String projectName);
 
 }

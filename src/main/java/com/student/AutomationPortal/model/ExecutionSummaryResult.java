@@ -1,8 +1,6 @@
 package com.student.AutomationPortal.model;
 
 import java.util.Date;
-import java.util.List;
-import java.util.Set;
 
 import javax.persistence.*;
 
@@ -14,7 +12,7 @@ import lombok.Data;
 @Data
 @Entity
 @Table(name="executionSummary")
-public class ExecutionSummary{
+public class ExecutionSummaryResult {
 	@Id
 	@GeneratedValue(strategy= GenerationType.AUTO)
 	@Column(name="id")

@@ -3,6 +3,7 @@ package com.student.AutomationPortal.model;
 import java.util.List;
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 import lombok.ToString;
@@ -19,6 +20,7 @@ public class TestCase {
 
 	@Column(name = "name", nullable = false)
 	private String name;
+
 /*
 	@ManyToMany(cascade= CascadeType.ALL)
 	@JoinTable(name="testCase_TestStep", 
@@ -26,7 +28,14 @@ public class TestCase {
 			inverseJoinColumns = @JoinColumn(name="testStepId", referencedColumnName = "id"))
 	private List<TestStep> TestSteps;
 */
-@JsonManagedReference
-@OneToMany(mappedBy = "testCases",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-private List<TestStep> testSteps;
+
+	@JsonManagedReference
+	@OneToMany(mappedBy = "testCases",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	private List<TestStep> testSteps;
+
+
+	@JsonBackReference
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)//, cascade = CascadeType.ALL
+	@JoinColumn(name = "testCaseId", referencedColumnName = "id")
+	private Module modules;
 }

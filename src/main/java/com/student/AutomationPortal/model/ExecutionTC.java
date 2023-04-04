@@ -31,5 +31,5 @@ public class ExecutionTC {
 
     @JsonManagedReference
     @OneToMany(mappedBy = "executionTc",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private Set<ExecutionSummary> executionSummary;
+    private Set<ExecutionSummaryResult> executionSummary;
 }

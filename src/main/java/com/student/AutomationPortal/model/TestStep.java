@@ -40,4 +40,5 @@ public class TestStep {
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)//, cascade = CascadeType.ALL
 	@JoinColumn(name = "testCaseId", referencedColumnName = "id")
 	private TestCase testCases;
+
 }

@@ -43,7 +43,7 @@ public class TestCaseServiceImpl implements TestCaseService{
 		if (module==null)
 			return CompactServiceImpl.reportResponse(HttpStatus.FOUND, "Please check the email/project/module details if are correct");
 		
-		Set<TestCase> testCases= module.getTestCases();
+		List<TestCase> testCases= module.getTestCases();
 		List<TestCase> matchingTestCases= testCases.stream().filter(t->t.getName().equalsIgnoreCase(testCaseName)).collect(Collectors.toList());
 		if (matchingTestCases.size()>0)
 			return CompactServiceImpl.reportResponse(HttpStatus.FOUND, testCaseName + " test case already exist");
@@ -51,9 +51,11 @@ public class TestCaseServiceImpl implements TestCaseService{
 		
 		TestCase tc= new TestCase();
 		tc.setName(testCaseName);
-		testCases.add(tc);
-		module.setTestCases(testCases);
-		moduleRepository.save(module);
+		tc.setModules(module);
+		testCaseRepository.save(tc);
+//		testCases.add(tc);
+//		module.setTestCases(testCases);
+//		moduleRepository.save(module);
 		return  CompactServiceImpl.reportResponse(HttpStatus.OK, testCaseName + " created");
 	}
 
@@ -63,7 +65,7 @@ public class TestCaseServiceImpl implements TestCaseService{
 		if (module==null)
 			return CompactServiceImpl.reportResponse(HttpStatus.FOUND, "Please check the email/project/module details if are correct");
 		
-		Set<TestCase> testCases= module.getTestCases();
+		List<TestCase> testCases= module.getTestCases();
 		List<TestCase> matchingTestCases= testCases.stream().filter(t->t.getName().equalsIgnoreCase(testCaseName)).collect(Collectors.toList());
 		if (matchingTestCases.size()<=0)
 			return CompactServiceImpl.reportResponse(HttpStatus.NOT_FOUND, testCaseName + " test case does not exist");
@@ -85,7 +87,7 @@ public class TestCaseServiceImpl implements TestCaseService{
 		if (module==null)
 			return CompactServiceImpl.reportResponse(HttpStatus.FOUND, "Please check the email/project/module details if are correct");
 		
-		Set<TestCase> testCases= module.getTestCases();
+		List<TestCase> testCases= module.getTestCases();
 		List<TestCase> matchingTestCases= testCases.stream().filter(t->t.getName().equalsIgnoreCase(oldTestCaseName)).collect(Collectors.toList());
 		if (matchingTestCases.size()<=0)
 			return CompactServiceImpl.reportResponse(HttpStatus.NOT_FOUND, oldTestCaseName + " test case not exist");
@@ -111,7 +113,7 @@ public class TestCaseServiceImpl implements TestCaseService{
 		if (module==null)
 			return CompactServiceImpl.reportResponse(HttpStatus.FOUND, "Please check the email/project/module details if are correct");
 		
-		Set<TestCase> testCases= module.getTestCases();
+		List<TestCase> testCases= module.getTestCases();
 		List<TestCase> matchingTestCases= testCases.stream().filter(t->t.getName().equalsIgnoreCase(testCaseName)).collect(Collectors.toList());
 		if (matchingTestCases.size()<=0)
 			return CompactServiceImpl.reportResponse(HttpStatus.NOT_FOUND, testCaseName + " test case not exist");

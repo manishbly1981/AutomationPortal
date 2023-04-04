@@ -21,6 +21,7 @@ import com.student.AutomationPortal.repository.UserRepository;
 import com.student.AutomationPortal.service.ModuleService;
 
 @Service
+
 public class ModuleServiceImpl implements ModuleService{
 	@Autowired 
 	UserRepository userRepository;
@@ -43,12 +44,12 @@ public class ModuleServiceImpl implements ModuleService{
 		Set<Project> projects= user.getProjects();
 		if(projects==null|| projects.size()<=0)
 			return CompactServiceImpl.reportResponse(HttpStatus.NOT_FOUND, "No project has been assigned to user");
-		
+
 		List<Project> matchingProject= projects.stream().filter(p-> p.getProjectCode().equalsIgnoreCase(projectCode)||p.getProjectName().equalsIgnoreCase(projectCode)).collect(Collectors.toList());
 		if(matchingProject==null||matchingProject.size()<=0)
 			return CompactServiceImpl.reportResponse(HttpStatus.NOT_FOUND, projectCode + " project has not been assigned to user");
 		
-		Set<Module> modules= matchingProject.get(0).getModules();
+		List<Module> modules= matchingProject.get(0).getModules();
 		List<Module> matchingModules = null;
 		if(modules!=null)
 			 matchingModules= modules.stream().filter(m->m.getName().equalsIgnoreCase(moduleName)).collect(Collectors.toList());
@@ -59,6 +60,7 @@ public class ModuleServiceImpl implements ModuleService{
 		}
 		Module m= new Module();
 		m.setName(moduleName);
+		m.setProjects(matchingProject.get(0));
 		modules.add(m);
 		Project project=matchingProject.get(0);
 		project.setModules(modules);
@@ -107,7 +109,7 @@ public class ModuleServiceImpl implements ModuleService{
 		if(matchingProject==null||matchingProject.size()<=0)
 			return CompactServiceImpl.reportResponse(HttpStatus.NOT_FOUND, projectCode + " project has not been assigned to user");
 		
-		Set<Module> modules= matchingProject.get(0).getModules();
+		List<Module> modules= matchingProject.get(0).getModules();
 		List<Module> matchingModules = null;
 		if(modules!=null)
 			 matchingModules= modules.stream().filter(m->m.getName().equalsIgnoreCase(moduleName)).collect(Collectors.toList());
@@ -140,7 +142,7 @@ public class ModuleServiceImpl implements ModuleService{
 			if(matchingProject==null||matchingProject.size()<=0)
 				return null;
 		
-		Set<Module> modules= matchingProject.get(0).getModules();
+		List<Module> modules= matchingProject.get(0).getModules();
 		List<Module> matchingModules= modules.stream().filter(m->m.getName().equalsIgnoreCase(moduleName)).collect(Collectors.toList());
 		if (matchingModules.size()>1)
 			return null;
@@ -166,7 +168,7 @@ public class ModuleServiceImpl implements ModuleService{
 		if(matchingProject==null||matchingProject.size()<=0)
 			return CompactServiceImpl.reportResponse(HttpStatus.NOT_FOUND, projectCode + " project has not been assigned to user");
 		
-		Set<Module> modules= matchingProject.get(0).getModules();
+		List<Module> modules= matchingProject.get(0).getModules();
 		List<Module> matchingModules = null;
 		if(modules!=null)
 			 matchingModules= modules.stream().filter(m->m.getName().equalsIgnoreCase(moduleName)).collect(Collectors.toList());

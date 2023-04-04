@@ -26,12 +26,15 @@ public class Project {
 	@Column(name="projectName", nullable= false)
 	private String projectName;
 	
-	@OneToMany(cascade= CascadeType.ALL)
+/*	@OneToMany(cascade= CascadeType.ALL)
 	@JoinTable(name="project_module", 
 			joinColumns = @JoinColumn(name="projectId",referencedColumnName= "id"),//
 			inverseJoinColumns = @JoinColumn(name="moduleId", referencedColumnName = "id"))
 	private Set<Module> modules;
-
+*/
+	@JsonManagedReference
+	@OneToMany(mappedBy = "projects",cascade = CascadeType.ALL, fetch = FetchType.LAZY)//, orphanRemoval = true, cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH,CascadeType.REFRESH
+	private List<Module> modules;
 	@JsonManagedReference
 	@OneToMany(mappedBy = "project",cascade = CascadeType.ALL, fetch = FetchType.LAZY)//, orphanRemoval = true, cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH,CascadeType.REFRESH
 	private List<ExecutionRelease> releases;

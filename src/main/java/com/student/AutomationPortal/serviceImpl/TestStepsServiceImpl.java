@@ -34,13 +34,14 @@ public class TestStepsServiceImpl implements TestStepService {
         if(tcs.size()<=0) {
             TestCase tcToAdd= new TestCase();
             tcToAdd.setName(testCaseName);
-//            testCaseRepository.save(tcToAdd);
-            Set<TestCase> testCases = module.getTestCases();
-            testCases.add(tcToAdd);
-            module.setTestCases(testCases);
-            moduleRepository.save(module);
-//            tcs= testCaseRepository.findByName(testCaseName);
-            tcs= moduleRepository.findByName(moduleName).getTestCases().stream().filter(t->t.getName().equalsIgnoreCase(testCaseName)).collect(Collectors.toList());
+            tcToAdd.setModules(module);
+            testCaseRepository.save(tcToAdd);
+            tcs= testCaseRepository.findByName(testCaseName);
+//            List<TestCase> testCases = module.getTestCases();
+//            testCases.add(tcToAdd);
+//            module.setTestCases(testCases);
+//            moduleRepository.save(module);
+//            tcs= moduleRepository.findByName(moduleName).getTestCases().stream().filter(t->t.getName().equalsIgnoreCase(testCaseName)).collect(Collectors.toList());
         }
         TestCase tc= tcs.get(0);
 
@@ -83,7 +84,25 @@ public class TestStepsServiceImpl implements TestStepService {
         List<TestStep> testStepsToAdd= new ArrayList<>();
         List<TestStep> testStepsToDel= new ArrayList<>();
         int currentSeq=0;
-        if (existingTestSteps.size()>=newTestSteps.size()){
+        if (existingTestSteps==null){
+            for(int counter=0;counter<newTestSteps.size();counter++){
+                TestStep ts= newTestSteps.get(counter);
+                ts.setTestCases(tc);
+                ts.setSeq(++currentSeq);
+                //Set OR
+                Set<Locators> updatedLocators= new HashSet<>();
+                for(Locators lc:ts.getLocators()) {
+                    Locators lr = locatorRepository.findByPageAndLogicalNameAndSeq(lc.getPage(), lc.getLogicalName(),1);
+                    if(lr==null){
+                        throw new RuntimeException("Cannot find any object with page "+ lc.getPage() + " and name " + lc.getLogicalName() + " with seq 1");
+                    }else
+                        updatedLocators.add(lr);
+                }
+                ts.setLocators(updatedLocators);
+                testStepsToAdd.add(ts);
+            }
+        }
+        else if (existingTestSteps.size()>=newTestSteps.size()){
             for(int counter=0;counter<newTestSteps.size();counter++){
                 final int temp=counter+1;
                 TestStep ts= existingTestSteps.stream().filter(t->(t.getSeq()==temp)).findFirst().get();

@@ -1,10 +1,7 @@
 package com.student.AutomationPortal.serviceImpl;
 
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
@@ -49,7 +46,7 @@ public class ProjectServiceImpl implements ProjectService{
 		/***************************************/
 		//Need to write the logic for module
 		if (project.getModules()!=null) {
-			Set<Module> modules= new HashSet<>();
+			List<Module> modules= new ArrayList<>();
 			for(Module module:project.getModules()) {
 				Module repoModule= moduleRepository.findByName(module.getName());
 				if (repoModule==null)

@@ -11,7 +11,7 @@ import lombok.ToString;
 @Entity
 @Data
 @Table(name="testCase")
-@ToString(exclude = {"testSteps"})
+@ToString(exclude = {"testSteps","modules"})
 public class TestCase {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

@@ -5,7 +5,7 @@ import java.util.Date;
 import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.student.AutomationPortal.dataValidator.ExecutionStatus;
+import com.student.AutomationPortal.dataList.ExecutionStatusList;
 
 import lombok.Data;
 
@@ -23,7 +23,7 @@ public class ExecutionSummaryResult {
 	@JoinColumn(name = "executionTcId", referencedColumnName = "id")
 	private ExecutionTC executionTc;
 	@Enumerated(EnumType.ORDINAL)
-	private ExecutionStatus status;
+	private ExecutionStatusList status;
 	
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date ExecutionStartDateTime;

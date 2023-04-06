@@ -21,8 +21,6 @@ import com.student.AutomationPortal.service.LocatorService;
 
 @Service
 public class LocatorServiceImpl implements LocatorService{
-
-
 	@Autowired
 	ProjectRepository projectRepository;
 	@Autowired
@@ -66,7 +64,7 @@ public class LocatorServiceImpl implements LocatorService{
 	@Override
 	public ResponseEntity<String> getLocator(String projectCode, String page, String name) {
 		try {
-		List<Locators> locatorsList= locatorRepository.findByPageAndLogicalName(page, name);
+			List<Locators> locatorsList= locatorRepository.findByProjectProjectCodeAndPageAndLogicalName(projectCode, page, name);
 			return CompactServiceImpl.reportResponse(HttpStatus.OK, locatorsList);
 
 		} catch (Exception e) {
@@ -77,7 +75,7 @@ public class LocatorServiceImpl implements LocatorService{
 	@Override
 	public ResponseEntity<String> getLocator(String projectCode, String page, String name, int seqNo) {
 		try {
-			Locators locator= locatorRepository.findByPageAndLogicalNameAndSeq(page, name, seqNo);
+			Locators locator= locatorRepository.findByProjectProjectCodeAndPageAndLogicalNameAndSeq(projectCode, page, name,seqNo);
 			return CompactServiceImpl.reportResponse(HttpStatus.OK, locator);
 
 		} catch (Exception e) {

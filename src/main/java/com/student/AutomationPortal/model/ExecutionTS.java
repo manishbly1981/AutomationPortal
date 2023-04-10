@@ -2,12 +2,14 @@ package com.student.AutomationPortal.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Data;
+import lombok.ToString;
 
 import javax.persistence.*;
 
 @Data
 @Entity
 @Table(name="executionTS")
+@ToString(exclude = {"executionTCs"})
 public class ExecutionTS {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,7 +18,7 @@ public class ExecutionTS {
     @JsonBackReference
     @ManyToOne(fetch = FetchType.LAZY, optional = false)//, cascade = CascadeType.ALL
     @JoinColumn(name = "executionTcId", referencedColumnName = "id")
-    private ExecutionTC executionTC;
+    private ExecutionTC executionTCs;
     private int stepSeq;
 
     private String objective;
@@ -28,5 +30,4 @@ public class ExecutionTS {
     private String locatorLogicalName;
     private String locatorType;
     private String locatorValue;
-
 }

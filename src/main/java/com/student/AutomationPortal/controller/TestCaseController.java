@@ -63,7 +63,7 @@ public class TestCaseController {
 	}
 	
 	@PutMapping("")
-	public ResponseEntity<String> updateTestCase(@RequestParam(name="email") String email, @RequestParam(name="projectCode", required = false) String projectCode, @RequestParam(name="projectName", required = false) String projectName, @RequestParam(name="moduleName") String moduleName, @RequestParam(name="currentTestName") String testName, @RequestParam(name="NewTestName", required = false) String newTestName, @RequestBody(required = false) List<TestStep> testSteps) {
+	public ResponseEntity<String> updateTestCase(@RequestParam(name="email") String email, @RequestParam(name="projectCode", required = false) String projectCode, @RequestParam(name="projectName", required = false) String projectName, @RequestParam(name="moduleName") String moduleName, @RequestParam(name="currentTestName") String testName, @RequestParam(name="newTestName", required = false) String newTestName, @RequestBody(required = false) List<TestStep> testSteps) {
 		String project="";
 		if(projectCode!=null)
 			project=projectCode;

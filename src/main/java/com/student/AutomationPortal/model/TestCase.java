@@ -36,6 +36,6 @@ public class TestCase {
 
 	@JsonBackReference
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)//, cascade = CascadeType.ALL
-	@JoinColumn(name = "testCaseId", referencedColumnName = "id")
+	@JoinColumn(name = "moduleId", referencedColumnName = "id")
 	private Module modules;
 }

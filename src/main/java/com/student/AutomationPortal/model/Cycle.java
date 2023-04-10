@@ -6,6 +6,7 @@ import javax.persistence.*;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
+import lombok.ToString;
 
 import java.util.List;
 import java.util.Set;
@@ -13,6 +14,7 @@ import java.util.Set;
 @Data
 @Entity
 @Table(name="cycle" , uniqueConstraints = @UniqueConstraint(name= "cycle_const", columnNames = "name"))
+@ToString(exclude = {"executionRelease"})
 public class Cycle {
 	@Id
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
@@ -28,6 +30,6 @@ public class Cycle {
 	private ExecutionRelease executionRelease;
 
 	@JsonManagedReference
-	@OneToMany(mappedBy = "cycle",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "cycles",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private Set<ExecutionTC> executionTC;
 }

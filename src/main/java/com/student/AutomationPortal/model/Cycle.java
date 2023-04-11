@@ -9,7 +9,6 @@ import lombok.Data;
 import lombok.ToString;
 
 import java.util.List;
-import java.util.Set;
 
 @Data
 @Entity
@@ -31,5 +30,5 @@ public class Cycle {
 
 	@JsonManagedReference
 	@OneToMany(mappedBy = "cycles",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	private Set<ExecutionTC> executionTC;
+	private List<ExecutionTC> executionTC;
 }

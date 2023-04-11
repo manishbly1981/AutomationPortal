@@ -13,7 +13,7 @@ import java.util.Set;
 @Data
 @Entity
 @Table(name="executionRelease" , uniqueConstraints = @UniqueConstraint(name= "releaseConst", columnNames = "name"))
-//@ToString(exclude = {"cycles"})
+@ToString(exclude = {"cycles"})
 public class ExecutionRelease {
 	@Id
 	@GeneratedValue(strategy= GenerationType.IDENTITY)

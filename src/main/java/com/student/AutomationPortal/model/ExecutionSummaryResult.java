@@ -1,20 +1,22 @@
 package com.student.AutomationPortal.model;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.student.AutomationPortal.dataList.ExecutionStatusList;
 
 import lombok.Data;
 
 @Data
 @Entity
-@Table(name="executionSummary")
+@Table(name="executionSummaryResult")
 public class ExecutionSummaryResult {
 	@Id
-	@GeneratedValue(strategy= GenerationType.AUTO)
+	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	@Column(name="id")
 	private Long id;
 
@@ -30,4 +32,9 @@ public class ExecutionSummaryResult {
 	
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date ExecutionEndDateTime;
+
+	@JsonManagedReference
+	@OneToMany(mappedBy = "executionSummaryResults",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	private List<ExecutionDetailResult> executionDetailResults;
+
 }

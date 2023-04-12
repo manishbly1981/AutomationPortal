@@ -17,10 +17,10 @@ public class SummaryResultController {
         return executionSummaryResultService.addExecutionResultSummary(executionSummaryResult);
     }
 
-    @PutMapping("")
-    public ResponseEntity<String> modifySummaryResult(@RequestParam(name="executionSummaryResultId", required = false) Long executionSummaryResultId, @RequestBody ExecutionSummaryResult executionSummaryResult){
-        return executionSummaryResultService.modifyExecutionResultSummary(executionSummaryResultId, executionSummaryResult);
-    }
+//    @PutMapping("")
+//    public ResponseEntity<String> modifySummaryResult(@RequestParam(name="executionSummaryResultId", required = false) Long executionSummaryResultId, @RequestBody ExecutionSummaryResult executionSummaryResult){
+//        return executionSummaryResultService.modifyExecutionResultSummary(executionSummaryResultId, executionSummaryResult);
+//    }
 
     @GetMapping("")
     public ResponseEntity<String> getSummaryResult(@RequestParam(name="executionSummaryResultId", required = false) Long executionSummaryResultId){

@@ -1,7 +1,6 @@
 package com.student.AutomationPortal.controller;
 
 import com.student.AutomationPortal.model.ExecutionDetailResult;
-import com.student.AutomationPortal.model.ExecutionSummaryResult;
 import com.student.AutomationPortal.service.ExecutionDetailResultService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

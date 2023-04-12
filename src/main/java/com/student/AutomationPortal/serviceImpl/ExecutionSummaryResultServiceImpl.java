@@ -42,8 +42,15 @@ public class ExecutionSummaryResultServiceImpl implements ExecutionSummaryResult
 
     @Override
     public ResponseEntity<String> modifyExecutionResultSummary(Long executionSummaryResultId, ExecutionSummaryResult executionSummaryResult) {
-        executionSummaryRepository.save(executionSummaryResult);
-        return CompactServiceImpl.reportResponse(HttpStatus.OK, executionSummaryRepository.findById(executionSummaryResultId).get());
+        Optional<ExecutionTC> executiontc = executionTcRepository.findById(executionSummaryResult.getExecutionTc().getId());
+        if (executiontc.isPresent()) {
+            executionSummaryResult.setExecutionTc(executiontc.get());
+            executionSummaryRepository.save(executionSummaryResult);
+            return CompactServiceImpl.reportResponse(HttpStatus.OK, executionSummaryRepository.findById(executionSummaryResultId).get());
+        }else{
+            return CompactServiceImpl.reportResponse(HttpStatus.OK, "Test case not found in execution set");
+        }
+
     }
 
     @Override

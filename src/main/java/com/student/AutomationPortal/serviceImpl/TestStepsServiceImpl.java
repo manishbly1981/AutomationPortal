@@ -45,7 +45,7 @@ public class TestStepsServiceImpl implements TestStepService {
         }
         TestCase tc= tcs.get(0);
 
-        objectupdater(tc, tc.getTestSteps(), testSteps);
+        objectupdater(projectName, tc, tc.getTestSteps(), testSteps);
         return CompactServiceImpl.reportResponse(HttpStatus.OK, testStepRepository.findByTestCasesIdOrderBySeqAsc(tc.getId()));
     }
 
@@ -80,7 +80,7 @@ public class TestStepsServiceImpl implements TestStepService {
         }
     }
 //Need to update for project code
-    private void objectupdater(TestCase tc, List<TestStep> existingTestSteps, List<TestStep> newTestSteps){
+    private void objectupdater(String projectCode, TestCase tc, List<TestStep> existingTestSteps, List<TestStep> newTestSteps){
         List<TestStep> testStepsToAdd= new ArrayList<>();
         List<TestStep> testStepsToDel= new ArrayList<>();
         int currentSeq=0;
@@ -92,7 +92,7 @@ public class TestStepsServiceImpl implements TestStepService {
                 //Set OR
                 Set<Locators> updatedLocators= new HashSet<>();
                 for(Locators lc:ts.getLocators()) {
-                    Locators lr = locatorRepository.findByPageAndLogicalNameAndSeq(lc.getPage(), lc.getLogicalName(),1);
+                    Locators lr = locatorRepository.findByProjectProjectCodeAndPageAndLogicalNameAndSeq(projectCode, lc.getPage(), lc.getLogicalName(),1);
                     if(lr==null){
                         throw new RuntimeException("Cannot find any object with page "+ lc.getPage() + " and name " + lc.getLogicalName() + " with seq 1");
                     }else
@@ -114,7 +114,7 @@ public class TestStepsServiceImpl implements TestStepService {
                 //OR
                 Set<Locators> updatedLocators= new HashSet<>();
                 for(Locators lc:updatedTestStep.getLocators()) {
-                    Locators lr = locatorRepository.findByPageAndLogicalNameAndSeq(lc.getPage(), lc.getLogicalName(),1);
+                    Locators lr = locatorRepository.findByProjectProjectCodeAndPageAndLogicalNameAndSeq(projectCode, lc.getPage(), lc.getLogicalName(),1);
                     if(lr==null){
                         throw new RuntimeException("Cannot find any object with page "+ lc.getPage() + " and name " + lc.getLogicalName() + " with seq 1");
                     }else
@@ -143,7 +143,7 @@ public class TestStepsServiceImpl implements TestStepService {
                 //OR
                 Set<Locators> updatedLocators= new HashSet<>();
                 for(Locators lc:updatedTestStep.getLocators()) {
-                    Locators lr = locatorRepository.findByPageAndLogicalNameAndSeq(lc.getPage(), lc.getLogicalName(),1);
+                    Locators lr = locatorRepository.findByProjectProjectCodeAndPageAndLogicalNameAndSeq(projectCode, lc.getPage(), lc.getLogicalName(),1);
                     if(lr==null){
                         throw new RuntimeException("Cannot find any object with page "+ lc.getPage() + " and name " + lc.getLogicalName() + " with seq 1");
                     }else
@@ -161,7 +161,7 @@ public class TestStepsServiceImpl implements TestStepService {
                 //Set OR
                 Set<Locators> updatedLocators= new HashSet<>();
                 for(Locators lc:ts.getLocators()) {
-                    Locators lr = locatorRepository.findByPageAndLogicalNameAndSeq(lc.getPage(), lc.getLogicalName(),1);
+                    Locators lr = locatorRepository.findByProjectProjectCodeAndPageAndLogicalNameAndSeq(projectCode, lc.getPage(), lc.getLogicalName(),1);
                     if(lr==null){
                         throw new RuntimeException("Cannot find any object with page "+ lc.getPage() + " and name " + lc.getLogicalName() + " with seq 1");
                     }else

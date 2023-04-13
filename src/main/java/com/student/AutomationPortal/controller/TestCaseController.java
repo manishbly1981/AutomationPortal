@@ -34,7 +34,6 @@ public class TestCaseController {
 		if (testSteps==null) {
 			return testCaseService.addTestCase(email, projectCode, moduleName, testName);
 		}else {
-
 			return testStepService.modifyTestSteps(email, projectCode, moduleName, testName, testSteps);
 
 		}
@@ -77,7 +76,10 @@ public class TestCaseController {
 			testCaseService.reNameTestCase(email, project, moduleName, testName, newTestName);
 
 		if (testSteps!=null){
-			return testStepService.modifyTestSteps(email, project, moduleName, testName, testSteps);
+			if(newTestName!=null)
+				return testStepService.modifyTestSteps(email, project, moduleName, newTestName, testSteps);
+			else
+				return testStepService.modifyTestSteps(email, project, moduleName, testName, testSteps);
 		}else{
 			return CompactServiceImpl.reportResponse(HttpStatus.BAD_REQUEST, "Test Case Name or Test Steps are missing");
 		}

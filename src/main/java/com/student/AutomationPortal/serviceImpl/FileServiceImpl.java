@@ -11,6 +11,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class FileServiceImpl {
     Path dirPath= Paths.get("file-upload");
@@ -20,19 +22,20 @@ public class FileServiceImpl {
     public String saveFile(String fileName, MultipartFile multipartFile) throws IOException {
         if(!Files.exists(dirPath))
             Files.createDirectories(dirPath);
-
         String fileCode= RandomStringUtils.randomAlphabetic(fileCodeLength);
+        String ldt=LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMddhhmmss"));
+        String serverFileName= ldt + "_" + fileCode + "_" + fileName;
         try(InputStream inputStream= multipartFile.getInputStream()){
-            Files.copy(inputStream, dirPath.resolve(fileCode+"-"+fileName), StandardCopyOption.REPLACE_EXISTING);
+            Files.copy(inputStream, dirPath.resolve(serverFileName), StandardCopyOption.REPLACE_EXISTING);
         }catch(Exception e){
             throw new IOException("Could not save the file "+ fileName, e);
         }
-        return fileCode;
+        return serverFileName;
     }
 
-    public Resource getFile(String fileCode) throws IOException {
+    public Resource getFile(String fileName) throws IOException {
         Files.list(dirPath).forEach(file->{
-            if(file.getFileName().toString().startsWith(fileCode)){
+            if(file.getFileName().toString().startsWith(fileName)){
                 foundFile= file;
                 return;
             }

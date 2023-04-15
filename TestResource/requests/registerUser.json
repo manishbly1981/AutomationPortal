@@ -1,0 +1,20 @@
+{
+    "email": "vikas3@vikas.com",
+    "firstName": "vikas",
+    "lastName": "pandey",
+    "password": "Niit@123",
+    "roles": [
+        {
+            "role": "ADMIN"
+        },
+        {
+            "role":"USER"
+        }
+    ],
+          "projects":[
+        {
+            "projectCode":"SAN",
+            "projectName":"SANTANDER"
+        }
+    ]
+}

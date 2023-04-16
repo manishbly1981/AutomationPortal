@@ -38,7 +38,7 @@ public class RestExecutor {
             /**************************************************************************/
             RestUtil restUtil= new RestUtil();
             if(execution.equalsIgnoreCase("yes")){
-                extentUtil.initTest(tcName);
+                extentUtil.initTest(tcNo + " : " + tcName);
                 restUtil.setBaseURI(baseUri);
                 restUtil.setBasePath(basePath);
 

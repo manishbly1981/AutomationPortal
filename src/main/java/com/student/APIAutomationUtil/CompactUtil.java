@@ -59,7 +59,7 @@ public class CompactUtil {
     }
 
     public static Map convertRestStrToMap(String str){
-        if(str==null & str.equalsIgnoreCase("")) {
+        if(str!=null && !str.equalsIgnoreCase("")) {
             Map<String, String> headerMap = new HashMap<>();
             String[] strArray = str.split(",");
             for (String subStr : strArray) {

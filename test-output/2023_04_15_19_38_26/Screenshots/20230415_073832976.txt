@@ -1,3 +1,0 @@
-{
-    "msg": "Role assigned to user"
-}

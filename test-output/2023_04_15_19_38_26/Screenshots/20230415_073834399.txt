@@ -1,0 +1,18 @@
+{
+  "headerMap" : {
+    "Authorization" : "Basic YXJ0aTFAYXJ0aS5jb206TmlpdEAxMjM=",
+    "content-type" : "application/json",
+    "accept" : "application/json"
+  },
+  "pathParam" : null,
+  "queryParam" : {
+    "projectCode" : "SAN",
+    "email" : "arti1@arti.com"
+  },
+  "body" : null,
+  "bodyAsPojo" : null,
+  "bodyFromFile" : null,
+  "requestSpecification" : null,
+  "contentType" : null,
+  "accept" : null
+}

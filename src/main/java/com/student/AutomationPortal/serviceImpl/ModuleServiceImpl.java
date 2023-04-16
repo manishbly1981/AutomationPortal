@@ -65,7 +65,7 @@ public class ModuleServiceImpl implements ModuleService{
 		Project project=matchingProject.get(0);
 		project.setModules(modules);
 		projectRepository.save(project);
-		return CompactServiceImpl.reportResponse(HttpStatus.FOUND, moduleName + " module is allocated to the project " + projectCode);
+		return CompactServiceImpl.reportResponse(HttpStatus.OK, moduleName + " module is allocated to the project " + projectCode);
 	}
 
 	@Override

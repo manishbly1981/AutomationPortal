@@ -42,7 +42,7 @@ public class UserServiceImpl implements UserService{
 	public ResponseEntity<String> registerUser(User user) {
 		Optional<User> oUser = userRepository.findByEmail(user.getEmail());
 		if(oUser.isPresent())
-			return ResponseEntity.badRequest().contentType(MediaType.APPLICATION_JSON).body("Email already registered");
+			return CompactServiceImpl.reportResponse(HttpStatus.FOUND,"Email already registered");
 		try{
 			user.setActive(false);
 			user.setAttempts(0);
@@ -86,19 +86,16 @@ public class UserServiceImpl implements UserService{
 		try {
 			sendConfirmationMail(user);
 		}catch(Exception e) {
-			return ResponseEntity.badRequest().contentType(MediaType.APPLICATION_JSON).body("Confirmation mail not send, please connect with admin");
+			return CompactServiceImpl.reportResponse(HttpStatus.BAD_REQUEST,"Confirmation mail not send, please connect with admin");
 		}
 		return CompactServiceImpl.reportResponse(HttpStatus.OK, "User registered successfully");
 	}
 
 	@Override
 	public ResponseEntity<String> activateUser(String email, String activationCode) {
-//		User user= userRepository.findByEmail(email);
-//		if (user==null)
-//			return CompactServiceImpl.reportResponse(HttpStatus.NOT_FOUND, "Email id is not registered");
 		Optional<User> oUser = userRepository.findByEmail(email);
 		if(!oUser.isPresent())
-			return ResponseEntity.badRequest().contentType(MediaType.APPLICATION_JSON).body("Email is not registered");
+			return CompactServiceImpl.reportResponse(HttpStatus.NOT_FOUND, "Email id is not registered");
 		User user= oUser.get();
 		if (user.getConfirmationCode().equals(""))
 			return CompactServiceImpl.reportResponse(HttpStatus.BAD_REQUEST, "User Account is already activated");
@@ -112,9 +109,6 @@ public class UserServiceImpl implements UserService{
 	
 	@Override
 	public ResponseEntity<String> activateUser(String email, String activationCode, String password) {
-//		User user= userRepository.findByEmail(email);
-//		if (user==null)
-//			return CompactServiceImpl.reportResponse(HttpStatus.NOT_FOUND, "Email id is not registered");
 		Optional<User> oUser = userRepository.findByEmail(email);
 		if(!oUser.isPresent())
 			return ResponseEntity.badRequest().contentType(MediaType.APPLICATION_JSON).body("Email is not registered");
@@ -131,12 +125,9 @@ public class UserServiceImpl implements UserService{
 	}
 	@Override
 	public ResponseEntity<String> login(String email, String password) {
-//		User user= userRepository.findByEmail(email);
-//		if (user==null)
-//			return CompactServiceImpl.reportResponse(HttpStatus.NOT_FOUND, "User does not exist");
 		Optional<User> oUser = userRepository.findByEmail(email);
 		if(!oUser.isPresent())
-			return ResponseEntity.badRequest().contentType(MediaType.APPLICATION_JSON).body("Email is not registered");
+			return CompactServiceImpl.reportResponse(HttpStatus.BAD_REQUEST, "User not registered");
 		User user= oUser.get();
 		if(!user.isActive())
 			return CompactServiceImpl.reportResponse(HttpStatus.LOCKED, "User Account is locked");
@@ -158,7 +149,7 @@ public class UserServiceImpl implements UserService{
 	public ResponseEntity<String> unlockUser(String email) {
 		Optional<User> oUser = userRepository.findByEmail(email);
 		if(!oUser.isPresent())
-			return ResponseEntity.badRequest().contentType(MediaType.APPLICATION_JSON).body("Email is not registered");
+			return CompactServiceImpl.reportResponse(HttpStatus.BAD_REQUEST, "User not registered");
 		User user= oUser.get();
 		user.setConfirmationCode(CompactServiceImpl.generateConfirmationCode());
 		userRepository.save(user);
@@ -169,7 +160,6 @@ public class UserServiceImpl implements UserService{
 	public List<User> userList(){
 		List<User> userList= userRepository.findAll();
 		return userList;
-		//return CompactServiceImpl.reportResponse(HttpStatus.OK, userList);
 	}
 
 	@Override

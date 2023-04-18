@@ -1,0 +1,3 @@
+{
+    "msg": "Release 'MyRelease1' created"
+}

@@ -16,7 +16,7 @@ import lombok.ToString;
 @ToString(exclude = {"projects","TestCases"})
 public class Module {
 	@Id
-	@GeneratedValue(strategy= GenerationType.AUTO)
+	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	@Column(name="id")
 	private Long id;
 	

@@ -1,0 +1,3 @@
+{
+    "msg": "MyTestCase2 test case deregistered but exist in repository as it is linked with anotehr entity"
+}

@@ -1,0 +1,17 @@
+{
+  "headerMap" : {
+    "Authorization" : "Basic YXJ0aTFAYXJ0aS5jb206TmlpdEAxMjM=",
+    "content-type" : "application/json",
+    "accept" : "application/json"
+  },
+  "pathParam" : null,
+  "queryParam" : {
+    "projectCode" : "SAN"
+  },
+  "body" : "[{ \"page\": \"Login\",\n        \"name\": \"userName\",\n        \"properties\": {\n            \"xpath\": \"//a[text()='uid']\",\n            \"name\": \"q\",\n            \"id\": \"q\"}},\n    {\"page\": \"Login\",\n        \"name\": \"password\",\n        \"properties\": {\n            \"xpath\": \"//a[text()='pwd']\",\n            \"name\": \"p\",\n            \"id\": \"p\"}},\n    {\"page\": \"Login\",\n        \"name\": \"login\",\n        \"properties\": {\n            \"xpath\": \"//a[text()='login']\",\n            \"name\": \"l\",\n            \"id\": \"l\"}}]",
+  "bodyAsPojo" : null,
+  "bodyFromFile" : null,
+  "requestSpecification" : null,
+  "contentType" : null,
+  "accept" : null
+}

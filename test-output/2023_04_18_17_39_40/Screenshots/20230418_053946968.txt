@@ -1,0 +1,15 @@
+{
+  "headerMap" : {
+    "Authorization" : "Basic dmlrYXMxQHZpa2FzLmNvbTpOaWl0QDEyMw==",
+    "content-type" : "application/json",
+    "accept" : "application/json"
+  },
+  "pathParam" : null,
+  "queryParam" : null,
+  "body" : null,
+  "bodyAsPojo" : null,
+  "bodyFromFile" : null,
+  "requestSpecification" : null,
+  "contentType" : null,
+  "accept" : null
+}

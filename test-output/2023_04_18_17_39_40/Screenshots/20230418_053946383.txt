@@ -1,0 +1,3 @@
+{
+    "msg": "User Account activated Successfully"
+}

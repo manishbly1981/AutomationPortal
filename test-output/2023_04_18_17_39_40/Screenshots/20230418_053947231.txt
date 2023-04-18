@@ -1,0 +1,17 @@
+{
+  "headerMap" : {
+    "content-type" : "application/json",
+    "accept" : "application/json"
+  },
+  "pathParam" : null,
+  "queryParam" : {
+    "password" : "Niit@123",
+    "email" : "vikas1@vikas.com"
+  },
+  "body" : null,
+  "bodyAsPojo" : null,
+  "bodyFromFile" : null,
+  "requestSpecification" : null,
+  "contentType" : null,
+  "accept" : null
+}

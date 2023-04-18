@@ -1,0 +1,20 @@
+{
+  "headerMap" : {
+    "Authorization" : "Basic YXJ0aTFAYXJ0aS5jb206TmlpdEAxMjM=",
+    "content-type" : "application/json",
+    "accept" : "application/json"
+  },
+  "pathParam" : null,
+  "queryParam" : {
+    "newCycleName" : "MyUpdatedCycle1",
+    "projectCode" : "SAN",
+    "releaseName" : "MyRelease1",
+    "cycleName" : "MyCycle1"
+  },
+  "body" : null,
+  "bodyAsPojo" : null,
+  "bodyFromFile" : null,
+  "requestSpecification" : null,
+  "contentType" : null,
+  "accept" : null
+}

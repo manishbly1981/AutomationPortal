@@ -1,0 +1,111 @@
+[
+    {
+        "id": 1,
+        "email": "vikas1@vikas.com",
+        "firstName": "vikas",
+        "lastName": "pandey",
+        "password": "Niit@123",
+        "attempts": 0,
+        "confirmationCode": "",
+        "roles": [
+            {
+                "id": 1,
+                "role": "USER"
+            },
+            {
+                "id": 2,
+                "role": "ADMIN"
+            }
+        ],
+        "projects": [
+            {
+                "id": 1,
+                "projectCode": "SAN",
+                "projectName": "SANTANDER",
+                "modules": [
+                    
+                ],
+                "releases": [
+                    
+                ],
+                "configurations": [
+                    
+                ],
+                "locators": [
+                    
+                ]
+            }
+        ],
+        "active": true
+    },
+    {
+        "id": 2,
+        "email": "manish1@manish.com",
+        "firstName": "manish",
+        "lastName": "gupta",
+        "password": "Niit@123",
+        "attempts": 0,
+        "confirmationCode": "",
+        "roles": [
+            {
+                "id": 2,
+                "role": "ADMIN"
+            }
+        ],
+        "projects": [
+            {
+                "id": 1,
+                "projectCode": "SAN",
+                "projectName": "SANTANDER",
+                "modules": [
+                    
+                ],
+                "releases": [
+                    
+                ],
+                "configurations": [
+                    
+                ],
+                "locators": [
+                    
+                ]
+            }
+        ],
+        "active": true
+    },
+    {
+        "id": 3,
+        "email": "arti1@arti.com",
+        "firstName": "arti",
+        "lastName": "jararia",
+        "password": "Niit@123",
+        "attempts": 0,
+        "confirmationCode": "",
+        "roles": [
+            {
+                "id": 1,
+                "role": "USER"
+            }
+        ],
+        "projects": [
+            {
+                "id": 1,
+                "projectCode": "SAN",
+                "projectName": "SANTANDER",
+                "modules": [
+                    
+                ],
+                "releases": [
+                    
+                ],
+                "configurations": [
+                    
+                ],
+                "locators": [
+                    
+                ]
+            }
+        ],
+        "active": true
+    }
+]

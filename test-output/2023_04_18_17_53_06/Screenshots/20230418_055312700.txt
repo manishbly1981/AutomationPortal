@@ -1,0 +1,17 @@
+{
+  "headerMap" : {
+    "content-type" : "application/json",
+    "accept" : "application/json"
+  },
+  "pathParam" : null,
+  "queryParam" : {
+    "activationCode" : "1234",
+    "email" : "arti1@arti.com"
+  },
+  "body" : null,
+  "bodyAsPojo" : null,
+  "bodyFromFile" : null,
+  "requestSpecification" : null,
+  "contentType" : null,
+  "accept" : null
+}

@@ -20,7 +20,7 @@ import lombok.Data;
 @Table(name="testData")
 public class TestData {
 	@Id
-	@GeneratedValue(strategy= GenerationType.AUTO)
+	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	@Column(name="id")
 	private Long id;
 	private String colName;

@@ -1,0 +1,14 @@
+{
+  "headerMap" : {
+    "content-type" : "application/json",
+    "accept" : "application/json"
+  },
+  "pathParam" : null,
+  "queryParam" : null,
+  "body" : "{ \"email\": \"manish1@manish.com\",\n    \"firstName\": \"manish\",\n    \"lastName\": \"gupta\",\n    \"password\": \"Niit@123\",\n    \"roles\": [{\"role\": \"ADMIN\"}],\n          \"projects\":[{\"projectCode\":\"SAN\",\n            \"projectName\":\"SANTANDER\"}]}",
+  "bodyAsPojo" : null,
+  "bodyFromFile" : null,
+  "requestSpecification" : null,
+  "contentType" : null,
+  "accept" : null
+}

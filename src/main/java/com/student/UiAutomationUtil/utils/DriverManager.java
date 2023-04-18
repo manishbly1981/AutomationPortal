@@ -1,6 +1,8 @@
 package com.student.UiAutomationUtil.utils;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
+//import io.github.bonigarcia.wdm.WebDriverManager;
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
@@ -10,19 +12,24 @@ import java.time.Duration;
 
 public class DriverManager {
 
+    public static void main(String args[]) throws InterruptedException {
+        WebDriver driver= browserSetup("chrome");
+        driver.get("http://www.google.com");
+        driver.findElement(By.id("q")).sendKeys("testing" + Keys.ENTER);
+        Thread.sleep(1000);
+        driver.quit();
+    }
     public static WebDriver browserSetup(String browserName){
         WebDriver webDriver= null;
         switch (browserName.toLowerCase().trim()){
             case "chrome":
-                WebDriverManager.chromedriver().arch64().setup();
+//                WebDriverManager.chromedriver().setup();
                 webDriver= new ChromeDriver();
                 break;
             case "edge":
-                WebDriverManager.edgedriver().arch64().setup();
                 webDriver= new EdgeDriver();
                 break;
             case "firefox":
-                WebDriverManager.firefoxdriver().arch64().setup();
                 webDriver= new FirefoxDriver();
                 break;
         }

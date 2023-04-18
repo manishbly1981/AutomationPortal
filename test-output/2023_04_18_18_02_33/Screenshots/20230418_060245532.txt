@@ -1,0 +1,92 @@
+[
+    {
+        "id": 1,
+        "seq": 1,
+        "page": "Login",
+        "logicalName": "userName",
+        "locatorType": "xpath",
+        "locatorValue": "//a[text()='uid']",
+        "priority": 1
+    },
+    {
+        "id": 2,
+        "seq": 2,
+        "page": "Login",
+        "logicalName": "userName",
+        "locatorType": "css",
+        "locatorValue": "//a[text()='userId']",
+        "priority": 2
+    },
+    {
+        "id": 3,
+        "seq": 3,
+        "page": "Login",
+        "logicalName": "userName",
+        "locatorType": "name",
+        "locatorValue": "q",
+        "priority": 3
+    },
+    {
+        "id": 4,
+        "seq": 1,
+        "page": "Login",
+        "logicalName": "password",
+        "locatorType": "xpath",
+        "locatorValue": "//a[text()='pwd']",
+        "priority": 1
+    },
+    {
+        "id": 5,
+        "seq": 2,
+        "page": "Login",
+        "logicalName": "password",
+        "locatorType": "name",
+        "locatorValue": "p",
+        "priority": 2
+    },
+    {
+        "id": 6,
+        "seq": 3,
+        "page": "Login",
+        "logicalName": "password",
+        "locatorType": "id",
+        "locatorValue": "p",
+        "priority": 3
+    },
+    {
+        "id": 7,
+        "seq": 1,
+        "page": "Login",
+        "logicalName": "login",
+        "locatorType": "xpath",
+        "locatorValue": "//a[text()='login']",
+        "priority": 1
+    },
+    {
+        "id": 8,
+        "seq": 2,
+        "page": "Login",
+        "logicalName": "login",
+        "locatorType": "name",
+        "locatorValue": "l",
+        "priority": 2
+    },
+    {
+        "id": 9,
+        "seq": 3,
+        "page": "Login",
+        "logicalName": "login",
+        "locatorType": "id",
+        "locatorValue": "l",
+        "priority": 3
+    },
+    {
+        "id": 10,
+        "seq": 4,
+        "page": "Login",
+        "logicalName": "userName",
+        "locatorType": "id",
+        "locatorValue": "q",
+        "priority": 4
+    }
+]

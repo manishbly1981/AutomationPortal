@@ -14,7 +14,7 @@ import lombok.ToString;
 @ToString(exclude = {"testCases"})
 public class TestStep {
 	@Id
-	@GeneratedValue(strategy= GenerationType.AUTO)
+	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	@Column(name="id")
 	private Long id;
 	@Column(name="seq", nullable= false)

@@ -1,0 +1,17 @@
+[
+    {
+        "id": 1,
+        "name": "password",
+        "value": "Niit@123"
+    },
+    {
+        "id": 2,
+        "name": "uid",
+        "value": "manish"
+    },
+    {
+        "id": 3,
+        "name": "url2",
+        "value": "http://www.google.com"
+    }
+]

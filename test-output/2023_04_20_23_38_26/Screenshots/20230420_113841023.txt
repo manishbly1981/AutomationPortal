@@ -1,0 +1,24 @@
+{
+    "data": [
+        {
+            "id": 1,
+            "name": "Regression",
+            "TestCases": [
+                
+            ],
+            "testCases": [
+                
+            ]
+        },
+        {
+            "id": 2,
+            "name": "Sanity",
+            "TestCases": [
+                
+            ],
+            "testCases": [
+                
+            ]
+        }
+    ]
+}

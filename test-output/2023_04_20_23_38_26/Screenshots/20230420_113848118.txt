@@ -1,0 +1,1 @@
+"Query URI: http://localhost:8080/api/v1/release\nHeader Data: {Authorization=Basic YXJ0aTFAYXJ0aS5jb206TmlpdEAxMjM=, content-type=application/json, accept=application/json}\nQuery Param Data: {newReleaseName=MyUpdatedRelease1, projectCode=SAN, releaseName=MyRelease1}\n"

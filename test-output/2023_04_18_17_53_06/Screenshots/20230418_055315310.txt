@@ -1,7 +1,0 @@
-{
-    "id": 3,
-    "name": "MyRenamedTestCase1",
-    "testSteps": [
-        
-    ]
-}

@@ -1,3 +1,0 @@
-{
-    "msg": "Regression module is allocated to the project SAN"
-}

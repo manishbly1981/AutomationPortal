@@ -1,0 +1,1 @@
+"Query URI: http://localhost:8080/api/admin/projects\nHeader Data: {Authorization=Basic dmlrYXMxQHZpa2FzLmNvbTpOaWl0QDEyMw==, content-type=application/json, accept=application/json}\n"

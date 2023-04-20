@@ -3,6 +3,8 @@ package com.student.AutomationPortal.controller;
 
 import java.util.List;
 
+import com.student.AutomationPortal.serviceImpl.CompactServiceImpl;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -44,8 +46,9 @@ public class UserController {
 	}
 
 	@GetMapping(value = "/admin/users", produces={"application/json"}, consumes={"application/json"})
-	public ResponseEntity<List<User>> getUserList(){
-		return ResponseEntity.ok(userService.userList());
+	public ResponseEntity<String> getUserList(){
+//		return ResponseEntity.ok(userService.userList());
+		return CompactServiceImpl.reportResponse(HttpStatus.OK, userService.userList());
 	}
 
 

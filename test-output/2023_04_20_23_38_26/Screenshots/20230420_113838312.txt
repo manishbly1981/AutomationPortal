@@ -1,0 +1,1 @@
+"Query URI: http://localhost:8080/api/admin/roles\nHeader Data: {Authorization=Basic dmlrYXMxQHZpa2FzLmNvbTpOaWl0QDEyMw==, content-type=application/json, accept=application/json}\nQuery Param Data: {role=USER, email=manish1@manish.com}\n"

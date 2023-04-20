@@ -5,6 +5,7 @@ import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 
 public class RestUtil {
+
     private static ThreadLocal<RestAssured> restAssuredThreadLocal= new ThreadLocal<>();
     public void setBaseURI(String baseURI){
         if(baseURI!=null & !baseURI.equalsIgnoreCase(""))
@@ -39,8 +40,9 @@ public class RestUtil {
     private RequestSpecification reqSpec(ReqSpecificationBuilder reqSpecificationBuilder){
         RequestSpecification requestSpecification= restAssuredThreadLocal.get()
                 .given().log().all();
-        if(reqSpecificationBuilder.getRequestSpecification()!=null)
+        if(reqSpecificationBuilder.getRequestSpecification()!=null) {
             requestSpecification.spec(reqSpecificationBuilder.getRequestSpecification());
+        }
         if(reqSpecificationBuilder.getBody()!=null && !reqSpecificationBuilder.getBody().equalsIgnoreCase(""))
             requestSpecification.body(reqSpecificationBuilder.getBody());
         if(reqSpecificationBuilder.getHeaderMap()!=null)
@@ -60,50 +62,41 @@ public class RestUtil {
         return requestSpecification;
     }
 
-    public Response getDeleteResponse(ReqSpecificationBuilder reqSpecificationBuilder){
-       return reqSpec(reqSpecificationBuilder)
-                .when()
-                .delete()
-                .thenReturn();
-    }
-
-    public Response getGetResponse(ReqSpecificationBuilder reqSpecificationBuilder){
-        return reqSpec(reqSpecificationBuilder)
-                .when()
-                .get()
-                .thenReturn();
-    }
-
-    public Response getPostResponse(ReqSpecificationBuilder reqSpecificationBuilder){
-        return reqSpec(reqSpecificationBuilder)
-                .when()
-                .post()
-                .thenReturn();
-
-    }
-
-    public Response getPutResponse(ReqSpecificationBuilder reqSpecificationBuilder){
-        return reqSpec(reqSpecificationBuilder)
-                .when()
-                .put()
-                .thenReturn();
-    }
-
     public Response getDeleteResponse(ReqSpecificationBuilder reqSpecificationBuilder, String url){
-        return reqSpec(reqSpecificationBuilder)
+        if (url==null)
+            return reqSpec(reqSpecificationBuilder)
+                    .when()
+                    .delete()
+                    .thenReturn();
+
+        else
+            return reqSpec(reqSpecificationBuilder)
                 .when()
                 .delete(url)
                 .thenReturn();
     }
 
     public Response getGetResponse(ReqSpecificationBuilder reqSpecificationBuilder, String url){
-        return reqSpec(reqSpecificationBuilder)
+        if (url==null)
+            return reqSpec(reqSpecificationBuilder)
+                    .when()
+                    .get()
+                    .thenReturn();
+        else
+            return reqSpec(reqSpecificationBuilder)
                 .when()
                 .get(url)
                 .thenReturn();
     }
 
     public Response getPostResponse(ReqSpecificationBuilder reqSpecificationBuilder, String url){
+        if (url==null)
+            return reqSpec(reqSpecificationBuilder)
+                    .when()
+                    .post()
+                    .thenReturn();
+
+        else
         return reqSpec(reqSpecificationBuilder)
                 .when()
                 .post(url)
@@ -112,6 +105,13 @@ public class RestUtil {
     }
 
     public Response getPutResponse(ReqSpecificationBuilder reqSpecificationBuilder, String url){
+        if (url==null)
+            return reqSpec(reqSpecificationBuilder)
+                    .when()
+                    .put()
+                    .thenReturn();
+
+        else
         return reqSpec(reqSpecificationBuilder)
                 .when()
                 .put(url)

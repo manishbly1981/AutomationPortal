@@ -49,11 +49,11 @@ public class ReqSpecificationBuilder {
         return this;
     }
 
-    public ReqSpecificationBuilder setBodyFromFile(String bodyFromFile) throws IOException {
-        if(bodyFromFile.equalsIgnoreCase(""))
+    public ReqSpecificationBuilder setBodyFromFile(String bodyFromFile, GlobalData globalData) throws IOException {
+        if(bodyFromFile==null || bodyFromFile.equalsIgnoreCase(""))
             return this;
         String fileBasePath= System.getProperty("user.dir") + "/TestResource/requests/";
-        this.bodyFromFile = new String(Files.readAllBytes(Paths.get(fileBasePath + bodyFromFile)));
+        this.bodyFromFile = new CompactUtil(globalData).replaceRunTimeVal(new String(Files.readAllBytes(Paths.get(fileBasePath + bodyFromFile))));
         return this;
     }
 

@@ -1,0 +1,12 @@
+{
+    "data": [
+        {
+            "id": 1,
+            "role": "USER"
+        },
+        {
+            "id": 2,
+            "role": "ADMIN"
+        }
+    ]
+}

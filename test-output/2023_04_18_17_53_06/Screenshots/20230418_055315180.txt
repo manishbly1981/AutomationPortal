@@ -1,3 +1,0 @@
-{
-    "msg": "MyTestCase1 created"
-}

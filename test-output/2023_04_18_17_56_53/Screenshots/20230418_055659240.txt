@@ -1,3 +1,0 @@
-{
-    "msg": "User login Successfully"
-}

@@ -1,36 +1,52 @@
 package com.student.UiAutomationUtil.utils;
 
-//import io.github.bonigarcia.wdm.WebDriverManager;
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 
 import java.time.Duration;
 
 public class DriverManager {
+    private String  fireFoxBinaryPath;
 
-    public static void main(String args[]) throws InterruptedException {
-        WebDriver driver= browserSetup("chrome");
-        driver.get("http://www.google.com");
-        driver.findElement(By.id("q")).sendKeys("testing" + Keys.ENTER);
-        Thread.sleep(1000);
-        driver.quit();
+    public void setFireFoxBinaryPath(String fireFoxBinaryPath){
+        this.fireFoxBinaryPath= fireFoxBinaryPath;
     }
-    public static WebDriver browserSetup(String browserName){
+
+    public String getFireFoxBinaryPath(){
+        return this.fireFoxBinaryPath;
+    }
+
+    public WebDriver browserSetup(String browserName){
         WebDriver webDriver= null;
         switch (browserName.toLowerCase().trim()){
             case "chrome":
-//                WebDriverManager.chromedriver().setup();
-                webDriver= new ChromeDriver();
+                WebDriverManager.chromedriver().setup();
+                ChromeOptions chromeOptions= new ChromeOptions();
+                chromeOptions.addArguments("--remote-allow-origins=*");
+                chromeOptions.setAcceptInsecureCerts(true);
+                webDriver= new ChromeDriver(chromeOptions);
                 break;
             case "edge":
-                webDriver= new EdgeDriver();
+                WebDriverManager.edgedriver().setup();
+                EdgeOptions edgeOptions= new EdgeOptions();
+                edgeOptions.addArguments("--remote-allow-origins=*");
+                edgeOptions.setAcceptInsecureCerts(true);
+                webDriver= new EdgeDriver(edgeOptions);
                 break;
             case "firefox":
-                webDriver= new FirefoxDriver();
+                WebDriverManager.firefoxdriver().setup();
+                FirefoxOptions firefoxOptions= new FirefoxOptions();
+                if (getFireFoxBinaryPath()!=null)
+                    firefoxOptions.setBinary(getFireFoxBinaryPath());
+                webDriver= new FirefoxDriver(firefoxOptions);
                 break;
         }
         webDriver.manage().window().maximize();

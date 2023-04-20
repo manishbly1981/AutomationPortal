@@ -1,3 +1,0 @@
-{
-    "msg": "Sanity module is allocated to the project SAN"
-}

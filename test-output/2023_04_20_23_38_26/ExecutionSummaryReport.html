@@ -1,0 +1,2768 @@
+
+<!DOCTYPE html>
+<html>
+
+
+<head>
+	<meta charset='utf-8' /> 
+	<meta name='description' content='' />
+	<meta name='robots' content='noodp, noydir' />
+	<meta name='viewport' content='width=device-width, initial-scale=1' />
+	<meta id="timeStampFormat" name="timeStampFormat" content='MMM d, yyyy hh:mm:ss a'/>
+	
+	<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600' rel='stylesheet' type='text/css'>
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+		<link href='https://cdn.rawgit.com/anshooarora/extentreports-java/6d3843c29c354373fafad29c03a1a89b7e06c374/dist/css/extent.css' type='text/css' rel='stylesheet' />
+	
+	<title>API Automation Execution Report</title>
+
+</head>
+
+	<body class='extent standard default hide-overflow '>
+		<div id='theme-selector' alt='Click to toggle theme. To enable by default, use theme configuration.' title='Click to toggle theme. To enable by default, use theme configuration.'>
+			<span><i class='material-icons'>desktop_windows</i></span>
+		</div>
+
+<nav>
+	<div class="nav-wrapper">
+		<a href="#!" class="brand-logo blue darken-3">Extent</a>
+
+		<!-- slideout menu -->
+		<ul id='slide-out' class='side-nav fixed hide-on-med-and-down'>
+			<li class='waves-effect active'><a href='#!' view='test-view' onclick="configureView(0);chartsView('test');"><i class='material-icons'>dashboard</i></a></li>
+						<li class='waves-effect'><a href='#!' onclick="configureView(-1);chartsView('dashboard');" view='dashboard-view'><i class='material-icons'>track_changes</i></i></a></li>
+		</ul>
+
+		<!-- report name -->
+		<span class='report-name'>Automation Regression Report</span>
+		
+		<!-- report headline -->
+		<span class='report-headline'></span>
+
+		<!-- nav-right -->
+		<ul id='nav-mobile' class='right hide-on-med-and-down nav-right'>
+			<li>
+                <a href='#!'>
+                    <span class='label suite-start-time blue darken-3'>Apr 20, 2023 11:38:27 PM</span>
+				</a>
+			</li>
+			<li>
+                <a href='#!'>
+                    <span class='label blue darken-3'>v3.0.6</span>
+				</a>
+			</li>
+		</ul>
+	</div>
+</nav>
+
+		<!-- container -->
+		<div class='container'>
+
+<div id='test-view' class='view'>
+				
+	<section id='controls'>
+		<div class='controls grey lighten-4'>
+			<!-- test toggle -->
+			<div class='chip transparent'>
+				<a class='dropdown-button tests-toggle' data-activates='tests-toggle' data-constrainwidth='true' data-beloworigin='true' data-hover='true' href='#'>
+					<i class='material-icons'>warning</i> Status
+				</a>
+				<ul id='tests-toggle' class='dropdown-content'>
+											<li status='pass'><a href='#!'>Pass <i class='material-icons green-text'>check_circle</i></a></li>
+					<li class='divider'></li>
+					<li status='clear' clear='true'><a href='#!'>Clear Filters <i class='material-icons'>clear</i></a></li>
+				</ul>
+			</div>
+			<!-- test toggle -->
+
+			<!-- category toggle -->
+			<!-- category toggle -->
+
+			<!-- clear filters -->
+			<div class='chip transparent hide'>
+				<a class='' id='clear-filters' alt='Clear Filters' title='Clear Filters'>
+					<i class='material-icons'>close</i> Clear
+				</a>
+			</div>
+			<!-- clear filters -->
+
+			<!-- enable dashboard -->
+			<div id='toggle-test-view-charts' class='chip transparent'>
+				<a class='pink-text' id='enable-dashboard' alt='Enable Dashboard' title='Enable Dashboard'>
+					<i class='material-icons'>track_changes</i> Dashboard
+				</a>
+			</div>
+			<!-- enable dashboard -->
+
+			<!-- search -->
+			<div class='chip transparent' alt='Search Tests' title='Search Tests'>
+				<a href="#" class='search-div'>
+					<i class='material-icons'>search</i> Search
+				</a>
+
+				<div class='input-field left hide'>
+					<input id='search-tests' type='text' class='validate browser-default' placeholder='Search Tests...'>
+				</div>
+				
+			</div>
+			<!-- search -->
+		</div>
+	</section>
+
+
+<div id='test-view-charts' class='subview-full'>
+	<div id='charts-row' class='row nm-v nm-h'>
+		<div class='col s12 m6 l6 np-h'>
+			<div class='card-panel nm-v'>
+				<div class='left panel-name'>Tests</div>
+				<div class='chart-box'>
+					<canvas id='parent-analysis' width='100' height='80'></canvas>
+				</div>
+				<div class='block text-small'>
+					<span class='tooltipped' data-position='top' data-tooltip='100%'><span class='strong'>56</span> test(s) passed</span>
+				</div>
+				<div class='block text-small'>
+					<span class='strong tooltipped' data-position='top' data-tooltip='0%'>0</span> test(s) failed, <span class='strong tooltipped' data-position='top' data-tooltip='0%'>0</span> others
+				</div>
+			</div>
+		</div>
+		
+		<div class='col s12 m6 l6 np-h'>
+			<div class='card-panel nm-v'>
+				<div class='left panel-name'>Steps</div>
+				<div class='chart-box'>
+					<canvas id='child-analysis' width='100' height='80'></canvas>
+				</div>
+				<div class='block text-small'>
+					<span class='tooltipped' data-position='top' data-tooltip='34.682%'><span class='strong'>60</span> step(s) passed</span>
+				</div>
+				<div class='block text-small'>
+					<span class='strong tooltipped' data-position='top' data-tooltip='0%'>0</span> step(s) failed, <span class='strong tooltipped' data-position='top' data-tooltip='65.318%'>113</span> others
+				</div>
+			</div>
+		</div>
+		
+	</div>
+</div>
+
+	<div class='subview-left left'>
+		
+		<div class='view-summary'>
+			<h5>Tests</h5>
+			<ul id='test-collection' class='test-collection'>
+				
+				
+				<li class='test displayed active  pass' status='pass' bdd='false' test-id='1'>
+					<div class='test-heading'>
+						<span class='test-name'>1 : RegisterUserAsAdminUser</span>
+						<span class='test-time'>Apr 20, 2023 11:38:28 PM</span>
+						<span class='test-status right pass'>pass</span>
+					</div>
+					<div class='test-content hide'>
+<div class='test-time-info'>
+	<span class='label start-time'>Apr 20, 2023 11:38:28 PM</span>
+	<span class='label end-time'>Apr 20, 2023 11:38:34 PM</span>
+	<span class='label time-taken grey lighten-1 white-text'>0h 0m 5s+633ms</span>
+</div>
+	<div class='test-steps'>
+		<table class='bordered table-results'>
+			<thead>
+				<tr>
+					<th>Status</th>
+					<th>Timestamp</th>
+					<th>Details</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>11:38:34 PM</td>
+					<td class='step-details'><span class='label white-text blue'>Request Data <div align='right' style='float:right'><a onclick = "window.open(this.href,'newwindow', 'width=1000,height=500');return false;" target='_blank' href= .\Screenshots\20230420_113834280.txt>Test Data</a></div></span></td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>11:38:34 PM</td>
+					<td class='step-details'><span class='label white-text green'>Verify <B>'Status Code'</B> value:<BR>Expected: <B>'200'</B><BR>Actual: <B>'200'</B></span></td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>11:38:34 PM</td>
+					<td class='step-details'><span class='label white-text blue'>Response Data <div align='right' style='float:right'><a onclick = "window.open(this.href,'newwindow', 'width=1000,height=500');return false;" target='_blank' href= .\Screenshots\20230420_113834622.txt>Test Data</a></div></span></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+					</div>
+				</li>
+				
+				
+				<li class='test displayed active  pass' status='pass' bdd='false' test-id='2'>
+					<div class='test-heading'>
+						<span class='test-name'>2 : RegisterUserAsAdmin</span>
+						<span class='test-time'>Apr 20, 2023 11:38:34 PM</span>
+						<span class='test-status right pass'>pass</span>
+					</div>
+					<div class='test-content hide'>
+<div class='test-time-info'>
+	<span class='label start-time'>Apr 20, 2023 11:38:34 PM</span>
+	<span class='label end-time'>Apr 20, 2023 11:38:35 PM</span>
+	<span class='label time-taken grey lighten-1 white-text'>0h 0m 0s+363ms</span>
+</div>
+	<div class='test-steps'>
+		<table class='bordered table-results'>
+			<thead>
+				<tr>
+					<th>Status</th>
+					<th>Timestamp</th>
+					<th>Details</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>11:38:34 PM</td>
+					<td class='step-details'><span class='label white-text blue'>Request Data <div align='right' style='float:right'><a onclick = "window.open(this.href,'newwindow', 'width=1000,height=500');return false;" target='_blank' href= .\Screenshots\20230420_113834847.txt>Test Data</a></div></span></td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>11:38:34 PM</td>
+					<td class='step-details'><span class='label white-text green'>Verify <B>'Status Code'</B> value:<BR>Expected: <B>'200'</B><BR>Actual: <B>'200'</B></span></td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>11:38:35 PM</td>
+					<td class='step-details'><span class='label white-text blue'>Response Data <div align='right' style='float:right'><a onclick = "window.open(this.href,'newwindow', 'width=1000,height=500');return false;" target='_blank' href= .\Screenshots\20230420_113835054.txt>Test Data</a></div></span></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+					</div>
+				</li>
+				
+				
+				<li class='test displayed active  pass' status='pass' bdd='false' test-id='3'>
+					<div class='test-heading'>
+						<span class='test-name'>3 : RegisterUserAsUser</span>
+						<span class='test-time'>Apr 20, 2023 11:38:35 PM</span>
+						<span class='test-status right pass'>pass</span>
+					</div>
+					<div class='test-content hide'>
+<div class='test-time-info'>
+	<span class='label start-time'>Apr 20, 2023 11:38:35 PM</span>
+	<span class='label end-time'>Apr 20, 2023 11:38:35 PM</span>
+	<span class='label time-taken grey lighten-1 white-text'>0h 0m 0s+344ms</span>
+</div>
+	<div class='test-steps'>
+		<table class='bordered table-results'>
+			<thead>
+				<tr>
+					<th>Status</th>
+					<th>Timestamp</th>
+					<th>Details</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>11:38:35 PM</td>
+					<td class='step-details'><span class='label white-text blue'>Request Data <div align='right' style='float:right'><a onclick = "window.open(this.href,'newwindow', 'width=1000,height=500');return false;" target='_blank' href= .\Screenshots\20230420_113835237.txt>Test Data</a></div></span></td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>11:38:35 PM</td>
+					<td class='step-details'><span class='label white-text green'>Verify <B>'Status Code'</B> value:<BR>Expected: <B>'200'</B><BR>Actual: <B>'200'</B></span></td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>11:38:35 PM</td>
+					<td class='step-details'><span class='label white-text blue'>Response Data <div align='right' style='float:right'><a onclick = "window.open(this.href,'newwindow', 'width=1000,height=500');return false;" target='_blank' href= .\Screenshots\20230420_113835368.txt>Test Data</a></div></span></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+					</div>
+				</li>
+				
+				
+				<li class='test displayed active  pass' status='pass' bdd='false' test-id='4'>
+					<div class='test-heading'>
+						<span class='test-name'>4 : ActivateUSerAsAdminUser</span>
+						<span class='test-time'>Apr 20, 2023 11:38:35 PM</span>
+						<span class='test-status right pass'>pass</span>
+					</div>
+					<div class='test-content hide'>
+<div class='test-time-info'>
+	<span class='label start-time'>Apr 20, 2023 11:38:35 PM</span>
+	<span class='label end-time'>Apr 20, 2023 11:38:36 PM</span>
+	<span class='label time-taken grey lighten-1 white-text'>0h 0m 0s+410ms</span>
+</div>
+	<div class='test-steps'>
+		<table class='bordered table-results'>
+			<thead>
+				<tr>
+					<th>Status</th>
+					<th>Timestamp</th>
+					<th>Details</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>11:38:35 PM</td>
+					<td class='step-details'><span class='label white-text blue'>Request Data <div align='right' style='float:right'><a onclick = "window.open(this.href,'newwindow', 'width=1000,height=500');return false;" target='_blank' href= .\Screenshots\20230420_113835877.txt>Test Data</a></div></span></td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>11:38:35 PM</td>
+					<td class='step-details'><span class='label white-text green'>Verify <B>'Status Code'</B> value:<BR>Expected: <B>'200'</B><BR>Actual: <B>'200'</B></span></td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>11:38:36 PM</td>
+					<td class='step-details'><span class='label white-text blue'>Response Data <div align='right' style='float:right'><a onclick = "window.open(this.href,'newwindow', 'width=1000,height=500');return false;" target='_blank' href= .\Screenshots\20230420_113836000.txt>Test Data</a></div></span></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+					</div>
+				</li>
+				
+				
+				<li class='test displayed active  pass' status='pass' bdd='false' test-id='5'>
+					<div class='test-heading'>
+						<span class='test-name'>5 : ActivateUSerAsAdmin</span>
+						<span class='test-time'>Apr 20, 2023 11:38:36 PM</span>
+						<span class='test-status right pass'>pass</span>
+					</div>
+					<div class='test-content hide'>
+<div class='test-time-info'>
+	<span class='label start-time'>Apr 20, 2023 11:38:36 PM</span>
+	<span class='label end-time'>Apr 20, 2023 11:38:36 PM</span>
+	<span class='label time-taken grey lighten-1 white-text'>0h 0m 0s+244ms</span>
+</div>
+	<div class='test-steps'>
+		<table class='bordered table-results'>
+			<thead>
+				<tr>
+					<th>Status</th>
+					<th>Timestamp</th>
+					<th>Details</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>11:38:36 PM</td>
+					<td class='step-details'><span class='label white-text blue'>Request Data <div align='right' style='float:right'><a onclick = "window.open(this.href,'newwindow', 'width=1000,height=500');return false;" target='_blank' href= .\Screenshots\20230420_113836200.txt>Test Data</a></div></span></td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>11:38:36 PM</td>
+					<td class='step-details'><span class='label white-text green'>Verify <B>'Status Code'</B> value:<BR>Expected: <B>'200'</B><BR>Actual: <B>'200'</B></span></td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>11:38:36 PM</td>
+					<td class='step-details'><span class='label white-text blue'>Response Data <div align='right' style='float:right'><a onclick = "window.open(this.href,'newwindow', 'width=1000,height=500');return false;" target='_blank' href= .\Screenshots\20230420_113836302.txt>Test Data</a></div></span></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+					</div>
+				</li>
+				
+				
+				<li class='test displayed active  pass' status='pass' bdd='false' test-id='6'>
+					<div class='test-heading'>
+						<span class='test-name'>6 : ActivateUSerAsUser</span>
+						<span class='test-time'>Apr 20, 2023 11:38:36 PM</span>
+						<span class='test-status right pass'>pass</span>
+					</div>
+					<div class='test-content hide'>
+<div class='test-time-info'>
+	<span class='label start-time'>Apr 20, 2023 11:38:36 PM</span>
+	<span class='label end-time'>Apr 20, 2023 11:38:36 PM</span>
+	<span class='label time-taken grey lighten-1 white-text'>0h 0m 0s+243ms</span>
+</div>
+	<div class='test-steps'>
+		<table class='bordered table-results'>
+			<thead>
+				<tr>
+					<th>Status</th>
+					<th>Timestamp</th>
+					<th>Details</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>11:38:36 PM</td>
+					<td class='step-details'><span class='label white-text blue'>Request Data <div align='right' style='float:right'><a onclick = "window.open(this.href,'newwindow', 'width=1000,height=500');return false;" target='_blank' href= .\Screenshots\20230420_113836477.txt>Test Data</a></div></span></td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>11:38:36 PM</td>
+					<td class='step-details'><span class='label white-text green'>Verify <B>'Status Code'</B> value:<BR>Expected: <B>'200'</B><BR>Actual: <B>'200'</B></span></td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>11:38:36 PM</td>
+					<td class='step-details'><span class='label white-text blue'>Response Data <div align='right' style='float:right'><a onclick = "window.open(this.href,'newwindow', 'width=1000,height=500');return false;" target='_blank' href= .\Screenshots\20230420_113836604.txt>Test Data</a></div></span></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+					</div>
+				</li>
+				
+				
+				<li class='test displayed active  pass' status='pass' bdd='false' test-id='7'>
+					<div class='test-heading'>
+						<span class='test-name'>7 : GetAllUser</span>
+						<span class='test-time'>Apr 20, 2023 11:38:36 PM</span>
+						<span class='test-status right pass'>pass</span>
+					</div>
+					<div class='test-content hide'>
+<div class='test-time-info'>
+	<span class='label start-time'>Apr 20, 2023 11:38:36 PM</span>
+	<span class='label end-time'>Apr 20, 2023 11:38:37 PM</span>
+	<span class='label time-taken grey lighten-1 white-text'>0h 0m 0s+838ms</span>
+</div>
+	<div class='test-steps'>
+		<table class='bordered table-results'>
+			<thead>
+				<tr>
+					<th>Status</th>
+					<th>Timestamp</th>
+					<th>Details</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>11:38:37 PM</td>
+					<td class='step-details'><span class='label white-text green'>Verify <B>'Verify $.data[0].email'</B> value:<BR>Expected: <B>'vikas1@vikas.com'</B><BR>Actual: <B>'vikas1@vikas.com'</B></span></td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>11:38:37 PM</td>
+					<td class='step-details'><span class='label white-text blue'>Request Data <div align='right' style='float:right'><a onclick = "window.open(this.href,'newwindow', 'width=1000,height=500');return false;" target='_blank' href= .\Screenshots\20230420_113837279.txt>Test Data</a></div></span></td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>11:38:37 PM</td>
+					<td class='step-details'><span class='label white-text green'>Verify <B>'Status Code'</B> value:<BR>Expected: <B>'200'</B><BR>Actual: <B>'200'</B></span></td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>11:38:37 PM</td>
+					<td class='step-details'><span class='label white-text blue'>Response Data <div align='right' style='float:right'><a onclick = "window.open(this.href,'newwindow', 'width=1000,height=500');return false;" target='_blank' href= .\Screenshots\20230420_113837512.txt>Test Data</a></div></span></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+					</div>
+				</li>
+				
+				
+				<li class='test displayed active  pass' status='pass' bdd='false' test-id='8'>
+					<div class='test-heading'>
+						<span class='test-name'>8 : LoginUser</span>
+						<span class='test-time'>Apr 20, 2023 11:38:37 PM</span>
+						<span class='test-status right pass'>pass</span>
+					</div>
+					<div class='test-content hide'>
+<div class='test-time-info'>
+	<span class='label start-time'>Apr 20, 2023 11:38:37 PM</span>
+	<span class='label end-time'>Apr 20, 2023 11:38:38 PM</span>
+	<span class='label time-taken grey lighten-1 white-text'>0h 0m 0s+439ms</span>
+</div>
+	<div class='test-steps'>
+		<table class='bordered table-results'>
+			<thead>
+				<tr>
+					<th>Status</th>
+					<th>Timestamp</th>
+					<th>Details</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>11:38:37 PM</td>
+					<td class='step-details'><span class='label white-text blue'>Request Data <div align='right' style='float:right'><a onclick = "window.open(this.href,'newwindow', 'width=1000,height=500');return false;" target='_blank' href= .\Screenshots\20230420_113837846.txt>Test Data</a></div></span></td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>11:38:37 PM</td>
+					<td class='step-details'><span class='label white-text green'>Verify <B>'Status Code'</B> value:<BR>Expected: <B>'200'</B><BR>Actual: <B>'200'</B></span></td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>11:38:38 PM</td>
+					<td class='step-details'><span class='label white-text blue'>Response Data <div align='right' style='float:right'><a onclick = "window.open(this.href,'newwindow', 'width=1000,height=500');return false;" target='_blank' href= .\Screenshots\20230420_113838065.txt>Test Data</a></div></span></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+					</div>
+				</li>
+				
+				
+				<li class='test displayed active  pass' status='pass' bdd='false' test-id='9'>
+					<div class='test-heading'>
+						<span class='test-name'>9 : AssignUserRoleToUser</span>
+						<span class='test-time'>Apr 20, 2023 11:38:38 PM</span>
+						<span class='test-status right pass'>pass</span>
+					</div>
+					<div class='test-content hide'>
+<div class='test-time-info'>
+	<span class='label start-time'>Apr 20, 2023 11:38:38 PM</span>
+	<span class='label end-time'>Apr 20, 2023 11:38:38 PM</span>
+	<span class='label time-taken grey lighten-1 white-text'>0h 0m 0s+237ms</span>
+</div>
+	<div class='test-steps'>
+		<table class='bordered table-results'>
+			<thead>
+				<tr>
+					<th>Status</th>
+					<th>Timestamp</th>
+					<th>Details</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>11:38:38 PM</td>
+					<td class='step-details'><span class='label white-text blue'>Request Data <div align='right' style='float:right'><a onclick = "window.open(this.href,'newwindow', 'width=1000,height=500');return false;" target='_blank' href= .\Screenshots\20230420_113838312.txt>Test Data</a></div></span></td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>11:38:38 PM</td>
+					<td class='step-details'><span class='label white-text green'>Verify <B>'Status Code'</B> value:<BR>Expected: <B>'200'</B><BR>Actual: <B>'200'</B></span></td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>11:38:38 PM</td>
+					<td class='step-details'><span class='label white-text blue'>Response Data <div align='right' style='float:right'><a onclick = "window.open(this.href,'newwindow', 'width=1000,height=500');return false;" target='_blank' href= .\Screenshots\20230420_113838424.txt>Test Data</a></div></span></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+					</div>
+				</li>
+				
+				
+				<li class='test displayed active  pass' status='pass' bdd='false' test-id='10'>
+					<div class='test-heading'>
+						<span class='test-name'>10 : GetUserRole</span>
+						<span class='test-time'>Apr 20, 2023 11:38:38 PM</span>
+						<span class='test-status right pass'>pass</span>
+					</div>
+					<div class='test-content hide'>
+<div class='test-time-info'>
+	<span class='label start-time'>Apr 20, 2023 11:38:38 PM</span>
+	<span class='label end-time'>Apr 20, 2023 11:38:38 PM</span>
+	<span class='label time-taken grey lighten-1 white-text'>0h 0m 0s+223ms</span>
+</div>
+	<div class='test-steps'>
+		<table class='bordered table-results'>
+			<thead>
+				<tr>
+					<th>Status</th>
+					<th>Timestamp</th>
+					<th>Details</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>11:38:38 PM</td>
+					<td class='step-details'><span class='label white-text blue'>Request Data <div align='right' style='float:right'><a onclick = "window.open(this.href,'newwindow', 'width=1000,height=500');return false;" target='_blank' href= .\Screenshots\20230420_113838616.txt>Test Data</a></div></span></td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>11:38:38 PM</td>
+					<td class='step-details'><span class='label white-text green'>Verify <B>'Status Code'</B> value:<BR>Expected: <B>'200'</B><BR>Actual: <B>'200'</B></span></td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>11:38:38 PM</td>
+					<td class='step-details'><span class='label white-text blue'>Response Data <div align='right' style='float:right'><a onclick = "window.open(this.href,'newwindow', 'width=1000,height=500');return false;" target='_blank' href= .\Screenshots\20230420_113838723.txt>Test Data</a></div></span></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+					</div>
+				</li>
+				
+				
+				<li class='test displayed active  pass' status='pass' bdd='false' test-id='11'>
+					<div class='test-heading'>
+						<span class='test-name'>11 : DeleteUserRole</span>
+						<span class='test-time'>Apr 20, 2023 11:38:38 PM</span>
+						<span class='test-status right pass'>pass</span>
+					</div>
+					<div class='test-content hide'>
+<div class='test-time-info'>
+	<span class='label start-time'>Apr 20, 2023 11:38:38 PM</span>
+	<span class='label end-time'>Apr 20, 2023 11:38:39 PM</span>
+	<span class='label time-taken grey lighten-1 white-text'>0h 0m 0s+233ms</span>
+</div>
+	<div class='test-steps'>
+		<table class='bordered table-results'>
+			<thead>
+				<tr>
+					<th>Status</th>
+					<th>Timestamp</th>
+					<th>Details</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>11:38:38 PM</td>
+					<td class='step-details'><span class='label white-text blue'>Request Data <div align='right' style='float:right'><a onclick = "window.open(this.href,'newwindow', 'width=1000,height=500');return false;" target='_blank' href= .\Screenshots\20230420_113838909.txt>Test Data</a></div></span></td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>11:38:38 PM</td>
+					<td class='step-details'><span class='label white-text green'>Verify <B>'Status Code'</B> value:<BR>Expected: <B>'200'</B><BR>Actual: <B>'200'</B></span></td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>11:38:39 PM</td>
+					<td class='step-details'><span class='label white-text blue'>Response Data <div align='right' style='float:right'><a onclick = "window.open(this.href,'newwindow', 'width=1000,height=500');return false;" target='_blank' href= .\Screenshots\20230420_113839005.txt>Test Data</a></div></span></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+					</div>
+				</li>
+				
+				
+				<li class='test displayed active  pass' status='pass' bdd='false' test-id='12'>
+					<div class='test-heading'>
+						<span class='test-name'>12 : RegisterProject</span>
+						<span class='test-time'>Apr 20, 2023 11:38:39 PM</span>
+						<span class='test-status right pass'>pass</span>
+					</div>
+					<div class='test-content hide'>
+<div class='test-time-info'>
+	<span class='label start-time'>Apr 20, 2023 11:38:39 PM</span>
+	<span class='label end-time'>Apr 20, 2023 11:38:39 PM</span>
+	<span class='label time-taken grey lighten-1 white-text'>0h 0m 0s+265ms</span>
+</div>
+	<div class='test-steps'>
+		<table class='bordered table-results'>
+			<thead>
+				<tr>
+					<th>Status</th>
+					<th>Timestamp</th>
+					<th>Details</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>11:38:39 PM</td>
+					<td class='step-details'><span class='label white-text blue'>Request Data <div align='right' style='float:right'><a onclick = "window.open(this.href,'newwindow', 'width=1000,height=500');return false;" target='_blank' href= .\Screenshots\20230420_113839184.txt>Test Data</a></div></span></td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>11:38:39 PM</td>
+					<td class='step-details'><span class='label white-text green'>Verify <B>'Status Code'</B> value:<BR>Expected: <B>'200'</B><BR>Actual: <B>'200'</B></span></td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>11:38:39 PM</td>
+					<td class='step-details'><span class='label white-text blue'>Response Data <div align='right' style='float:right'><a onclick = "window.open(this.href,'newwindow', 'width=1000,height=500');return false;" target='_blank' href= .\Screenshots\20230420_113839318.txt>Test Data</a></div></span></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+					</div>
+				</li>
+				
+				
+				<li class='test displayed active  pass' status='pass' bdd='false' test-id='13'>
+					<div class='test-heading'>
+						<span class='test-name'>13 : GetProjectList</span>
+						<span class='test-time'>Apr 20, 2023 11:38:39 PM</span>
+						<span class='test-status right pass'>pass</span>
+					</div>
+					<div class='test-content hide'>
+<div class='test-time-info'>
+	<span class='label start-time'>Apr 20, 2023 11:38:39 PM</span>
+	<span class='label end-time'>Apr 20, 2023 11:38:39 PM</span>
+	<span class='label time-taken grey lighten-1 white-text'>0h 0m 0s+222ms</span>
+</div>
+	<div class='test-steps'>
+		<table class='bordered table-results'>
+			<thead>
+				<tr>
+					<th>Status</th>
+					<th>Timestamp</th>
+					<th>Details</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>11:38:39 PM</td>
+					<td class='step-details'><span class='label white-text blue'>Request Data <div align='right' style='float:right'><a onclick = "window.open(this.href,'newwindow', 'width=1000,height=500');return false;" target='_blank' href= .\Screenshots\20230420_113839480.txt>Test Data</a></div></span></td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>11:38:39 PM</td>
+					<td class='step-details'><span class='label white-text green'>Verify <B>'Status Code'</B> value:<BR>Expected: <B>'200'</B><BR>Actual: <B>'200'</B></span></td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>11:38:39 PM</td>
+					<td class='step-details'><span class='label white-text blue'>Response Data <div align='right' style='float:right'><a onclick = "window.open(this.href,'newwindow', 'width=1000,height=500');return false;" target='_blank' href= .\Screenshots\20230420_113839585.txt>Test Data</a></div></span></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+					</div>
+				</li>
+				
+				
+				<li class='test displayed active  pass' status='pass' bdd='false' test-id='14'>
+					<div class='test-heading'>
+						<span class='test-name'>14 : DeAllocateProject</span>
+						<span class='test-time'>Apr 20, 2023 11:38:39 PM</span>
+						<span class='test-status right pass'>pass</span>
+					</div>
+					<div class='test-content hide'>
+<div class='test-time-info'>
+	<span class='label start-time'>Apr 20, 2023 11:38:39 PM</span>
+	<span class='label end-time'>Apr 20, 2023 11:38:39 PM</span>
+	<span class='label time-taken grey lighten-1 white-text'>0h 0m 0s+209ms</span>
+</div>
+	<div class='test-steps'>
+		<table class='bordered table-results'>
+			<thead>
+				<tr>
+					<th>Status</th>
+					<th>Timestamp</th>
+					<th>Details</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>11:38:39 PM</td>
+					<td class='step-details'><span class='label white-text blue'>Request Data <div align='right' style='float:right'><a onclick = "window.open(this.href,'newwindow', 'width=1000,height=500');return false;" target='_blank' href= .\Screenshots\20230420_113839733.txt>Test Data</a></div></span></td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>11:38:39 PM</td>
+					<td class='step-details'><span class='label white-text green'>Verify <B>'Status Code'</B> value:<BR>Expected: <B>'200'</B><BR>Actual: <B>'200'</B></span></td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>11:38:39 PM</td>
+					<td class='step-details'><span class='label white-text blue'>Response Data <div align='right' style='float:right'><a onclick = "window.open(this.href,'newwindow', 'width=1000,height=500');return false;" target='_blank' href= .\Screenshots\20230420_113839842.txt>Test Data</a></div></span></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+					</div>
+				</li>
+				
+				
+				<li class='test displayed active  pass' status='pass' bdd='false' test-id='15'>
+					<div class='test-heading'>
+						<span class='test-name'>15 : AllocateProject</span>
+						<span class='test-time'>Apr 20, 2023 11:38:39 PM</span>
+						<span class='test-status right pass'>pass</span>
+					</div>
+					<div class='test-content hide'>
+<div class='test-time-info'>
+	<span class='label start-time'>Apr 20, 2023 11:38:39 PM</span>
+	<span class='label end-time'>Apr 20, 2023 11:38:40 PM</span>
+	<span class='label time-taken grey lighten-1 white-text'>0h 0m 0s+199ms</span>
+</div>
+	<div class='test-steps'>
+		<table class='bordered table-results'>
+			<thead>
+				<tr>
+					<th>Status</th>
+					<th>Timestamp</th>
+					<th>Details</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>11:38:40 PM</td>
+					<td class='step-details'><span class='label white-text blue'>Request Data <div align='right' style='float:right'><a onclick = "window.open(this.href,'newwindow', 'width=1000,height=500');return false;" target='_blank' href= .\Screenshots\20230420_113840001.txt>Test Data</a></div></span></td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>11:38:40 PM</td>
+					<td class='step-details'><span class='label white-text green'>Verify <B>'Status Code'</B> value:<BR>Expected: <B>'200'</B><BR>Actual: <B>'200'</B></span></td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>11:38:40 PM</td>
+					<td class='step-details'><span class='label white-text blue'>Response Data <div align='right' style='float:right'><a onclick = "window.open(this.href,'newwindow', 'width=1000,height=500');return false;" target='_blank' href= .\Screenshots\20230420_113840099.txt>Test Data</a></div></span></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+					</div>
+				</li>
+				
+				
+				<li class='test displayed active  pass' status='pass' bdd='false' test-id='16'>
+					<div class='test-heading'>
+						<span class='test-name'>16 : RegisterModuleByUser</span>
+						<span class='test-time'>Apr 20, 2023 11:38:40 PM</span>
+						<span class='test-status right pass'>pass</span>
+					</div>
+					<div class='test-content hide'>
+<div class='test-time-info'>
+	<span class='label start-time'>Apr 20, 2023 11:38:40 PM</span>
+	<span class='label end-time'>Apr 20, 2023 11:38:40 PM</span>
+	<span class='label time-taken grey lighten-1 white-text'>0h 0m 0s+241ms</span>
+</div>
+	<div class='test-steps'>
+		<table class='bordered table-results'>
+			<thead>
+				<tr>
+					<th>Status</th>
+					<th>Timestamp</th>
+					<th>Details</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>11:38:40 PM</td>
+					<td class='step-details'><span class='label white-text blue'>Request Data <div align='right' style='float:right'><a onclick = "window.open(this.href,'newwindow', 'width=1000,height=500');return false;" target='_blank' href= .\Screenshots\20230420_113840292.txt>Test Data</a></div></span></td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>11:38:40 PM</td>
+					<td class='step-details'><span class='label white-text green'>Verify <B>'Status Code'</B> value:<BR>Expected: <B>'200'</B><BR>Actual: <B>'200'</B></span></td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>11:38:40 PM</td>
+					<td class='step-details'><span class='label white-text blue'>Response Data <div align='right' style='float:right'><a onclick = "window.open(this.href,'newwindow', 'width=1000,height=500');return false;" target='_blank' href= .\Screenshots\20230420_113840395.txt>Test Data</a></div></span></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+					</div>
+				</li>
+				
+				
+				<li class='test displayed active  pass' status='pass' bdd='false' test-id='17'>
+					<div class='test-heading'>
+						<span class='test-name'>17 : RegisterModuleByUser</span>
+						<span class='test-time'>Apr 20, 2023 11:38:40 PM</span>
+						<span class='test-status right pass'>pass</span>
+					</div>
+					<div class='test-content hide'>
+<div class='test-time-info'>
+	<span class='label start-time'>Apr 20, 2023 11:38:40 PM</span>
+	<span class='label end-time'>Apr 20, 2023 11:38:40 PM</span>
+	<span class='label time-taken grey lighten-1 white-text'>0h 0m 0s+250ms</span>
+</div>
+	<div class='test-steps'>
+		<table class='bordered table-results'>
+			<thead>
+				<tr>
+					<th>Status</th>
+					<th>Timestamp</th>
+					<th>Details</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>11:38:40 PM</td>
+					<td class='step-details'><span class='label white-text blue'>Request Data <div align='right' style='float:right'><a onclick = "window.open(this.href,'newwindow', 'width=1000,height=500');return false;" target='_blank' href= .\Screenshots\20230420_113840573.txt>Test Data</a></div></span></td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>11:38:40 PM</td>
+					<td class='step-details'><span class='label white-text green'>Verify <B>'Status Code'</B> value:<BR>Expected: <B>'200'</B><BR>Actual: <B>'200'</B></span></td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>11:38:40 PM</td>
+					<td class='step-details'><span class='label white-text blue'>Response Data <div align='right' style='float:right'><a onclick = "window.open(this.href,'newwindow', 'width=1000,height=500');return false;" target='_blank' href= .\Screenshots\20230420_113840694.txt>Test Data</a></div></span></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+					</div>
+				</li>
+				
+				
+				<li class='test displayed active  pass' status='pass' bdd='false' test-id='18'>
+					<div class='test-heading'>
+						<span class='test-name'>18 : GetRegisteredModulesByUser</span>
+						<span class='test-time'>Apr 20, 2023 11:38:40 PM</span>
+						<span class='test-status right pass'>pass</span>
+					</div>
+					<div class='test-content hide'>
+<div class='test-time-info'>
+	<span class='label start-time'>Apr 20, 2023 11:38:40 PM</span>
+	<span class='label end-time'>Apr 20, 2023 11:38:41 PM</span>
+	<span class='label time-taken grey lighten-1 white-text'>0h 0m 0s+286ms</span>
+</div>
+	<div class='test-steps'>
+		<table class='bordered table-results'>
+			<thead>
+				<tr>
+					<th>Status</th>
+					<th>Timestamp</th>
+					<th>Details</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>11:38:40 PM</td>
+					<td class='step-details'><span class='label white-text blue'>Request Data <div align='right' style='float:right'><a onclick = "window.open(this.href,'newwindow', 'width=1000,height=500');return false;" target='_blank' href= .\Screenshots\20230420_113840831.txt>Test Data</a></div></span></td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>11:38:40 PM</td>
+					<td class='step-details'><span class='label white-text green'>Verify <B>'Status Code'</B> value:<BR>Expected: <B>'200'</B><BR>Actual: <B>'200'</B></span></td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>11:38:41 PM</td>
+					<td class='step-details'><span class='label white-text blue'>Response Data <div align='right' style='float:right'><a onclick = "window.open(this.href,'newwindow', 'width=1000,height=500');return false;" target='_blank' href= .\Screenshots\20230420_113841023.txt>Test Data</a></div></span></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+					</div>
+				</li>
+				
+				
+				<li class='test displayed active  pass' status='pass' bdd='false' test-id='19'>
+					<div class='test-heading'>
+						<span class='test-name'>19 : DeRegisterModuleByUser</span>
+						<span class='test-time'>Apr 20, 2023 11:38:41 PM</span>
+						<span class='test-status right pass'>pass</span>
+					</div>
+					<div class='test-content hide'>
+<div class='test-time-info'>
+	<span class='label start-time'>Apr 20, 2023 11:38:41 PM</span>
+	<span class='label end-time'>Apr 20, 2023 11:38:41 PM</span>
+	<span class='label time-taken grey lighten-1 white-text'>0h 0m 0s+270ms</span>
+</div>
+	<div class='test-steps'>
+		<table class='bordered table-results'>
+			<thead>
+				<tr>
+					<th>Status</th>
+					<th>Timestamp</th>
+					<th>Details</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>11:38:41 PM</td>
+					<td class='step-details'><span class='label white-text blue'>Request Data <div align='right' style='float:right'><a onclick = "window.open(this.href,'newwindow', 'width=1000,height=500');return false;" target='_blank' href= .\Screenshots\20230420_113841284.txt>Test Data</a></div></span></td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>11:38:41 PM</td>
+					<td class='step-details'><span class='label white-text green'>Verify <B>'Status Code'</B> value:<BR>Expected: <B>'200'</B><BR>Actual: <B>'200'</B></span></td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>11:38:41 PM</td>
+					<td class='step-details'><span class='label white-text blue'>Response Data <div align='right' style='float:right'><a onclick = "window.open(this.href,'newwindow', 'width=1000,height=500');return false;" target='_blank' href= .\Screenshots\20230420_113841382.txt>Test Data</a></div></span></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+					</div>
+				</li>
+				
+				
+				<li class='test displayed active  pass' status='pass' bdd='false' test-id='20'>
+					<div class='test-heading'>
+						<span class='test-name'>20 : AddTestCaseByUser</span>
+						<span class='test-time'>Apr 20, 2023 11:38:41 PM</span>
+						<span class='test-status right pass'>pass</span>
+					</div>
+					<div class='test-content hide'>
+<div class='test-time-info'>
+	<span class='label start-time'>Apr 20, 2023 11:38:41 PM</span>
+	<span class='label end-time'>Apr 20, 2023 11:38:41 PM</span>
+	<span class='label time-taken grey lighten-1 white-text'>0h 0m 0s+221ms</span>
+</div>
+	<div class='test-steps'>
+		<table class='bordered table-results'>
+			<thead>
+				<tr>
+					<th>Status</th>
+					<th>Timestamp</th>
+					<th>Details</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>11:38:41 PM</td>
+					<td class='step-details'><span class='label white-text blue'>Request Data <div align='right' style='float:right'><a onclick = "window.open(this.href,'newwindow', 'width=1000,height=500');return false;" target='_blank' href= .\Screenshots\20230420_113841540.txt>Test Data</a></div></span></td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>11:38:41 PM</td>
+					<td class='step-details'><span class='label white-text green'>Verify <B>'Status Code'</B> value:<BR>Expected: <B>'200'</B><BR>Actual: <B>'200'</B></span></td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>11:38:41 PM</td>
+					<td class='step-details'><span class='label white-text blue'>Response Data <div align='right' style='float:right'><a onclick = "window.open(this.href,'newwindow', 'width=1000,height=500');return false;" target='_blank' href= .\Screenshots\20230420_113841637.txt>Test Data</a></div></span></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+					</div>
+				</li>
+				
+				
+				<li class='test displayed active  pass' status='pass' bdd='false' test-id='21'>
+					<div class='test-heading'>
+						<span class='test-name'>21 : RenameTestCaseByUser</span>
+						<span class='test-time'>Apr 20, 2023 11:38:41 PM</span>
+						<span class='test-status right pass'>pass</span>
+					</div>
+					<div class='test-content hide'>
+<div class='test-time-info'>
+	<span class='label start-time'>Apr 20, 2023 11:38:41 PM</span>
+	<span class='label end-time'>Apr 20, 2023 11:38:41 PM</span>
+	<span class='label time-taken grey lighten-1 white-text'>0h 0m 0s+234ms</span>
+</div>
+	<div class='test-steps'>
+		<table class='bordered table-results'>
+			<thead>
+				<tr>
+					<th>Status</th>
+					<th>Timestamp</th>
+					<th>Details</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>11:38:41 PM</td>
+					<td class='step-details'><span class='label white-text blue'>Request Data <div align='right' style='float:right'><a onclick = "window.open(this.href,'newwindow', 'width=1000,height=500');return false;" target='_blank' href= .\Screenshots\20230420_113841820.txt>Test Data</a></div></span></td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>11:38:41 PM</td>
+					<td class='step-details'><span class='label white-text green'>Verify <B>'Status Code'</B> value:<BR>Expected: <B>'200'</B><BR>Actual: <B>'200'</B></span></td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>11:38:41 PM</td>
+					<td class='step-details'><span class='label white-text blue'>Response Data <div align='right' style='float:right'><a onclick = "window.open(this.href,'newwindow', 'width=1000,height=500');return false;" target='_blank' href= .\Screenshots\20230420_113841918.txt>Test Data</a></div></span></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+					</div>
+				</li>
+				
+				
+				<li class='test displayed active  pass' status='pass' bdd='false' test-id='22'>
+					<div class='test-heading'>
+						<span class='test-name'>22 : GetTestCaseByUser</span>
+						<span class='test-time'>Apr 20, 2023 11:38:41 PM</span>
+						<span class='test-status right pass'>pass</span>
+					</div>
+					<div class='test-content hide'>
+<div class='test-time-info'>
+	<span class='label start-time'>Apr 20, 2023 11:38:41 PM</span>
+	<span class='label end-time'>Apr 20, 2023 11:38:42 PM</span>
+	<span class='label time-taken grey lighten-1 white-text'>0h 0m 0s+238ms</span>
+</div>
+	<div class='test-steps'>
+		<table class='bordered table-results'>
+			<thead>
+				<tr>
+					<th>Status</th>
+					<th>Timestamp</th>
+					<th>Details</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>11:38:42 PM</td>
+					<td class='step-details'><span class='label white-text blue'>Request Data <div align='right' style='float:right'><a onclick = "window.open(this.href,'newwindow', 'width=1000,height=500');return false;" target='_blank' href= .\Screenshots\20230420_113842080.txt>Test Data</a></div></span></td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>11:38:42 PM</td>
+					<td class='step-details'><span class='label white-text green'>Verify <B>'Status Code'</B> value:<BR>Expected: <B>'200'</B><BR>Actual: <B>'200'</B></span></td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>11:38:42 PM</td>
+					<td class='step-details'><span class='label white-text blue'>Response Data <div align='right' style='float:right'><a onclick = "window.open(this.href,'newwindow', 'width=1000,height=500');return false;" target='_blank' href= .\Screenshots\20230420_113842208.txt>Test Data</a></div></span></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+					</div>
+				</li>
+				
+				
+				<li class='test displayed active  pass' status='pass' bdd='false' test-id='23'>
+					<div class='test-heading'>
+						<span class='test-name'>23 : DeleteTestCaseByUser</span>
+						<span class='test-time'>Apr 20, 2023 11:38:42 PM</span>
+						<span class='test-status right pass'>pass</span>
+					</div>
+					<div class='test-content hide'>
+<div class='test-time-info'>
+	<span class='label start-time'>Apr 20, 2023 11:38:42 PM</span>
+	<span class='label end-time'>Apr 20, 2023 11:38:42 PM</span>
+	<span class='label time-taken grey lighten-1 white-text'>0h 0m 0s+215ms</span>
+</div>
+	<div class='test-steps'>
+		<table class='bordered table-results'>
+			<thead>
+				<tr>
+					<th>Status</th>
+					<th>Timestamp</th>
+					<th>Details</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>11:38:42 PM</td>
+					<td class='step-details'><span class='label white-text blue'>Request Data <div align='right' style='float:right'><a onclick = "window.open(this.href,'newwindow', 'width=1000,height=500');return false;" target='_blank' href= .\Screenshots\20230420_113842396.txt>Test Data</a></div></span></td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>11:38:42 PM</td>
+					<td class='step-details'><span class='label white-text green'>Verify <B>'Status Code'</B> value:<BR>Expected: <B>'200'</B><BR>Actual: <B>'200'</B></span></td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>11:38:42 PM</td>
+					<td class='step-details'><span class='label white-text blue'>Response Data <div align='right' style='float:right'><a onclick = "window.open(this.href,'newwindow', 'width=1000,height=500');return false;" target='_blank' href= .\Screenshots\20230420_113842504.txt>Test Data</a></div></span></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+					</div>
+				</li>
+				
+				
+				<li class='test displayed active  pass' status='pass' bdd='false' test-id='24'>
+					<div class='test-heading'>
+						<span class='test-name'>24 : AddTestCaseByUser</span>
+						<span class='test-time'>Apr 20, 2023 11:38:42 PM</span>
+						<span class='test-status right pass'>pass</span>
+					</div>
+					<div class='test-content hide'>
+<div class='test-time-info'>
+	<span class='label start-time'>Apr 20, 2023 11:38:42 PM</span>
+	<span class='label end-time'>Apr 20, 2023 11:38:42 PM</span>
+	<span class='label time-taken grey lighten-1 white-text'>0h 0m 0s+374ms</span>
+</div>
+	<div class='test-steps'>
+		<table class='bordered table-results'>
+			<thead>
+				<tr>
+					<th>Status</th>
+					<th>Timestamp</th>
+					<th>Details</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>11:38:42 PM</td>
+					<td class='step-details'><span class='label white-text blue'>Request Data <div align='right' style='float:right'><a onclick = "window.open(this.href,'newwindow', 'width=1000,height=500');return false;" target='_blank' href= .\Screenshots\20230420_113842677.txt>Test Data</a></div></span></td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>11:38:42 PM</td>
+					<td class='step-details'><span class='label white-text green'>Verify <B>'Status Code'</B> value:<BR>Expected: <B>'200'</B><BR>Actual: <B>'200'</B></span></td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>11:38:42 PM</td>
+					<td class='step-details'><span class='label white-text blue'>Response Data <div align='right' style='float:right'><a onclick = "window.open(this.href,'newwindow', 'width=1000,height=500');return false;" target='_blank' href= .\Screenshots\20230420_113842775.txt>Test Data</a></div></span></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+					</div>
+				</li>
+				
+				
+				<li class='test displayed active  pass' status='pass' bdd='false' test-id='25'>
+					<div class='test-heading'>
+						<span class='test-name'>25 : AddORByUser</span>
+						<span class='test-time'>Apr 20, 2023 11:38:43 PM</span>
+						<span class='test-status right pass'>pass</span>
+					</div>
+					<div class='test-content hide'>
+<div class='test-time-info'>
+	<span class='label start-time'>Apr 20, 2023 11:38:43 PM</span>
+	<span class='label end-time'>Apr 20, 2023 11:38:43 PM</span>
+	<span class='label time-taken grey lighten-1 white-text'>0h 0m 0s+523ms</span>
+</div>
+	<div class='test-steps'>
+		<table class='bordered table-results'>
+			<thead>
+				<tr>
+					<th>Status</th>
+					<th>Timestamp</th>
+					<th>Details</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>11:38:43 PM</td>
+					<td class='step-details'><span class='label white-text blue'>Request Data <div align='right' style='float:right'><a onclick = "window.open(this.href,'newwindow', 'width=1000,height=500');return false;" target='_blank' href= .\Screenshots\20230420_113843431.txt>Test Data</a></div></span></td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>11:38:43 PM</td>
+					<td class='step-details'><span class='label white-text green'>Verify <B>'Status Code'</B> value:<BR>Expected: <B>'200'</B><BR>Actual: <B>'200'</B></span></td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>11:38:43 PM</td>
+					<td class='step-details'><span class='label white-text blue'>Response Data <div align='right' style='float:right'><a onclick = "window.open(this.href,'newwindow', 'width=1000,height=500');return false;" target='_blank' href= .\Screenshots\20230420_113843551.txt>Test Data</a></div></span></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+					</div>
+				</li>
+				
+				
+				<li class='test displayed active  pass' status='pass' bdd='false' test-id='26'>
+					<div class='test-heading'>
+						<span class='test-name'>26 : EditORByUser</span>
+						<span class='test-time'>Apr 20, 2023 11:38:43 PM</span>
+						<span class='test-status right pass'>pass</span>
+					</div>
+					<div class='test-content hide'>
+<div class='test-time-info'>
+	<span class='label start-time'>Apr 20, 2023 11:38:43 PM</span>
+	<span class='label end-time'>Apr 20, 2023 11:38:43 PM</span>
+	<span class='label time-taken grey lighten-1 white-text'>0h 0m 0s+365ms</span>
+</div>
+	<div class='test-steps'>
+		<table class='bordered table-results'>
+			<thead>
+				<tr>
+					<th>Status</th>
+					<th>Timestamp</th>
+					<th>Details</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>11:38:43 PM</td>
+					<td class='step-details'><span class='label white-text blue'>Request Data <div align='right' style='float:right'><a onclick = "window.open(this.href,'newwindow', 'width=1000,height=500');return false;" target='_blank' href= .\Screenshots\20230420_113843847.txt>Test Data</a></div></span></td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>11:38:43 PM</td>
+					<td class='step-details'><span class='label white-text green'>Verify <B>'Status Code'</B> value:<BR>Expected: <B>'200'</B><BR>Actual: <B>'200'</B></span></td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>11:38:43 PM</td>
+					<td class='step-details'><span class='label white-text blue'>Response Data <div align='right' style='float:right'><a onclick = "window.open(this.href,'newwindow', 'width=1000,height=500');return false;" target='_blank' href= .\Screenshots\20230420_113843956.txt>Test Data</a></div></span></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+					</div>
+				</li>
+				
+				
+				<li class='test displayed active  pass' status='pass' bdd='false' test-id='27'>
+					<div class='test-heading'>
+						<span class='test-name'>27 : DelORByUser</span>
+						<span class='test-time'>Apr 20, 2023 11:38:43 PM</span>
+						<span class='test-status right pass'>pass</span>
+					</div>
+					<div class='test-content hide'>
+<div class='test-time-info'>
+	<span class='label start-time'>Apr 20, 2023 11:38:43 PM</span>
+	<span class='label end-time'>Apr 20, 2023 11:38:44 PM</span>
+	<span class='label time-taken grey lighten-1 white-text'>0h 0m 0s+195ms</span>
+</div>
+	<div class='test-steps'>
+		<table class='bordered table-results'>
+			<thead>
+				<tr>
+					<th>Status</th>
+					<th>Timestamp</th>
+					<th>Details</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>11:38:44 PM</td>
+					<td class='step-details'><span class='label white-text blue'>Request Data <div align='right' style='float:right'><a onclick = "window.open(this.href,'newwindow', 'width=1000,height=500');return false;" target='_blank' href= .\Screenshots\20230420_113844085.txt>Test Data</a></div></span></td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>11:38:44 PM</td>
+					<td class='step-details'><span class='label white-text green'>Verify <B>'Status Code'</B> value:<BR>Expected: <B>'200'</B><BR>Actual: <B>'200'</B></span></td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>11:38:44 PM</td>
+					<td class='step-details'><span class='label white-text blue'>Response Data <div align='right' style='float:right'><a onclick = "window.open(this.href,'newwindow', 'width=1000,height=500');return false;" target='_blank' href= .\Screenshots\20230420_113844191.txt>Test Data</a></div></span></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+					</div>
+				</li>
+				
+				
+				<li class='test displayed active  pass' status='pass' bdd='false' test-id='28'>
+					<div class='test-heading'>
+						<span class='test-name'>28 : AddORByUser</span>
+						<span class='test-time'>Apr 20, 2023 11:38:44 PM</span>
+						<span class='test-status right pass'>pass</span>
+					</div>
+					<div class='test-content hide'>
+<div class='test-time-info'>
+	<span class='label start-time'>Apr 20, 2023 11:38:44 PM</span>
+	<span class='label end-time'>Apr 20, 2023 11:38:44 PM</span>
+	<span class='label time-taken grey lighten-1 white-text'>0h 0m 0s+290ms</span>
+</div>
+	<div class='test-steps'>
+		<table class='bordered table-results'>
+			<thead>
+				<tr>
+					<th>Status</th>
+					<th>Timestamp</th>
+					<th>Details</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>11:38:44 PM</td>
+					<td class='step-details'><span class='label white-text blue'>Request Data <div align='right' style='float:right'><a onclick = "window.open(this.href,'newwindow', 'width=1000,height=500');return false;" target='_blank' href= .\Screenshots\20230420_113844429.txt>Test Data</a></div></span></td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>11:38:44 PM</td>
+					<td class='step-details'><span class='label white-text green'>Verify <B>'Status Code'</B> value:<BR>Expected: <B>'200'</B><BR>Actual: <B>'200'</B></span></td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>11:38:44 PM</td>
+					<td class='step-details'><span class='label white-text blue'>Response Data <div align='right' style='float:right'><a onclick = "window.open(this.href,'newwindow', 'width=1000,height=500');return false;" target='_blank' href= .\Screenshots\20230420_113844518.txt>Test Data</a></div></span></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+					</div>
+				</li>
+				
+				
+				<li class='test displayed active  pass' status='pass' bdd='false' test-id='29'>
+					<div class='test-heading'>
+						<span class='test-name'>29 : AddTestStepToExistingTCByUser</span>
+						<span class='test-time'>Apr 20, 2023 11:38:44 PM</span>
+						<span class='test-status right pass'>pass</span>
+					</div>
+					<div class='test-content hide'>
+<div class='test-time-info'>
+	<span class='label start-time'>Apr 20, 2023 11:38:44 PM</span>
+	<span class='label end-time'>Apr 20, 2023 11:38:44 PM</span>
+	<span class='label time-taken grey lighten-1 white-text'>0h 0m 0s+263ms</span>
+</div>
+	<div class='test-steps'>
+		<table class='bordered table-results'>
+			<thead>
+				<tr>
+					<th>Status</th>
+					<th>Timestamp</th>
+					<th>Details</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>11:38:44 PM</td>
+					<td class='step-details'><span class='label white-text blue'>Request Data <div align='right' style='float:right'><a onclick = "window.open(this.href,'newwindow', 'width=1000,height=500');return false;" target='_blank' href= .\Screenshots\20230420_113844735.txt>Test Data</a></div></span></td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>11:38:44 PM</td>
+					<td class='step-details'><span class='label white-text green'>Verify <B>'Status Code'</B> value:<BR>Expected: <B>'200'</B><BR>Actual: <B>'200'</B></span></td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>11:38:44 PM</td>
+					<td class='step-details'><span class='label white-text blue'>Response Data <div align='right' style='float:right'><a onclick = "window.open(this.href,'newwindow', 'width=1000,height=500');return false;" target='_blank' href= .\Screenshots\20230420_113844827.txt>Test Data</a></div></span></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+					</div>
+				</li>
+				
+				
+				<li class='test displayed active  pass' status='pass' bdd='false' test-id='30'>
+					<div class='test-heading'>
+						<span class='test-name'>30 : AddTestStepToNewTCByUser</span>
+						<span class='test-time'>Apr 20, 2023 11:38:44 PM</span>
+						<span class='test-status right pass'>pass</span>
+					</div>
+					<div class='test-content hide'>
+<div class='test-time-info'>
+	<span class='label start-time'>Apr 20, 2023 11:38:44 PM</span>
+	<span class='label end-time'>Apr 20, 2023 11:38:45 PM</span>
+	<span class='label time-taken grey lighten-1 white-text'>0h 0m 0s+263ms</span>
+</div>
+	<div class='test-steps'>
+		<table class='bordered table-results'>
+			<thead>
+				<tr>
+					<th>Status</th>
+					<th>Timestamp</th>
+					<th>Details</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>11:38:45 PM</td>
+					<td class='step-details'><span class='label white-text blue'>Request Data <div align='right' style='float:right'><a onclick = "window.open(this.href,'newwindow', 'width=1000,height=500');return false;" target='_blank' href= .\Screenshots\20230420_113845032.txt>Test Data</a></div></span></td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>11:38:45 PM</td>
+					<td class='step-details'><span class='label white-text green'>Verify <B>'Status Code'</B> value:<BR>Expected: <B>'200'</B><BR>Actual: <B>'200'</B></span></td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>11:38:45 PM</td>
+					<td class='step-details'><span class='label white-text blue'>Response Data <div align='right' style='float:right'><a onclick = "window.open(this.href,'newwindow', 'width=1000,height=500');return false;" target='_blank' href= .\Screenshots\20230420_113845134.txt>Test Data</a></div></span></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+					</div>
+				</li>
+				
+				
+				<li class='test displayed active  pass' status='pass' bdd='false' test-id='31'>
+					<div class='test-heading'>
+						<span class='test-name'>31 : modifyTestStepOfExistingTCByUser</span>
+						<span class='test-time'>Apr 20, 2023 11:38:45 PM</span>
+						<span class='test-status right pass'>pass</span>
+					</div>
+					<div class='test-content hide'>
+<div class='test-time-info'>
+	<span class='label start-time'>Apr 20, 2023 11:38:45 PM</span>
+	<span class='label end-time'>Apr 20, 2023 11:38:45 PM</span>
+	<span class='label time-taken grey lighten-1 white-text'>0h 0m 0s+274ms</span>
+</div>
+	<div class='test-steps'>
+		<table class='bordered table-results'>
+			<thead>
+				<tr>
+					<th>Status</th>
+					<th>Timestamp</th>
+					<th>Details</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>11:38:45 PM</td>
+					<td class='step-details'><span class='label white-text blue'>Request Data <div align='right' style='float:right'><a onclick = "window.open(this.href,'newwindow', 'width=1000,height=500');return false;" target='_blank' href= .\Screenshots\20230420_113845377.txt>Test Data</a></div></span></td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>11:38:45 PM</td>
+					<td class='step-details'><span class='label white-text green'>Verify <B>'Status Code'</B> value:<BR>Expected: <B>'200'</B><BR>Actual: <B>'200'</B></span></td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>11:38:45 PM</td>
+					<td class='step-details'><span class='label white-text blue'>Response Data <div align='right' style='float:right'><a onclick = "window.open(this.href,'newwindow', 'width=1000,height=500');return false;" target='_blank' href= .\Screenshots\20230420_113845474.txt>Test Data</a></div></span></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+					</div>
+				</li>
+				
+				
+				<li class='test displayed active  pass' status='pass' bdd='false' test-id='32'>
+					<div class='test-heading'>
+						<span class='test-name'>32 : getTestStepOfExistingTCByUser</span>
+						<span class='test-time'>Apr 20, 2023 11:38:45 PM</span>
+						<span class='test-status right pass'>pass</span>
+					</div>
+					<div class='test-content hide'>
+<div class='test-time-info'>
+	<span class='label start-time'>Apr 20, 2023 11:38:45 PM</span>
+	<span class='label end-time'>Apr 20, 2023 11:38:45 PM</span>
+	<span class='label time-taken grey lighten-1 white-text'>0h 0m 0s+234ms</span>
+</div>
+	<div class='test-steps'>
+		<table class='bordered table-results'>
+			<thead>
+				<tr>
+					<th>Status</th>
+					<th>Timestamp</th>
+					<th>Details</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>11:38:45 PM</td>
+					<td class='step-details'><span class='label white-text blue'>Request Data <div align='right' style='float:right'><a onclick = "window.open(this.href,'newwindow', 'width=1000,height=500');return false;" target='_blank' href= .\Screenshots\20230420_113845658.txt>Test Data</a></div></span></td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>11:38:45 PM</td>
+					<td class='step-details'><span class='label white-text green'>Verify <B>'Status Code'</B> value:<BR>Expected: <B>'200'</B><BR>Actual: <B>'200'</B></span></td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>11:38:45 PM</td>
+					<td class='step-details'><span class='label white-text blue'>Response Data <div align='right' style='float:right'><a onclick = "window.open(this.href,'newwindow', 'width=1000,height=500');return false;" target='_blank' href= .\Screenshots\20230420_113845767.txt>Test Data</a></div></span></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+					</div>
+				</li>
+				
+				
+				<li class='test displayed active  pass' status='pass' bdd='false' test-id='33'>
+					<div class='test-heading'>
+						<span class='test-name'>33 : delTestStepOfExistingTCByUser</span>
+						<span class='test-time'>Apr 20, 2023 11:38:45 PM</span>
+						<span class='test-status right pass'>pass</span>
+					</div>
+					<div class='test-content hide'>
+<div class='test-time-info'>
+	<span class='label start-time'>Apr 20, 2023 11:38:45 PM</span>
+	<span class='label end-time'>Apr 20, 2023 11:38:46 PM</span>
+	<span class='label time-taken grey lighten-1 white-text'>0h 0m 0s+332ms</span>
+</div>
+	<div class='test-steps'>
+		<table class='bordered table-results'>
+			<thead>
+				<tr>
+					<th>Status</th>
+					<th>Timestamp</th>
+					<th>Details</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>11:38:45 PM</td>
+					<td class='step-details'><span class='label white-text blue'>Request Data <div align='right' style='float:right'><a onclick = "window.open(this.href,'newwindow', 'width=1000,height=500');return false;" target='_blank' href= .\Screenshots\20230420_113845992.txt>Test Data</a></div></span></td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>11:38:46 PM</td>
+					<td class='step-details'><span class='label white-text green'>Verify <B>'Status Code'</B> value:<BR>Expected: <B>'200'</B><BR>Actual: <B>'200'</B></span></td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>11:38:46 PM</td>
+					<td class='step-details'><span class='label white-text blue'>Response Data <div align='right' style='float:right'><a onclick = "window.open(this.href,'newwindow', 'width=1000,height=500');return false;" target='_blank' href= .\Screenshots\20230420_113846144.txt>Test Data</a></div></span></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+					</div>
+				</li>
+				
+				
+				<li class='test displayed active  pass' status='pass' bdd='false' test-id='34'>
+					<div class='test-heading'>
+						<span class='test-name'>34 : delTestCaseOfExistingTCByUser</span>
+						<span class='test-time'>Apr 20, 2023 11:38:46 PM</span>
+						<span class='test-status right pass'>pass</span>
+					</div>
+					<div class='test-content hide'>
+<div class='test-time-info'>
+	<span class='label start-time'>Apr 20, 2023 11:38:46 PM</span>
+	<span class='label end-time'>Apr 20, 2023 11:38:46 PM</span>
+	<span class='label time-taken grey lighten-1 white-text'>0h 0m 0s+239ms</span>
+</div>
+	<div class='test-steps'>
+		<table class='bordered table-results'>
+			<thead>
+				<tr>
+					<th>Status</th>
+					<th>Timestamp</th>
+					<th>Details</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>11:38:46 PM</td>
+					<td class='step-details'><span class='label white-text blue'>Request Data <div align='right' style='float:right'><a onclick = "window.open(this.href,'newwindow', 'width=1000,height=500');return false;" target='_blank' href= .\Screenshots\20230420_113846338.txt>Test Data</a></div></span></td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>11:38:46 PM</td>
+					<td class='step-details'><span class='label white-text green'>Verify <B>'Status Code'</B> value:<BR>Expected: <B>'200'</B><BR>Actual: <B>'200'</B></span></td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>11:38:46 PM</td>
+					<td class='step-details'><span class='label white-text blue'>Response Data <div align='right' style='float:right'><a onclick = "window.open(this.href,'newwindow', 'width=1000,height=500');return false;" target='_blank' href= .\Screenshots\20230420_113846426.txt>Test Data</a></div></span></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+					</div>
+				</li>
+				
+				
+				<li class='test displayed active  pass' status='pass' bdd='false' test-id='35'>
+					<div class='test-heading'>
+						<span class='test-name'>35 : AddEnvVariableToTheProjectByUser</span>
+						<span class='test-time'>Apr 20, 2023 11:38:46 PM</span>
+						<span class='test-status right pass'>pass</span>
+					</div>
+					<div class='test-content hide'>
+<div class='test-time-info'>
+	<span class='label start-time'>Apr 20, 2023 11:38:46 PM</span>
+	<span class='label end-time'>Apr 20, 2023 11:38:46 PM</span>
+	<span class='label time-taken grey lighten-1 white-text'>0h 0m 0s+203ms</span>
+</div>
+	<div class='test-steps'>
+		<table class='bordered table-results'>
+			<thead>
+				<tr>
+					<th>Status</th>
+					<th>Timestamp</th>
+					<th>Details</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>11:38:46 PM</td>
+					<td class='step-details'><span class='label white-text blue'>Request Data <div align='right' style='float:right'><a onclick = "window.open(this.href,'newwindow', 'width=1000,height=500');return false;" target='_blank' href= .\Screenshots\20230420_113846589.txt>Test Data</a></div></span></td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>11:38:46 PM</td>
+					<td class='step-details'><span class='label white-text green'>Verify <B>'Status Code'</B> value:<BR>Expected: <B>'200'</B><BR>Actual: <B>'200'</B></span></td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>11:38:46 PM</td>
+					<td class='step-details'><span class='label white-text blue'>Response Data <div align='right' style='float:right'><a onclick = "window.open(this.href,'newwindow', 'width=1000,height=500');return false;" target='_blank' href= .\Screenshots\20230420_113846668.txt>Test Data</a></div></span></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+					</div>
+				</li>
+				
+				
+				<li class='test displayed active  pass' status='pass' bdd='false' test-id='36'>
+					<div class='test-heading'>
+						<span class='test-name'>36 : GetEnvVariableToTheProjectByUser</span>
+						<span class='test-time'>Apr 20, 2023 11:38:46 PM</span>
+						<span class='test-status right pass'>pass</span>
+					</div>
+					<div class='test-content hide'>
+<div class='test-time-info'>
+	<span class='label start-time'>Apr 20, 2023 11:38:46 PM</span>
+	<span class='label end-time'>Apr 20, 2023 11:38:46 PM</span>
+	<span class='label time-taken grey lighten-1 white-text'>0h 0m 0s+202ms</span>
+</div>
+	<div class='test-steps'>
+		<table class='bordered table-results'>
+			<thead>
+				<tr>
+					<th>Status</th>
+					<th>Timestamp</th>
+					<th>Details</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>11:38:46 PM</td>
+					<td class='step-details'><span class='label white-text blue'>Request Data <div align='right' style='float:right'><a onclick = "window.open(this.href,'newwindow', 'width=1000,height=500');return false;" target='_blank' href= .\Screenshots\20230420_113846805.txt>Test Data</a></div></span></td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>11:38:46 PM</td>
+					<td class='step-details'><span class='label white-text green'>Verify <B>'Status Code'</B> value:<BR>Expected: <B>'200'</B><BR>Actual: <B>'200'</B></span></td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>11:38:46 PM</td>
+					<td class='step-details'><span class='label white-text blue'>Response Data <div align='right' style='float:right'><a onclick = "window.open(this.href,'newwindow', 'width=1000,height=500');return false;" target='_blank' href= .\Screenshots\20230420_113846917.txt>Test Data</a></div></span></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+					</div>
+				</li>
+				
+				
+				<li class='test displayed active  pass' status='pass' bdd='false' test-id='37'>
+					<div class='test-heading'>
+						<span class='test-name'>37 : DelEnvVariableToTheProjectByUser</span>
+						<span class='test-time'>Apr 20, 2023 11:38:46 PM</span>
+						<span class='test-status right pass'>pass</span>
+					</div>
+					<div class='test-content hide'>
+<div class='test-time-info'>
+	<span class='label start-time'>Apr 20, 2023 11:38:46 PM</span>
+	<span class='label end-time'>Apr 20, 2023 11:38:47 PM</span>
+	<span class='label time-taken grey lighten-1 white-text'>0h 0m 0s+236ms</span>
+</div>
+	<div class='test-steps'>
+		<table class='bordered table-results'>
+			<thead>
+				<tr>
+					<th>Status</th>
+					<th>Timestamp</th>
+					<th>Details</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>11:38:47 PM</td>
+					<td class='step-details'><span class='label white-text blue'>Request Data <div align='right' style='float:right'><a onclick = "window.open(this.href,'newwindow', 'width=1000,height=500');return false;" target='_blank' href= .\Screenshots\20230420_113847110.txt>Test Data</a></div></span></td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>11:38:47 PM</td>
+					<td class='step-details'><span class='label white-text green'>Verify <B>'Status Code'</B> value:<BR>Expected: <B>'200'</B><BR>Actual: <B>'200'</B></span></td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>11:38:47 PM</td>
+					<td class='step-details'><span class='label white-text blue'>Response Data <div align='right' style='float:right'><a onclick = "window.open(this.href,'newwindow', 'width=1000,height=500');return false;" target='_blank' href= .\Screenshots\20230420_113847225.txt>Test Data</a></div></span></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+					</div>
+				</li>
+				
+				
+				<li class='test displayed active  pass' status='pass' bdd='false' test-id='38'>
+					<div class='test-heading'>
+						<span class='test-name'>38 : UpdateEnvVariableToTheProjectByUser</span>
+						<span class='test-time'>Apr 20, 2023 11:38:47 PM</span>
+						<span class='test-status right pass'>pass</span>
+					</div>
+					<div class='test-content hide'>
+<div class='test-time-info'>
+	<span class='label start-time'>Apr 20, 2023 11:38:47 PM</span>
+	<span class='label end-time'>Apr 20, 2023 11:38:47 PM</span>
+	<span class='label time-taken grey lighten-1 white-text'>0h 0m 0s+200ms</span>
+</div>
+	<div class='test-steps'>
+		<table class='bordered table-results'>
+			<thead>
+				<tr>
+					<th>Status</th>
+					<th>Timestamp</th>
+					<th>Details</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>11:38:47 PM</td>
+					<td class='step-details'><span class='label white-text blue'>Request Data <div align='right' style='float:right'><a onclick = "window.open(this.href,'newwindow', 'width=1000,height=500');return false;" target='_blank' href= .\Screenshots\20230420_113847366.txt>Test Data</a></div></span></td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>11:38:47 PM</td>
+					<td class='step-details'><span class='label white-text green'>Verify <B>'Status Code'</B> value:<BR>Expected: <B>'200'</B><BR>Actual: <B>'200'</B></span></td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>11:38:47 PM</td>
+					<td class='step-details'><span class='label white-text blue'>Response Data <div align='right' style='float:right'><a onclick = "window.open(this.href,'newwindow', 'width=1000,height=500');return false;" target='_blank' href= .\Screenshots\20230420_113847474.txt>Test Data</a></div></span></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+					</div>
+				</li>
+				
+				
+				<li class='test displayed active  pass' status='pass' bdd='false' test-id='39'>
+					<div class='test-heading'>
+						<span class='test-name'>39 : AddReleaseByUser</span>
+						<span class='test-time'>Apr 20, 2023 11:38:47 PM</span>
+						<span class='test-status right pass'>pass</span>
+					</div>
+					<div class='test-content hide'>
+<div class='test-time-info'>
+	<span class='label start-time'>Apr 20, 2023 11:38:47 PM</span>
+	<span class='label end-time'>Apr 20, 2023 11:38:47 PM</span>
+	<span class='label time-taken grey lighten-1 white-text'>0h 0m 0s+213ms</span>
+</div>
+	<div class='test-steps'>
+		<table class='bordered table-results'>
+			<thead>
+				<tr>
+					<th>Status</th>
+					<th>Timestamp</th>
+					<th>Details</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>11:38:47 PM</td>
+					<td class='step-details'><span class='label white-text blue'>Request Data <div align='right' style='float:right'><a onclick = "window.open(this.href,'newwindow', 'width=1000,height=500');return false;" target='_blank' href= .\Screenshots\20230420_113847628.txt>Test Data</a></div></span></td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>11:38:47 PM</td>
+					<td class='step-details'><span class='label white-text green'>Verify <B>'Status Code'</B> value:<BR>Expected: <B>'200'</B><BR>Actual: <B>'200'</B></span></td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>11:38:47 PM</td>
+					<td class='step-details'><span class='label white-text blue'>Response Data <div align='right' style='float:right'><a onclick = "window.open(this.href,'newwindow', 'width=1000,height=500');return false;" target='_blank' href= .\Screenshots\20230420_113847739.txt>Test Data</a></div></span></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+					</div>
+				</li>
+				
+				
+				<li class='test displayed active  pass' status='pass' bdd='false' test-id='40'>
+					<div class='test-heading'>
+						<span class='test-name'>40 : GetReleaseByUser</span>
+						<span class='test-time'>Apr 20, 2023 11:38:47 PM</span>
+						<span class='test-status right pass'>pass</span>
+					</div>
+					<div class='test-content hide'>
+<div class='test-time-info'>
+	<span class='label start-time'>Apr 20, 2023 11:38:47 PM</span>
+	<span class='label end-time'>Apr 20, 2023 11:38:47 PM</span>
+	<span class='label time-taken grey lighten-1 white-text'>0h 0m 0s+175ms</span>
+</div>
+	<div class='test-steps'>
+		<table class='bordered table-results'>
+			<thead>
+				<tr>
+					<th>Status</th>
+					<th>Timestamp</th>
+					<th>Details</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>11:38:47 PM</td>
+					<td class='step-details'><span class='label white-text blue'>Request Data <div align='right' style='float:right'><a onclick = "window.open(this.href,'newwindow', 'width=1000,height=500');return false;" target='_blank' href= .\Screenshots\20230420_113847886.txt>Test Data</a></div></span></td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>11:38:47 PM</td>
+					<td class='step-details'><span class='label white-text green'>Verify <B>'Status Code'</B> value:<BR>Expected: <B>'200'</B><BR>Actual: <B>'200'</B></span></td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>11:38:47 PM</td>
+					<td class='step-details'><span class='label white-text blue'>Response Data <div align='right' style='float:right'><a onclick = "window.open(this.href,'newwindow', 'width=1000,height=500');return false;" target='_blank' href= .\Screenshots\20230420_113847971.txt>Test Data</a></div></span></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+					</div>
+				</li>
+				
+				
+				<li class='test displayed active  pass' status='pass' bdd='false' test-id='41'>
+					<div class='test-heading'>
+						<span class='test-name'>41 : UpdateReleaseByUser</span>
+						<span class='test-time'>Apr 20, 2023 11:38:48 PM</span>
+						<span class='test-status right pass'>pass</span>
+					</div>
+					<div class='test-content hide'>
+<div class='test-time-info'>
+	<span class='label start-time'>Apr 20, 2023 11:38:48 PM</span>
+	<span class='label end-time'>Apr 20, 2023 11:38:48 PM</span>
+	<span class='label time-taken grey lighten-1 white-text'>0h 0m 0s+217ms</span>
+</div>
+	<div class='test-steps'>
+		<table class='bordered table-results'>
+			<thead>
+				<tr>
+					<th>Status</th>
+					<th>Timestamp</th>
+					<th>Details</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>11:38:48 PM</td>
+					<td class='step-details'><span class='label white-text blue'>Request Data <div align='right' style='float:right'><a onclick = "window.open(this.href,'newwindow', 'width=1000,height=500');return false;" target='_blank' href= .\Screenshots\20230420_113848118.txt>Test Data</a></div></span></td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>11:38:48 PM</td>
+					<td class='step-details'><span class='label white-text green'>Verify <B>'Status Code'</B> value:<BR>Expected: <B>'200'</B><BR>Actual: <B>'200'</B></span></td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>11:38:48 PM</td>
+					<td class='step-details'><span class='label white-text blue'>Response Data <div align='right' style='float:right'><a onclick = "window.open(this.href,'newwindow', 'width=1000,height=500');return false;" target='_blank' href= .\Screenshots\20230420_113848241.txt>Test Data</a></div></span></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+					</div>
+				</li>
+				
+				
+				<li class='test displayed active  pass' status='pass' bdd='false' test-id='42'>
+					<div class='test-heading'>
+						<span class='test-name'>42 : DeleteReleaseByUser</span>
+						<span class='test-time'>Apr 20, 2023 11:38:48 PM</span>
+						<span class='test-status right pass'>pass</span>
+					</div>
+					<div class='test-content hide'>
+<div class='test-time-info'>
+	<span class='label start-time'>Apr 20, 2023 11:38:48 PM</span>
+	<span class='label end-time'>Apr 20, 2023 11:38:48 PM</span>
+	<span class='label time-taken grey lighten-1 white-text'>0h 0m 0s+342ms</span>
+</div>
+	<div class='test-steps'>
+		<table class='bordered table-results'>
+			<thead>
+				<tr>
+					<th>Status</th>
+					<th>Timestamp</th>
+					<th>Details</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>11:38:48 PM</td>
+					<td class='step-details'><span class='label white-text blue'>Request Data <div align='right' style='float:right'><a onclick = "window.open(this.href,'newwindow', 'width=1000,height=500');return false;" target='_blank' href= .\Screenshots\20230420_113848383.txt>Test Data</a></div></span></td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>11:38:48 PM</td>
+					<td class='step-details'><span class='label white-text green'>Verify <B>'Status Code'</B> value:<BR>Expected: <B>'200'</B><BR>Actual: <B>'200'</B></span></td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>11:38:48 PM</td>
+					<td class='step-details'><span class='label white-text blue'>Response Data <div align='right' style='float:right'><a onclick = "window.open(this.href,'newwindow', 'width=1000,height=500');return false;" target='_blank' href= .\Screenshots\20230420_113848567.txt>Test Data</a></div></span></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+					</div>
+				</li>
+				
+				
+				<li class='test displayed active  pass' status='pass' bdd='false' test-id='43'>
+					<div class='test-heading'>
+						<span class='test-name'>43 : AddReleaseByUser</span>
+						<span class='test-time'>Apr 20, 2023 11:38:48 PM</span>
+						<span class='test-status right pass'>pass</span>
+					</div>
+					<div class='test-content hide'>
+<div class='test-time-info'>
+	<span class='label start-time'>Apr 20, 2023 11:38:48 PM</span>
+	<span class='label end-time'>Apr 20, 2023 11:38:49 PM</span>
+	<span class='label time-taken grey lighten-1 white-text'>0h 0m 0s+368ms</span>
+</div>
+	<div class='test-steps'>
+		<table class='bordered table-results'>
+			<thead>
+				<tr>
+					<th>Status</th>
+					<th>Timestamp</th>
+					<th>Details</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>11:38:48 PM</td>
+					<td class='step-details'><span class='label white-text blue'>Request Data <div align='right' style='float:right'><a onclick = "window.open(this.href,'newwindow', 'width=1000,height=500');return false;" target='_blank' href= .\Screenshots\20230420_113848911.txt>Test Data</a></div></span></td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>11:38:49 PM</td>
+					<td class='step-details'><span class='label white-text green'>Verify <B>'Status Code'</B> value:<BR>Expected: <B>'200'</B><BR>Actual: <B>'200'</B></span></td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>11:38:49 PM</td>
+					<td class='step-details'><span class='label white-text blue'>Response Data <div align='right' style='float:right'><a onclick = "window.open(this.href,'newwindow', 'width=1000,height=500');return false;" target='_blank' href= .\Screenshots\20230420_113849101.txt>Test Data</a></div></span></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+					</div>
+				</li>
+				
+				
+				<li class='test displayed active  pass' status='pass' bdd='false' test-id='44'>
+					<div class='test-heading'>
+						<span class='test-name'>44 : AddCycleByUser</span>
+						<span class='test-time'>Apr 20, 2023 11:38:49 PM</span>
+						<span class='test-status right pass'>pass</span>
+					</div>
+					<div class='test-content hide'>
+<div class='test-time-info'>
+	<span class='label start-time'>Apr 20, 2023 11:38:49 PM</span>
+	<span class='label end-time'>Apr 20, 2023 11:38:49 PM</span>
+	<span class='label time-taken grey lighten-1 white-text'>0h 0m 0s+346ms</span>
+</div>
+	<div class='test-steps'>
+		<table class='bordered table-results'>
+			<thead>
+				<tr>
+					<th>Status</th>
+					<th>Timestamp</th>
+					<th>Details</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>11:38:49 PM</td>
+					<td class='step-details'><span class='label white-text blue'>Request Data <div align='right' style='float:right'><a onclick = "window.open(this.href,'newwindow', 'width=1000,height=500');return false;" target='_blank' href= .\Screenshots\20230420_113849420.txt>Test Data</a></div></span></td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>11:38:49 PM</td>
+					<td class='step-details'><span class='label white-text green'>Verify <B>'Status Code'</B> value:<BR>Expected: <B>'200'</B><BR>Actual: <B>'200'</B></span></td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>11:38:49 PM</td>
+					<td class='step-details'><span class='label white-text blue'>Response Data <div align='right' style='float:right'><a onclick = "window.open(this.href,'newwindow', 'width=1000,height=500');return false;" target='_blank' href= .\Screenshots\20230420_113849555.txt>Test Data</a></div></span></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+					</div>
+				</li>
+				
+				
+				<li class='test displayed active  pass' status='pass' bdd='false' test-id='45'>
+					<div class='test-heading'>
+						<span class='test-name'>45 : GetCycleByUser</span>
+						<span class='test-time'>Apr 20, 2023 11:38:49 PM</span>
+						<span class='test-status right pass'>pass</span>
+					</div>
+					<div class='test-content hide'>
+<div class='test-time-info'>
+	<span class='label start-time'>Apr 20, 2023 11:38:49 PM</span>
+	<span class='label end-time'>Apr 20, 2023 11:38:49 PM</span>
+	<span class='label time-taken grey lighten-1 white-text'>0h 0m 0s+230ms</span>
+</div>
+	<div class='test-steps'>
+		<table class='bordered table-results'>
+			<thead>
+				<tr>
+					<th>Status</th>
+					<th>Timestamp</th>
+					<th>Details</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>11:38:49 PM</td>
+					<td class='step-details'><span class='label white-text blue'>Request Data <div align='right' style='float:right'><a onclick = "window.open(this.href,'newwindow', 'width=1000,height=500');return false;" target='_blank' href= .\Screenshots\20230420_113849731.txt>Test Data</a></div></span></td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>11:38:49 PM</td>
+					<td class='step-details'><span class='label white-text green'>Verify <B>'Status Code'</B> value:<BR>Expected: <B>'200'</B><BR>Actual: <B>'200'</B></span></td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>11:38:49 PM</td>
+					<td class='step-details'><span class='label white-text blue'>Response Data <div align='right' style='float:right'><a onclick = "window.open(this.href,'newwindow', 'width=1000,height=500');return false;" target='_blank' href= .\Screenshots\20230420_113849858.txt>Test Data</a></div></span></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+					</div>
+				</li>
+				
+				
+				<li class='test displayed active  pass' status='pass' bdd='false' test-id='46'>
+					<div class='test-heading'>
+						<span class='test-name'>46 : UpdateCycleByUser</span>
+						<span class='test-time'>Apr 20, 2023 11:38:49 PM</span>
+						<span class='test-status right pass'>pass</span>
+					</div>
+					<div class='test-content hide'>
+<div class='test-time-info'>
+	<span class='label start-time'>Apr 20, 2023 11:38:49 PM</span>
+	<span class='label end-time'>Apr 20, 2023 11:38:50 PM</span>
+	<span class='label time-taken grey lighten-1 white-text'>0h 0m 0s+314ms</span>
+</div>
+	<div class='test-steps'>
+		<table class='bordered table-results'>
+			<thead>
+				<tr>
+					<th>Status</th>
+					<th>Timestamp</th>
+					<th>Details</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>11:38:50 PM</td>
+					<td class='step-details'><span class='label white-text blue'>Request Data <div align='right' style='float:right'><a onclick = "window.open(this.href,'newwindow', 'width=1000,height=500');return false;" target='_blank' href= .\Screenshots\20230420_113850031.txt>Test Data</a></div></span></td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>11:38:50 PM</td>
+					<td class='step-details'><span class='label white-text green'>Verify <B>'Status Code'</B> value:<BR>Expected: <B>'200'</B><BR>Actual: <B>'200'</B></span></td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>11:38:50 PM</td>
+					<td class='step-details'><span class='label white-text blue'>Response Data <div align='right' style='float:right'><a onclick = "window.open(this.href,'newwindow', 'width=1000,height=500');return false;" target='_blank' href= .\Screenshots\20230420_113850142.txt>Test Data</a></div></span></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+					</div>
+				</li>
+				
+				
+				<li class='test displayed active  pass' status='pass' bdd='false' test-id='47'>
+					<div class='test-heading'>
+						<span class='test-name'>47 : DeleteCycleByUser</span>
+						<span class='test-time'>Apr 20, 2023 11:38:50 PM</span>
+						<span class='test-status right pass'>pass</span>
+					</div>
+					<div class='test-content hide'>
+<div class='test-time-info'>
+	<span class='label start-time'>Apr 20, 2023 11:38:50 PM</span>
+	<span class='label end-time'>Apr 20, 2023 11:38:50 PM</span>
+	<span class='label time-taken grey lighten-1 white-text'>0h 0m 0s+194ms</span>
+</div>
+	<div class='test-steps'>
+		<table class='bordered table-results'>
+			<thead>
+				<tr>
+					<th>Status</th>
+					<th>Timestamp</th>
+					<th>Details</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>11:38:50 PM</td>
+					<td class='step-details'><span class='label white-text blue'>Request Data <div align='right' style='float:right'><a onclick = "window.open(this.href,'newwindow', 'width=1000,height=500');return false;" target='_blank' href= .\Screenshots\20230420_113850361.txt>Test Data</a></div></span></td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>11:38:50 PM</td>
+					<td class='step-details'><span class='label white-text green'>Verify <B>'Status Code'</B> value:<BR>Expected: <B>'200'</B><BR>Actual: <B>'200'</B></span></td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>11:38:50 PM</td>
+					<td class='step-details'><span class='label white-text blue'>Response Data <div align='right' style='float:right'><a onclick = "window.open(this.href,'newwindow', 'width=1000,height=500');return false;" target='_blank' href= .\Screenshots\20230420_113850476.txt>Test Data</a></div></span></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+					</div>
+				</li>
+				
+				
+				<li class='test displayed active  pass' status='pass' bdd='false' test-id='48'>
+					<div class='test-heading'>
+						<span class='test-name'>48 : AddCycleByUser</span>
+						<span class='test-time'>Apr 20, 2023 11:38:50 PM</span>
+						<span class='test-status right pass'>pass</span>
+					</div>
+					<div class='test-content hide'>
+<div class='test-time-info'>
+	<span class='label start-time'>Apr 20, 2023 11:38:50 PM</span>
+	<span class='label end-time'>Apr 20, 2023 11:38:50 PM</span>
+	<span class='label time-taken grey lighten-1 white-text'>0h 0m 0s+206ms</span>
+</div>
+	<div class='test-steps'>
+		<table class='bordered table-results'>
+			<thead>
+				<tr>
+					<th>Status</th>
+					<th>Timestamp</th>
+					<th>Details</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>11:38:50 PM</td>
+					<td class='step-details'><span class='label white-text blue'>Request Data <div align='right' style='float:right'><a onclick = "window.open(this.href,'newwindow', 'width=1000,height=500');return false;" target='_blank' href= .\Screenshots\20230420_113850625.txt>Test Data</a></div></span></td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>11:38:50 PM</td>
+					<td class='step-details'><span class='label white-text green'>Verify <B>'Status Code'</B> value:<BR>Expected: <B>'200'</B><BR>Actual: <B>'200'</B></span></td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>11:38:50 PM</td>
+					<td class='step-details'><span class='label white-text blue'>Response Data <div align='right' style='float:right'><a onclick = "window.open(this.href,'newwindow', 'width=1000,height=500');return false;" target='_blank' href= .\Screenshots\20230420_113850723.txt>Test Data</a></div></span></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+					</div>
+				</li>
+				
+				
+				<li class='test displayed active  pass' status='pass' bdd='false' test-id='49'>
+					<div class='test-heading'>
+						<span class='test-name'>49 : AddTestStepToNewTC2ByUser</span>
+						<span class='test-time'>Apr 20, 2023 11:38:50 PM</span>
+						<span class='test-status right pass'>pass</span>
+					</div>
+					<div class='test-content hide'>
+<div class='test-time-info'>
+	<span class='label start-time'>Apr 20, 2023 11:38:50 PM</span>
+	<span class='label end-time'>Apr 20, 2023 11:38:51 PM</span>
+	<span class='label time-taken grey lighten-1 white-text'>0h 0m 0s+238ms</span>
+</div>
+	<div class='test-steps'>
+		<table class='bordered table-results'>
+			<thead>
+				<tr>
+					<th>Status</th>
+					<th>Timestamp</th>
+					<th>Details</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>11:38:50 PM</td>
+					<td class='step-details'><span class='label white-text blue'>Request Data <div align='right' style='float:right'><a onclick = "window.open(this.href,'newwindow', 'width=1000,height=500');return false;" target='_blank' href= .\Screenshots\20230420_113850916.txt>Test Data</a></div></span></td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>11:38:50 PM</td>
+					<td class='step-details'><span class='label white-text green'>Verify <B>'Status Code'</B> value:<BR>Expected: <B>'200'</B><BR>Actual: <B>'200'</B></span></td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>11:38:51 PM</td>
+					<td class='step-details'><span class='label white-text blue'>Response Data <div align='right' style='float:right'><a onclick = "window.open(this.href,'newwindow', 'width=1000,height=500');return false;" target='_blank' href= .\Screenshots\20230420_113851003.txt>Test Data</a></div></span></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+					</div>
+				</li>
+				
+				
+				<li class='test displayed active  pass' status='pass' bdd='false' test-id='50'>
+					<div class='test-heading'>
+						<span class='test-name'>50 : AddTestStepToNewTC3ByUser</span>
+						<span class='test-time'>Apr 20, 2023 11:38:51 PM</span>
+						<span class='test-status right pass'>pass</span>
+					</div>
+					<div class='test-content hide'>
+<div class='test-time-info'>
+	<span class='label start-time'>Apr 20, 2023 11:38:51 PM</span>
+	<span class='label end-time'>Apr 20, 2023 11:38:51 PM</span>
+	<span class='label time-taken grey lighten-1 white-text'>0h 0m 0s+461ms</span>
+</div>
+	<div class='test-steps'>
+		<table class='bordered table-results'>
+			<thead>
+				<tr>
+					<th>Status</th>
+					<th>Timestamp</th>
+					<th>Details</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>11:38:51 PM</td>
+					<td class='step-details'><span class='label white-text blue'>Request Data <div align='right' style='float:right'><a onclick = "window.open(this.href,'newwindow', 'width=1000,height=500');return false;" target='_blank' href= .\Screenshots\20230420_113851327.txt>Test Data</a></div></span></td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>11:38:51 PM</td>
+					<td class='step-details'><span class='label white-text green'>Verify <B>'Status Code'</B> value:<BR>Expected: <B>'200'</B><BR>Actual: <B>'200'</B></span></td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>11:38:51 PM</td>
+					<td class='step-details'><span class='label white-text blue'>Response Data <div align='right' style='float:right'><a onclick = "window.open(this.href,'newwindow', 'width=1000,height=500');return false;" target='_blank' href= .\Screenshots\20230420_113851521.txt>Test Data</a></div></span></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+					</div>
+				</li>
+				
+				
+				<li class='test displayed active  pass' status='pass' bdd='false' test-id='51'>
+					<div class='test-heading'>
+						<span class='test-name'>51 : AddTestStepToNewTC4ByUser</span>
+						<span class='test-time'>Apr 20, 2023 11:38:51 PM</span>
+						<span class='test-status right pass'>pass</span>
+					</div>
+					<div class='test-content hide'>
+<div class='test-time-info'>
+	<span class='label start-time'>Apr 20, 2023 11:38:51 PM</span>
+	<span class='label end-time'>Apr 20, 2023 11:38:52 PM</span>
+	<span class='label time-taken grey lighten-1 white-text'>0h 0m 0s+411ms</span>
+</div>
+	<div class='test-steps'>
+		<table class='bordered table-results'>
+			<thead>
+				<tr>
+					<th>Status</th>
+					<th>Timestamp</th>
+					<th>Details</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>11:38:51 PM</td>
+					<td class='step-details'><span class='label white-text blue'>Request Data <div align='right' style='float:right'><a onclick = "window.open(this.href,'newwindow', 'width=1000,height=500');return false;" target='_blank' href= .\Screenshots\20230420_113851927.txt>Test Data</a></div></span></td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>11:38:51 PM</td>
+					<td class='step-details'><span class='label white-text green'>Verify <B>'Status Code'</B> value:<BR>Expected: <B>'200'</B><BR>Actual: <B>'200'</B></span></td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>11:38:52 PM</td>
+					<td class='step-details'><span class='label white-text blue'>Response Data <div align='right' style='float:right'><a onclick = "window.open(this.href,'newwindow', 'width=1000,height=500');return false;" target='_blank' href= .\Screenshots\20230420_113852038.txt>Test Data</a></div></span></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+					</div>
+				</li>
+				
+				
+				<li class='test displayed active  pass' status='pass' bdd='false' test-id='52'>
+					<div class='test-heading'>
+						<span class='test-name'>52 : GetTestCaseByUser1</span>
+						<span class='test-time'>Apr 20, 2023 11:38:52 PM</span>
+						<span class='test-status right pass'>pass</span>
+					</div>
+					<div class='test-content hide'>
+<div class='test-time-info'>
+	<span class='label start-time'>Apr 20, 2023 11:38:52 PM</span>
+	<span class='label end-time'>Apr 20, 2023 11:38:52 PM</span>
+	<span class='label time-taken grey lighten-1 white-text'>0h 0m 0s+444ms</span>
+</div>
+	<div class='test-steps'>
+		<table class='bordered table-results'>
+			<thead>
+				<tr>
+					<th>Status</th>
+					<th>Timestamp</th>
+					<th>Details</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>11:38:52 PM</td>
+					<td class='step-details'><span class='label white-text blue'>TC22_TC_IDS value stored at runtime as 2,3,4,5,6</span></td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>11:38:52 PM</td>
+					<td class='step-details'><span class='label white-text blue'>Request Data <div align='right' style='float:right'><a onclick = "window.open(this.href,'newwindow', 'width=1000,height=500');return false;" target='_blank' href= .\Screenshots\20230420_113852381.txt>Test Data</a></div></span></td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>11:38:52 PM</td>
+					<td class='step-details'><span class='label white-text green'>Verify <B>'Status Code'</B> value:<BR>Expected: <B>'200'</B><BR>Actual: <B>'200'</B></span></td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>11:38:52 PM</td>
+					<td class='step-details'><span class='label white-text blue'>Response Data <div align='right' style='float:right'><a onclick = "window.open(this.href,'newwindow', 'width=1000,height=500');return false;" target='_blank' href= .\Screenshots\20230420_113852533.txt>Test Data</a></div></span></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+					</div>
+				</li>
+				
+				
+				<li class='test displayed active  pass' status='pass' bdd='false' test-id='53'>
+					<div class='test-heading'>
+						<span class='test-name'>53 : GetTestCaseByUser2</span>
+						<span class='test-time'>Apr 20, 2023 11:38:52 PM</span>
+						<span class='test-status right pass'>pass</span>
+					</div>
+					<div class='test-content hide'>
+<div class='test-time-info'>
+	<span class='label start-time'>Apr 20, 2023 11:38:52 PM</span>
+	<span class='label end-time'>Apr 20, 2023 11:38:53 PM</span>
+	<span class='label time-taken grey lighten-1 white-text'>0h 0m 0s+586ms</span>
+</div>
+	<div class='test-steps'>
+		<table class='bordered table-results'>
+			<thead>
+				<tr>
+					<th>Status</th>
+					<th>Timestamp</th>
+					<th>Details</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>11:38:52 PM</td>
+					<td class='step-details'><span class='label white-text green'>Verify <B>'Verify $.data[*].id'</B> value:<BR>Expected: <B>'2,3,4,5,6'</B><BR>Actual: <B>'2,3,4,5,6'</B></span></td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>11:38:52 PM</td>
+					<td class='step-details'><span class='label white-text blue'>Request Data <div align='right' style='float:right'><a onclick = "window.open(this.href,'newwindow', 'width=1000,height=500');return false;" target='_blank' href= .\Screenshots\20230420_113852913.txt>Test Data</a></div></span></td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>11:38:52 PM</td>
+					<td class='step-details'><span class='label white-text green'>Verify <B>'Status Code'</B> value:<BR>Expected: <B>'200'</B><BR>Actual: <B>'200'</B></span></td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>11:38:53 PM</td>
+					<td class='step-details'><span class='label white-text blue'>Response Data <div align='right' style='float:right'><a onclick = "window.open(this.href,'newwindow', 'width=1000,height=500');return false;" target='_blank' href= .\Screenshots\20230420_113853204.txt>Test Data</a></div></span></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+					</div>
+				</li>
+				
+				
+				<li class='test displayed active  pass' status='pass' bdd='false' test-id='54'>
+					<div class='test-heading'>
+						<span class='test-name'>52 : GetTestCaseByUser3</span>
+						<span class='test-time'>Apr 20, 2023 11:38:53 PM</span>
+						<span class='test-status right pass'>pass</span>
+					</div>
+					<div class='test-content hide'>
+<div class='test-time-info'>
+	<span class='label start-time'>Apr 20, 2023 11:38:53 PM</span>
+	<span class='label end-time'>Apr 20, 2023 11:38:53 PM</span>
+	<span class='label time-taken grey lighten-1 white-text'>0h 0m 0s+333ms</span>
+</div>
+	<div class='test-steps'>
+		<table class='bordered table-results'>
+			<thead>
+				<tr>
+					<th>Status</th>
+					<th>Timestamp</th>
+					<th>Details</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>11:38:53 PM</td>
+					<td class='step-details'><span class='label white-text green'>Verify $.data[*].id json path contains 2</span></td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>11:38:53 PM</td>
+					<td class='step-details'><span class='label white-text blue'>Request Data <div align='right' style='float:right'><a onclick = "window.open(this.href,'newwindow', 'width=1000,height=500');return false;" target='_blank' href= .\Screenshots\20230420_113853515.txt>Test Data</a></div></span></td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>11:38:53 PM</td>
+					<td class='step-details'><span class='label white-text green'>Verify <B>'Status Code'</B> value:<BR>Expected: <B>'200'</B><BR>Actual: <B>'200'</B></span></td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>11:38:53 PM</td>
+					<td class='step-details'><span class='label white-text blue'>Response Data <div align='right' style='float:right'><a onclick = "window.open(this.href,'newwindow', 'width=1000,height=500');return false;" target='_blank' href= .\Screenshots\20230420_113853616.txt>Test Data</a></div></span></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+					</div>
+				</li>
+				
+				
+				<li class='test displayed active  pass' status='pass' bdd='false' test-id='55'>
+					<div class='test-heading'>
+						<span class='test-name'>53 : GetTestCaseByUser4</span>
+						<span class='test-time'>Apr 20, 2023 11:38:53 PM</span>
+						<span class='test-status right pass'>pass</span>
+					</div>
+					<div class='test-content hide'>
+<div class='test-time-info'>
+	<span class='label start-time'>Apr 20, 2023 11:38:53 PM</span>
+	<span class='label end-time'>Apr 20, 2023 11:38:53 PM</span>
+	<span class='label time-taken grey lighten-1 white-text'>0h 0m 0s+316ms</span>
+</div>
+	<div class='test-steps'>
+		<table class='bordered table-results'>
+			<thead>
+				<tr>
+					<th>Status</th>
+					<th>Timestamp</th>
+					<th>Details</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>11:38:53 PM</td>
+					<td class='step-details'><span class='label white-text green'>Verify $.data[*].id json path contains 8</span></td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>11:38:53 PM</td>
+					<td class='step-details'><span class='label white-text blue'>Request Data <div align='right' style='float:right'><a onclick = "window.open(this.href,'newwindow', 'width=1000,height=500');return false;" target='_blank' href= .\Screenshots\20230420_113853869.txt>Test Data</a></div></span></td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>11:38:53 PM</td>
+					<td class='step-details'><span class='label white-text green'>Verify <B>'Status Code'</B> value:<BR>Expected: <B>'200'</B><BR>Actual: <B>'200'</B></span></td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>11:38:53 PM</td>
+					<td class='step-details'><span class='label white-text blue'>Response Data <div align='right' style='float:right'><a onclick = "window.open(this.href,'newwindow', 'width=1000,height=500');return false;" target='_blank' href= .\Screenshots\20230420_113853977.txt>Test Data</a></div></span></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+					</div>
+				</li>
+				
+				
+				<li class='test displayed active  pass' status='pass' bdd='false' test-id='56'>
+					<div class='test-heading'>
+						<span class='test-name'>54 : AddExecutionTCS</span>
+						<span class='test-time'>Apr 20, 2023 11:38:54 PM</span>
+						<span class='test-status right pass'>pass</span>
+					</div>
+					<div class='test-content hide'>
+<div class='test-time-info'>
+	<span class='label start-time'>Apr 20, 2023 11:38:54 PM</span>
+	<span class='label end-time'>Apr 20, 2023 11:38:54 PM</span>
+	<span class='label time-taken grey lighten-1 white-text'>0h 0m 0s+392ms</span>
+</div>
+	<div class='test-steps'>
+		<table class='bordered table-results'>
+			<thead>
+				<tr>
+					<th>Status</th>
+					<th>Timestamp</th>
+					<th>Details</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>11:38:54 PM</td>
+					<td class='step-details'><span class='label white-text blue'>Request Data <div align='right' style='float:right'><a onclick = "window.open(this.href,'newwindow', 'width=1000,height=500');return false;" target='_blank' href= .\Screenshots\20230420_113854276.txt>Test Data</a></div></span></td>
+				</tr>
+				<tr class='log' status='pass'>
+					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
+					<td class='timestamp'>11:38:54 PM</td>
+					<td class='step-details'><span class='label white-text green'>Verify <B>'Status Code'</B> value:<BR>Expected: <B>'200'</B><BR>Actual: <B>'200'</B></span></td>
+				</tr>
+				<tr class='log' status='info'>
+					<td class='status info' title='info' alt='info'><i class='material-icons'>info_outline</i></td>
+					<td class='timestamp'>11:38:54 PM</td>
+					<td class='step-details'><span class='label white-text blue'>Response Data <div align='right' style='float:right'><a onclick = "window.open(this.href,'newwindow', 'width=1000,height=500');return false;" target='_blank' href= .\Screenshots\20230420_113854379.txt>Test Data</a></div></span></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<!-- subview left -->
+
+	<div class='subview-right left'>
+		<div class='view-summary'>
+			<h5 class='test-name'></h5>
+
+			<div id='step-filters' class="right">
+				<span class="blue-text" status="info" alt="info" title="info"><i class="material-icons">info_outline</i></span>
+				<span class="green-text" status="pass" alt="pass" title="pass"><i class="material-icons">check_circle</i></span>
+				<span class="red-text" status="fail" alt="fail" title="fail"><i class="material-icons">cancel</i></span>
+				<span class="red-text text-darken-4" status="fatal" alt="fatal" title="fatal"><i class="material-icons">cancel</i></span>
+				<span class="pink-text text-lighten-1" status="error" alt="error" title="error"><i class="material-icons">error</i></span>
+				<span class="orange-text" alt="warning" status="warning" title="warning"><i class="material-icons">warning</i></span>
+				<span class="teal-text" status="skip" alt="skip" title="skip"><i class="material-icons">redo</i></span>
+				<span status="clear" alt="Clear filters" title="Clear filters"><i class="material-icons">clear</i></span>
+			</div>
+		</div>
+	</div>
+	<!-- subview right -->
+
+</div>
+<!-- test view -->
+<!-- category view -->
+<!-- exception view -->
+<div id='dashboard-view' class='view hide'>
+	<div class='card-panel transparent np-v'>
+		<h5>Dashboard</h5>
+
+		<div class='row'>
+			<div class='col s2'>
+				<div class='card-panel r'>
+					Tests
+					<div class='panel-lead'>56</div>
+				</div>
+			</div>
+			<div class='col s2'>
+				<div class='card-panel r'>
+					Steps
+					<div class='panel-lead'>173</div>
+				</div>
+			</div>
+			<div class='col s2'>
+				<div class='card-panel r'>
+					Start
+					<div class='panel-lead'>Apr 20, 2023 11:38:27 PM</div>
+				</div>
+			</div>
+			<div class='col s2'>
+				<div class='card-panel r'>
+			 		End
+			 		<div class='panel-lead'>Apr 20, 2023 11:38:54 PM</div>
+				</div>
+			</div>
+			<div class='col s2'>
+				<div class='card-panel r'>
+					Time Taken
+					<div class='panel-lead'>27,283ms</div>
+				</div>
+			</div>
+			<div class='col s4'>
+				<div class='card-panel environment'>
+					<span class='right label cyan white-text'>Environment</span><p>&nbsp;</p>
+					
+					<table>
+						<tr>
+							<th>Name</th>
+							<th>Value</th>
+						</tr>
+							<tr>
+								<td>Host Name</td>
+								<td>Manish</td>
+							</tr>
+							<tr>
+								<td>User Name</td>
+								<td>manish</td>
+							</tr>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- dashboard view -->
+<!-- testrunner-logs view -->
+		</div>
+		<!-- container -->
+
+		<script>
+			var statusGroup = {
+				passParent: 56,
+				failParent: 0,
+				fatalParent: 0,
+				errorParent: 0,
+				warningParent: 0,
+				skipParent: 0,
+				exceptionsParent: 0,
+				
+				passChild: 60,
+				failChild: 0,
+				fatalChild: 0,
+				errorChild: 0,
+				warningChild: 0,
+				skipChild: 0,
+				infoChild: 113,
+				exceptionsChild: 0,
+				
+				passGrandChild: 0,
+				failGrandChild: 0,
+				fatalGrandChild: 0,
+				errorGrandChild: 0,
+				warningGrandChild: 0,
+				skipGrandChild: 0,
+				infoGrandChild: 0,
+				exceptionsGrandChild: 0,
+			};
+		</script>
+		
+			<script src='https://cdn.rawgit.com/anshooarora/extentreports-java/5ed7b0c339b51aa347b44ccaa2e2ff29905b2f9f/dist/js/extent.js' type='text/javascript'></script>
+		
+		
+	</body>
+	
+</html>

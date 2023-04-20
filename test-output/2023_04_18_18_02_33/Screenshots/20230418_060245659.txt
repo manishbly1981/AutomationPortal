@@ -1,3 +1,0 @@
-{
-    "msg": "Locator with name 'userName' deleted"
-}

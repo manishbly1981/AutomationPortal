@@ -46,7 +46,7 @@ public class CompactServiceImpl {
 		try {
 			ObjectMapper mapper= new ObjectMapper();
 			mapper.enable(SerializationFeature.INDENT_OUTPUT);
-			String json= mapper.writeValueAsString(set);
+			String json= "{\"data\":" + mapper.writeValueAsString(set) + "}";
 			return ResponseEntity.status(statusCode).contentType(MediaType.APPLICATION_JSON).body(json);
 		}catch(Exception e) {
 			return reportResponse(HttpStatus.BAD_REQUEST, "Cannot convert value to JSON");
@@ -57,7 +57,7 @@ public class CompactServiceImpl {
 		try {
 			ObjectMapper mapper= new ObjectMapper();
 			mapper.enable(SerializationFeature.INDENT_OUTPUT);
-			String json= mapper.writeValueAsString(list);
+			String json= "{\"data\":" + mapper.writeValueAsString(list) + "}";
 			return ResponseEntity.status(statusCode).contentType(MediaType.APPLICATION_JSON).body(json);
 		}catch(Exception e) {
 			return reportResponse(HttpStatus.BAD_REQUEST, "Cannot convert value to JSON");

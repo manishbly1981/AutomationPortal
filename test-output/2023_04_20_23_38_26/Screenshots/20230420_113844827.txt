@@ -1,0 +1,44 @@
+{
+    "data": [
+        {
+            "id": 1,
+            "seq": 1,
+            "objective": "to enter userId",
+            "expected": "userId should be entered",
+            "action": "type",
+            "locators": [
+                {
+                    "id": 11,
+                    "seq": 1,
+                    "page": "Login",
+                    "logicalName": "userName",
+                    "locatorType": "xpath",
+                    "locatorValue": "//a[text()='uid']",
+                    "priority": 1
+                }
+            ],
+            "value": "VIKAS",
+            "exitIfFail": "y"
+        },
+        {
+            "id": 2,
+            "seq": 2,
+            "objective": "to enter password",
+            "expected": "password should be entered",
+            "action": "type",
+            "locators": [
+                {
+                    "id": 4,
+                    "seq": 1,
+                    "page": "Login",
+                    "logicalName": "password",
+                    "locatorType": "xpath",
+                    "locatorValue": "//a[text()='pwd']",
+                    "priority": 1
+                }
+            ],
+            "value": "VIKAS",
+            "exitIfFail": "y"
+        }
+    ]
+}

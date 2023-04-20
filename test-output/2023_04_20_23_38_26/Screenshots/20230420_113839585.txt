@@ -1,0 +1,38 @@
+{
+    "data": [
+        {
+            "id": 1,
+            "projectCode": "SAN",
+            "projectName": "SANTANDER",
+            "modules": [
+                
+            ],
+            "releases": [
+                
+            ],
+            "configurations": [
+                
+            ],
+            "locators": [
+                
+            ]
+        },
+        {
+            "id": 2,
+            "projectCode": "DB",
+            "projectName": "Dena Bank",
+            "modules": [
+                
+            ],
+            "releases": [
+                
+            ],
+            "configurations": [
+                
+            ],
+            "locators": [
+                
+            ]
+        }
+    ]
+}

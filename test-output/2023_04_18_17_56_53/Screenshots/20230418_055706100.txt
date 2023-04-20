@@ -1,3 +1,0 @@
-{
-    "msg": "Cycle with name 'MyUpdatedCycle1' Deleted"
-}

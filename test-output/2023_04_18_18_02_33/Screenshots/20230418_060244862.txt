@@ -1,3 +1,0 @@
-{
-    "msg": "MyRenamedTestCase1 test case deleted"
-}

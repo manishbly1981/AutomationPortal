@@ -13,6 +13,7 @@ public class RestExecutor {
         /**************************************************/
         ExtentUtil extentUtil= new ExtentUtil();
         extentUtil.initReport();
+        GlobalData globalData= new GlobalData(extentUtil);
         /**************************************************/
         System.out.println(System.getProperty("user.dir"));
         String excelFilePath=System.getProperty("user.dir") + "/TestResource/ApiTestData.xlsx";
@@ -34,21 +35,31 @@ public class RestExecutor {
             String bodyData= excelUtil.getCellData(row,"body");
             String reqFile= excelUtil.getCellData(row,"ReqFile");
             String statusCode= excelUtil.getCellData(row,"StatusCode");
-            String resposne= excelUtil.getCellData(row,"Response");
-            /**************************************************************************/
+            String resposneColData= excelUtil.getCellData(row,"Response");
+
             RestUtil restUtil= new RestUtil();
             if(execution.equalsIgnoreCase("yes")){
                 extentUtil.initTest(tcNo + " : " + tcName);
                 restUtil.setBaseURI(baseUri);
                 restUtil.setBasePath(basePath);
 
+                /**************************************************************************/
+                //updated parameterized values for body, queryparam, pathparam and headers
+
+                CompactUtil compactUtil= new CompactUtil(globalData);
+                headers= compactUtil.replaceRunTimeVal(headers);
+                pathParam= compactUtil.replaceRunTimeVal(pathParam);
+                queryParam= compactUtil.replaceRunTimeVal(queryParam);
+                bodyData= compactUtil.replaceRunTimeVal(bodyData);
+                //reqFile is not catered here
+                /**************************************************************************/
 
                 ReqSpecificationBuilder reqSpecificationBuilder= new ReqSpecificationBuilder();
                 reqSpecificationBuilder.setHeaderMap(CompactUtil.convertRestStrToMap(headers));
                 reqSpecificationBuilder.setPathParam(CompactUtil.convertRestStrToMap(pathParam));
                 reqSpecificationBuilder.setQueryParam(CompactUtil.convertRestStrToMap(queryParam));
                 reqSpecificationBuilder.setBody(bodyData);
-                reqSpecificationBuilder.setBodyFromFile(reqFile);
+                reqSpecificationBuilder.setBodyFromFile(reqFile, globalData);
                 Response res = null;
                 switch (operation.toLowerCase().trim()){
                     case "post":
@@ -65,11 +76,48 @@ public class RestExecutor {
                         break;
                 }
 
+                /*****************Response validation********************/
+                if((resposneColData!=null) && !resposneColData.equalsIgnoreCase(""))
+                    new ResponseUtil(res, resposneColData, extentUtil, globalData).responseHelper();
                 /*************************************/
-
                 ObjectMapper mapper= new ObjectMapper();
                 mapper.enable(SerializationFeature.INDENT_OUTPUT);
-                extentUtil.logInfo("Request Data ", mapper.writeValueAsString(reqSpecificationBuilder));
+                String reqDataToRecord="";
+
+                reqDataToRecord+="Query URI: " + baseUri + basePath + "\n";
+
+                if(reqSpecificationBuilder.getHeaderMap()!=null) {
+                    reqDataToRecord += "Header Data: " + CompactUtil.covertMapToString(reqSpecificationBuilder.getHeaderMap());
+                    reqDataToRecord +="\n";
+                }
+                if(reqSpecificationBuilder.getPathParam()!=null) {
+                    reqDataToRecord += "Path Data: " + CompactUtil.covertMapToString(reqSpecificationBuilder.getPathParam());
+                    reqDataToRecord +="\n";
+                }
+
+
+                if(reqSpecificationBuilder.getQueryParam()!=null) {
+                    reqDataToRecord += "Query Param Data: " + CompactUtil.covertMapToString(reqSpecificationBuilder.getQueryParam());
+                    reqDataToRecord +="\n";
+                }
+
+
+                if(reqSpecificationBuilder.getBodyFromFile()!=null) {
+                    reqDataToRecord += "Body: " + reqSpecificationBuilder.getBodyFromFile();
+                    reqDataToRecord +="\n";
+                }
+
+                if(reqSpecificationBuilder.getBodyAsPojo()!=null) {
+                    reqDataToRecord += "Body: " + reqSpecificationBuilder.getBodyAsPojo();
+                    reqDataToRecord +="\n";
+                }
+
+                if(reqSpecificationBuilder.getBody()!=null) {
+                    reqDataToRecord += "Body: " + reqSpecificationBuilder.getBody();
+                    reqDataToRecord +="\n";
+                }
+
+                extentUtil.logInfo("Request Data ", mapper.writeValueAsString(reqDataToRecord));
 
                 extentUtil.compareResult("Status Code", statusCode, Integer.toString(res.getStatusCode()), false);
                 extentUtil.logInfo("Response Data ", res.getBody().prettyPrint());

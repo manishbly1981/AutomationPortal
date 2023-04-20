@@ -144,7 +144,6 @@ public class UserServiceImpl implements UserService{
 		return CompactServiceImpl.reportResponse(HttpStatus.OK, "User login Successfully");
 	}
 
-	
 	@Override
 	public ResponseEntity<String> unlockUser(String email) {
 		Optional<User> oUser = userRepository.findByEmail(email);

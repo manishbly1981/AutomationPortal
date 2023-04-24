@@ -24,7 +24,7 @@ public class ExecutionController {
 
     @PutMapping("")
     public ResponseEntity<String> modifyTCToExecutionCycle(@RequestParam(name = "cycleId") Long cycleId, @RequestBody List<TestCase> tcToAdd) {
-        return CompactServiceImpl.reportResponse(HttpStatus.OK, executionTCService.modifyTestCasesinCycle(cycleId, tcToAdd));
+        return CompactServiceImpl.reportResponse(HttpStatus.OK, executionTCService.addTestCasesToCycle(cycleId, tcToAdd));
     }
 
     @GetMapping("")

@@ -1,1 +1,0 @@
-"Query URI: http://localhost:8080/api/v1/tc\nHeader Data: {Authorization=Basic YXJ0aTFAYXJ0aS5jb206TmlpdEAxMjM=, content-type=application/json, accept=application/json}\nQuery Param Data: {projectCode=SAN, moduleName=Regression, email=arti1@arti.com, testName=MyTestCase1}\n"

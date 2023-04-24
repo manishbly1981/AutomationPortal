@@ -29,6 +29,6 @@ public class Cycle {
 	private ExecutionRelease executionRelease;
 
 	@JsonManagedReference
-	@OneToMany(mappedBy = "cycles",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "cycles", fetch = FetchType.LAZY)//, fetch = FetchType.EAGER, orphanRemoval = false, cascade = CascadeType.ALL
 	private List<ExecutionTC> executionTC;
 }

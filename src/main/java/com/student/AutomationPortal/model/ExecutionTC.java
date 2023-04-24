@@ -10,8 +10,8 @@ import java.util.List;
 
 @Data
 @Entity
-@Table(name="executionTC", uniqueConstraints = @UniqueConstraint(name= "uTestSeqPerCycle", columnNames = {"cycleId","tcSeq"}))
-@ToString(exclude = {"cycles"})
+@Table(name="executionTC")//, uniqueConstraints = @UniqueConstraint(name= "uTestSeqPerCycle", columnNames = {"cycleId","tcSeq"})
+@ToString(exclude = {"cycles"})//,"executionTS"
 public class ExecutionTC {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

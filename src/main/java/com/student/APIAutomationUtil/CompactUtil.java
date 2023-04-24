@@ -93,6 +93,8 @@ public class CompactUtil {
     }
 
     public String replaceRunTimeVal(String str){
+        if(str.contains("TC55_TC_IDS"))
+            System.out.println("Breakpoint");
         if (str==null)
             return null;
         if (str.equalsIgnoreCase(""))
@@ -126,7 +128,7 @@ public class CompactUtil {
                         strToReturn = strToReturn.replace("<" + varName + ">", globalData.getRunTimeVal(baseVarName).split(",")[varIndex]);
                     } else {
                         if(!varName.equalsIgnoreCase(""))
-                            strToReturn = strToReturn.replace(varName, globalData.getRunTimeVal(varName));
+                            strToReturn = strToReturn.replace("<" + varName+ ">", globalData.getRunTimeVal(varName));
                     }
 //                }
             }catch (Exception e){

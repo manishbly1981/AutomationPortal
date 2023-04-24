@@ -1,3 +1,0 @@
-{
-    "msg": "Sanity module is deRegistered from the project SAN"
-}

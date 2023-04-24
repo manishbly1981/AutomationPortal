@@ -1,1 +1,0 @@
-"Query URI: http://localhost:8080/api/activateUser\nHeader Data: {content-type=application/json, accept=application/json}\nQuery Param Data: {activationCode=1234, email=manish1@manish.com}\n"

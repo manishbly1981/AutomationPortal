@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import io.restassured.specification.RequestSpecification;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -19,6 +20,7 @@ public class ReqSpecificationBuilder {
     private String bodyFromFile;
     private RequestSpecification requestSpecification;
     private  String contentType;
+    private String formData;
     private String accept;
     public ReqSpecificationBuilder setHeaderMap(Map<String, String> headerMap) {
         this.headerMap = headerMap;
@@ -72,6 +74,21 @@ public class ReqSpecificationBuilder {
         return this;
     }
 
+    public File getFormData() {
+        try {
+            return new File(this.formData);
+        }catch(Exception e){
+            return null;
+        }
+    }
+
+    public ReqSpecificationBuilder setFormData(String formData) {
+        if(formData==null || formData.equalsIgnoreCase(""))
+            return this;
+        this.formData = formData;
+        return this;
+    }
+
     public Map<String, String> getHeaderMap() {
         return headerMap;
     }
@@ -106,4 +123,6 @@ public class ReqSpecificationBuilder {
     public String getAccept() {
         return accept;
     }
+
+
 }

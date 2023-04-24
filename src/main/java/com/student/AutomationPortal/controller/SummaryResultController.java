@@ -23,8 +23,8 @@ public class SummaryResultController {
 //    }
 
     @GetMapping("")
-    public ResponseEntity<String> getSummaryResult(@RequestParam(name="executionSummaryResultId", required = false) Long executionSummaryResultId){
-        return executionSummaryResultService.getExecutionResultSummary(executionSummaryResultId);
+    public ResponseEntity<String> getSummaryResult(@RequestParam(name="executionTestCaseId", required = true) Long executionTestCaseId){
+        return executionSummaryResultService.getExecutionResultSummary(executionTestCaseId);
     }
 
     @DeleteMapping("")

@@ -76,7 +76,7 @@ public class TestCaseServiceImpl implements TestCaseService{
 		try {
 			testCaseRepository.deleteAll(matchingTestCases);
 		}catch(Exception e) {
-			return CompactServiceImpl.reportResponse(HttpStatus.OK, testCaseName + " test case deregistered but exist in repository as it is linked with anotehr entity");
+			return CompactServiceImpl.reportResponse(HttpStatus.OK, testCaseName + " test case deregistered but exist in repository as it is linked with another entity");
 		}
 		return CompactServiceImpl.reportResponse(HttpStatus.OK, testCaseName + " test case deleted");
 	}

@@ -1,8 +1,6 @@
 package com.student.UiAutomationUtil.utils;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -10,7 +8,6 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
-
 import java.time.Duration;
 
 public class DriverManager {
@@ -26,6 +23,8 @@ public class DriverManager {
 
     public WebDriver browserSetup(String browserName){
         WebDriver webDriver= null;
+
+//        boolean a= BrowserList.valueOf("EDGE").toString().equalsIgnoreCase("Edge");
         switch (browserName.toLowerCase().trim()){
             case "chrome":
                 WebDriverManager.chromedriver().setup();

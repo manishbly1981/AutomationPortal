@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -31,13 +32,12 @@ public class ExecutionSummaryResultServiceImpl implements ExecutionSummaryResult
     }
 
     @Override
-    public ResponseEntity<String> getExecutionResultSummary(Long executionSummaryResultId) {
-        Optional<ExecutionSummaryResult> executionSummaryResult = executionSummaryRepository.findById(executionSummaryResultId);
-        if(executionSummaryResult.isPresent())
-            return CompactServiceImpl.reportResponse(HttpStatus.OK, executionSummaryResult.get());
+    public ResponseEntity<String> getExecutionResultSummary(Long executionTestCaseId) {
+        List<ExecutionSummaryResult> executionSummaryResult = executionSummaryRepository.findByExecutionTcIdOrderByIdDesc(executionTestCaseId);
+        if(executionSummaryResult.size()>0)
+            return CompactServiceImpl.reportResponse(HttpStatus.OK, executionSummaryResult);
         else
             return CompactServiceImpl.reportResponse(HttpStatus.OK, "No report found");
-
     }
 
     @Override

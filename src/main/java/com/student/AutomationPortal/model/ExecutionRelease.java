@@ -23,7 +23,7 @@ public class ExecutionRelease {
 	@Column(name="name", nullable= false)
 	private String name;
 	@JsonManagedReference
-	@OneToMany(mappedBy = "executionRelease",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "executionRelease",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private List<Cycle> cycles;
 
 	@JsonBackReference

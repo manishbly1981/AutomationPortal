@@ -32,11 +32,12 @@ public class RestExecutor {
             String headers= excelUtil.getCellData(row,"Headers");
             String pathParam= excelUtil.getCellData(row,"PathParam");
             String queryParam= excelUtil.getCellData(row,"queryParam");
+            String formData= excelUtil.getCellData(row,"FormData");
             String bodyData= excelUtil.getCellData(row,"body");
             String reqFile= excelUtil.getCellData(row,"ReqFile");
             String statusCode= excelUtil.getCellData(row,"StatusCode");
             String resposneColData= excelUtil.getCellData(row,"Response");
-
+            String resFile= excelUtil.getCellData(row,"ResFile");
             RestUtil restUtil= new RestUtil();
             if(execution.equalsIgnoreCase("yes")){
                 extentUtil.initTest(tcNo + " : " + tcName);
@@ -60,6 +61,7 @@ public class RestExecutor {
                 reqSpecificationBuilder.setQueryParam(CompactUtil.convertRestStrToMap(queryParam));
                 reqSpecificationBuilder.setBody(bodyData);
                 reqSpecificationBuilder.setBodyFromFile(reqFile, globalData);
+                reqSpecificationBuilder.setFormData(formData);
                 Response res = null;
                 switch (operation.toLowerCase().trim()){
                     case "post":
@@ -70,6 +72,9 @@ public class RestExecutor {
                         break;
                     case "get":
                         res=restUtil.getGetResponse(reqSpecificationBuilder, pathParam);
+                        break;
+                    case "getfile":
+                        restUtil.getGetFileResponse(reqSpecificationBuilder, pathParam, resFile);
                         break;
                     case "delete":
                         res=restUtil.getDeleteResponse(reqSpecificationBuilder, pathParam);
@@ -114,6 +119,12 @@ public class RestExecutor {
 
                 if(reqSpecificationBuilder.getBody()!=null) {
                     reqDataToRecord += "Body: " + reqSpecificationBuilder.getBody();
+                    reqDataToRecord +="\n";
+                }
+
+
+                if(reqSpecificationBuilder.getFormData()!=null) {
+                    reqDataToRecord += "Form Data: " + reqSpecificationBuilder.getFormData();
                     reqDataToRecord +="\n";
                 }
 

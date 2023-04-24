@@ -27,8 +27,8 @@ public class FileUploadController {
         return new ResponseEntity<>(fileUploadResponse, HttpStatus.OK);
     }
 
-    @GetMapping("/{fileNameWithRelativePath}")
-    public ResponseEntity<?> downloadFile(@PathVariable("fileName") String fileName, @RequestParam("localFilePath") String filePath) throws IOException {
+    @GetMapping("/{fileName}")
+    public ResponseEntity<?> downloadFile(@PathVariable("fileName") String fileName) throws IOException {
         FileServiceImpl fileServiceImpl= new FileServiceImpl();
         Resource resource= null;
         try{

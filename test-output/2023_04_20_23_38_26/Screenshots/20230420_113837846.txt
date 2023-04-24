@@ -1,1 +1,0 @@
-"Query URI: http://localhost:8080/api/login\nHeader Data: {content-type=application/json, accept=application/json}\nQuery Param Data: {password=Niit@123, email=vikas1@vikas.com}\n"

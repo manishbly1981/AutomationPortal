@@ -11,6 +11,10 @@ public interface CycleRepository extends JpaRepository<Cycle, Long> {
     List<Cycle> findByName(String name);
     List<Cycle> findByNameAndExecutionReleaseId(String name, Long executionReleasedId);
     Cycle findByExecutionReleaseNameAndName(String releaseName, String cycleName);
+    Cycle findByExecutionReleaseIdAndName(Long releaseId, String cycleName);
+
+//    Cycle findByProjectNameAndExecutionReleaseNameAndName(String projectName, String releaseName, String cycleName);
+
 
 
 }

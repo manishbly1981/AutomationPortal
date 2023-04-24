@@ -1,3 +1,0 @@
-{
-    "msg": "SAN Project is allocated to user manish gupta"
-}

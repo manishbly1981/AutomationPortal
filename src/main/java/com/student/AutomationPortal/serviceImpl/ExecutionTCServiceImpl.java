@@ -1,15 +1,15 @@
 package com.student.AutomationPortal.serviceImpl;
 
 import com.student.AutomationPortal.model.*;
-import com.student.AutomationPortal.repository.CycleRepository;
-import com.student.AutomationPortal.repository.ExecutionTcRepository;
-import com.student.AutomationPortal.repository.TestCaseRepository;
+import com.student.AutomationPortal.repository.*;
 import com.student.AutomationPortal.service.ExecutionTCService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class ExecutionTCServiceImpl implements ExecutionTCService {
 
@@ -20,88 +20,109 @@ public class ExecutionTCServiceImpl implements ExecutionTCService {
     TestCaseRepository testCaseRepository;
     @Autowired
     ExecutionTcRepository executionTcRepository;
+
+    @Autowired
+    ModuleRepository moduleRepository;
+    @Autowired
+    ExecutionTsRepsitory executionTsRepsitory;
     @Override
     public List<ExecutionTC> addTestCasesToCycle(Long cycleId, List<TestCase> toAddTCsToCycle) {
         int existingSize= executionTcRepository.findByCyclesId(cycleId).size();
+        List<ExecutionTC> existingTCSOfCycle= executionTcRepository.findByCyclesId(cycleId);
         List<ExecutionTC> executionTCList= new ArrayList<>();
         for(int counter=0;counter<toAddTCsToCycle.size();counter++)
         {
             TestCase tc= testCaseRepository.findById(toAddTCsToCycle.get(counter).getId()).get();
             ExecutionTC etc= new ExecutionTC();
-            etc.setModuleName(tc.getModules().getName());
-            etc.setTcName(tc.getName());
-            etc.setTcSeq(existingSize+counter+1);
-            etc.setCycles(cycleRepository.findById(cycleId).get());
-            executionTcRepository.save(etc);
-            etc= executionTcRepository.findByCyclesIdAndModuleNameAndTcName(cycleId, etc.getModuleName(), etc.getTcName());
-            List<ExecutionTS> executionTSList= new ArrayList<>();
-            for(TestStep ts:tc.getTestSteps()){
-                ExecutionTS executionTS= new ExecutionTS();
-                executionTS.setExecutionTCs(etc);
-                executionTS.setAction(ts.getAction());
-                executionTS.setExpected(ts.getExpected());
-                executionTS.setObjective(ts.getObjective());
-                executionTS.setStepSeq(ts.getSeq());
-                executionTS.setValue(ts.getValue());
+            etc= executionTcRepository.findByCyclesIdAndModuleNameAndTcName(cycleId, tc.getModules().getName(), tc.getName());
+            if(etc==null) {
+                etc= new ExecutionTC();
+                etc.setModuleName(tc.getModules().getName());
+                etc.setTcName(tc.getName());
+                etc.setTcSeq(existingSize + counter + 1);
+                etc.setCycles(cycleRepository.findById(cycleId).get());
+                executionTcRepository.save(etc);
+                etc= executionTcRepository.findByCyclesIdAndModuleNameAndTcName(cycleId, etc.getModuleName(), etc.getTcName());
+                List<ExecutionTS> executionTSList= new ArrayList<>();
+                for(TestStep ts:tc.getTestSteps()){
+                    ExecutionTS executionTS= new ExecutionTS();
+                    executionTS.setExecutionTCs(etc);
+                    executionTS.setAction(ts.getAction());
+                    executionTS.setExpected(ts.getExpected());
+                    executionTS.setObjective(ts.getObjective());
+                    executionTS.setStepSeq(ts.getSeq());
+                    executionTS.setValue(ts.getValue());
 
-                Locators locators= ts.getLocators().stream().findFirst().get();
-                executionTS.setLocatorLogicalName(locators.getLogicalName());
-                executionTS.setLocatorPage(locators.getPage());
-                executionTS.setLocatorType(locators.getLocatorType());
-                executionTS.setLocatorValue(locators.getLocatorValue());
+                    Locators locators= ts.getLocators().stream().findFirst().get();
+                    executionTS.setLocatorLogicalName(locators.getLogicalName());
+                    executionTS.setLocatorPage(locators.getPage());
+                    executionTS.setLocatorType(locators.getLocatorType());
+                    executionTS.setLocatorValue(locators.getLocatorValue());
 
-                executionTS.setExitOnFail(ts.getExitIfFail());
-                executionTS.setExecutionTCs(executionTS.getExecutionTCs());
-                executionTSList.add(executionTS);
+                    executionTS.setExitOnFail(ts.getExitIfFail());
+                    executionTS.setExecutionTCs(executionTS.getExecutionTCs());
+                    executionTSList.add(executionTS);
+                }
+                etc.setExecutionTS(executionTSList);
+                executionTCList.add(etc);
+            }else{
+                etc.setTcSeq(existingSize + counter + 1);
+                executionTCList.add(etc);
             }
-            etc.setExecutionTS(executionTSList);
-            executionTCList.add(etc);
         };
+
+        existingTCSOfCycle.removeAll(executionTCList);
+
+        existingTCSOfCycle.stream().forEach(etc-> {
+            executionTsRepsitory.deleteAll(etc.getExecutionTS());
+        });
+        executionTcRepository.deleteAll(existingTCSOfCycle);
         executionTcRepository.saveAll(executionTCList);
         return executionTcRepository.findByCyclesId(cycleId);
     }
 
-    public List<ExecutionTC> addTestCasesToCycle(Long cycleId, TestCase toAddTCsToCycle) {
-        int totTCS=0;
-        try {
-            totTCS = executionTcRepository.findByCyclesId(cycleId).size();
-        }catch(NullPointerException e){
-            totTCS=0;
-        }
-        ExecutionTC etc= new ExecutionTC();
-        etc.setModuleName(toAddTCsToCycle.getModules().getName());
-        etc.setTcName(toAddTCsToCycle.getName());
-        etc.setTcSeq(totTCS+1);
-        etc.setCycles(cycleRepository.findById(cycleId).get());
-        List<ExecutionTS> executionTSList= new ArrayList<>();
-        for(TestStep ts:toAddTCsToCycle.getTestSteps()){
-            ExecutionTS executionTS= new ExecutionTS();
-            executionTS.setAction(ts.getAction());
-            executionTS.setExpected(ts.getExpected());
-            executionTS.setObjective(ts.getObjective());
-            executionTS.setStepSeq(ts.getSeq());
-            executionTS.setValue(ts.getValue());
-
-            Locators locators= ts.getLocators().stream().findFirst().get();
-            executionTS.setLocatorLogicalName(locators.getLogicalName());
-            executionTS.setLocatorPage(locators.getPage());
-            executionTS.setLocatorType(locators.getLocatorType());
-            executionTS.setLocatorValue(locators.getLocatorValue());
-
-            executionTS.setExitOnFail(ts.getExitIfFail());
-            executionTS.setExecutionTCs(executionTS.getExecutionTCs());
-            executionTSList.add(executionTS);
-        }
-        etc.setExecutionTS(executionTSList);
-        executionTcRepository.save(etc);
-        return executionTcRepository.findByCyclesId(cycleId);
-    }
+//    public List<ExecutionTC> addTestCasesToCycle(Long cycleId, TestCase toAddTCsToCycle) {
+//        int totTCS=0;
+//        try {
+//            totTCS = executionTcRepository.findByCyclesId(cycleId).size();
+//        }catch(NullPointerException e){
+//            totTCS=0;
+//        }
+//        ExecutionTC etc= new ExecutionTC();
+//        etc.setModuleName(toAddTCsToCycle.getModules().getName());
+//        etc.setTcName(toAddTCsToCycle.getName());
+//        etc.setTcSeq(totTCS+1);
+//        etc.setCycles(cycleRepository.findById(cycleId).get());
+//        List<ExecutionTS> executionTSList= new ArrayList<>();
+//        for(TestStep ts:toAddTCsToCycle.getTestSteps()){
+//            ExecutionTS executionTS= new ExecutionTS();
+//            executionTS.setAction(ts.getAction());
+//            executionTS.setExpected(ts.getExpected());
+//            executionTS.setObjective(ts.getObjective());
+//            executionTS.setStepSeq(ts.getSeq());
+//            executionTS.setValue(ts.getValue());
+//
+//            Locators locators= ts.getLocators().stream().findFirst().get();
+//            executionTS.setLocatorLogicalName(locators.getLogicalName());
+//            executionTS.setLocatorPage(locators.getPage());
+//            executionTS.setLocatorType(locators.getLocatorType());
+//            executionTS.setLocatorValue(locators.getLocatorValue());
+//
+//            executionTS.setExitOnFail(ts.getExitIfFail());
+//            executionTS.setExecutionTCs(executionTS.getExecutionTCs());
+//            executionTSList.add(executionTS);
+//        }
+//        etc.setExecutionTS(executionTSList);
+//        executionTcRepository.save(etc);
+//        return executionTcRepository.findByCyclesId(cycleId);
+//    }
 
     @Override
     public List<ExecutionTC> modifyTestCasesinCycle(Long cycleId, List<TestCase> newTcList) {
         List<ExecutionTC> modifiedExecutionTCList= new ArrayList<>();
+        List<ExecutionTC> existingTCSOfCycle= executionTcRepository.findByCyclesId(cycleId);
         for(int counter=0;counter<newTcList.size();counter++){
-            TestCase ctc= newTcList.get(counter);
+            TestCase ctc= testCaseRepository.findById(newTcList.get(counter).getId()).get();
             ExecutionTC etc= executionTcRepository.findByCyclesIdAndModuleNameAndTcName(cycleId, ctc.getModules().getName(), ctc.getName());
             if(etc==null){
                 etc= new ExecutionTC();
@@ -134,7 +155,19 @@ public class ExecutionTCServiceImpl implements ExecutionTCService {
             }
             modifiedExecutionTCList.add(etc);
         }
+
+        //find new test cases
+//        List<ExecutionTC> tcToAdd = modifiedExecutionTCList.stream().filter(obj -> obj.getId() == null).collect(Collectors.toList());
+        //find test  cases to remove
+        existingTCSOfCycle.removeAll(modifiedExecutionTCList);
+
+        existingTCSOfCycle.stream().forEach(etc-> {
+            executionTsRepsitory.deleteAll(etc.getExecutionTS());
+        });
+        executionTcRepository.deleteAll(existingTCSOfCycle);
         executionTcRepository.saveAll(modifiedExecutionTCList);
+
+
         return executionTcRepository.findByCyclesId(cycleId);
     }
 

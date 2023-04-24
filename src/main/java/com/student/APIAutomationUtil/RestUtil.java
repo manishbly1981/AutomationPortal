@@ -4,6 +4,14 @@ import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
 public class RestUtil {
 
     private static ThreadLocal<RestAssured> restAssuredThreadLocal= new ThreadLocal<>();
@@ -59,6 +67,8 @@ public class RestUtil {
             requestSpecification.body(reqSpecificationBuilder.getBodyAsPojo());
         if(reqSpecificationBuilder.getBodyFromFile()!=null)
             requestSpecification.body(reqSpecificationBuilder.getBodyFromFile());
+        if(reqSpecificationBuilder.getFormData()!=null)
+            requestSpecification.multiPart(reqSpecificationBuilder.getFormData());
         return requestSpecification;
     }
 
@@ -87,6 +97,31 @@ public class RestUtil {
                 .when()
                 .get(url)
                 .thenReturn();
+    }
+
+    public void getGetFileResponse(ReqSpecificationBuilder reqSpecificationBuilder, String url, String localPath){
+        byte[] img;
+        if (url==null)
+            img= reqSpec(reqSpecificationBuilder)
+                    .when()
+                    .get()
+                    .asByteArray();
+        else
+            img= reqSpec(reqSpecificationBuilder)
+                    .when()
+                    .get(url)
+                    .asByteArray();
+
+        OutputStream outStream = null;
+        try {
+            Files.deleteIfExists(Paths.get(localPath));
+            outStream = new FileOutputStream(localPath);
+            outStream.write(img);
+            outStream.close();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
     }
 
     public Response getPostResponse(ReqSpecificationBuilder reqSpecificationBuilder, String url){

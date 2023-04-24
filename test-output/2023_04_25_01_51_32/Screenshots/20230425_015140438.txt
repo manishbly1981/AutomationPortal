@@ -1,0 +1,1 @@
+"Query URI: http://localhost:8080/api/v1/file\nHeader Data: {Authorization=Basic YXJ0aTFAYXJ0aS5jb206TmlpdEAxMjM=, content-type=multipart/form-data, accept=application/json}\nForm Data: E:\\temp\\194.pdf\n"

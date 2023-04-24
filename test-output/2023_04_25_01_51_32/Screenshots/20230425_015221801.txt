@@ -1,0 +1,5 @@
+{
+    "timestamp": "2023-04-24T20:21:40.723+00:00",
+    "message": "Failed to parse multipart servlet request; nested exception is java.io.IOException: org.apache.tomcat.util.http.fileupload.FileUploadException: the request was rejected because no multipart boundary was found",
+    "details": "uri=/api/v1/file/%3CTC64_File%3E"
+}

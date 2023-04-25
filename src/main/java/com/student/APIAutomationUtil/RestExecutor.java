@@ -5,7 +5,10 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import io.restassured.response.Response;
 import org.apache.poi.ss.usermodel.Row;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 
 public class RestExecutor {
     public static void main(String args[]) throws IOException {
@@ -40,14 +43,18 @@ public class RestExecutor {
             String resFile= excelUtil.getCellData(row,"ResFile");
             RestUtil restUtil= new RestUtil();
             if(execution.equalsIgnoreCase("yes")){
+                CompactUtil compactUtil= new CompactUtil(globalData);
+
                 extentUtil.initTest(tcNo + " : " + tcName);
                 restUtil.setBaseURI(baseUri);
+
+                basePath= compactUtil.replaceRunTimeVal(basePath);
                 restUtil.setBasePath(basePath);
 
                 /**************************************************************************/
                 //updated parameterized values for body, queryparam, pathparam and headers
 
-                CompactUtil compactUtil= new CompactUtil(globalData);
+
                 headers= compactUtil.replaceRunTimeVal(headers);
                 pathParam= compactUtil.replaceRunTimeVal(pathParam);
                 queryParam= compactUtil.replaceRunTimeVal(queryParam);
@@ -74,7 +81,7 @@ public class RestExecutor {
                         res=restUtil.getGetResponse(reqSpecificationBuilder, pathParam);
                         break;
                     case "getfile":
-                        restUtil.getGetFileResponse(reqSpecificationBuilder, pathParam, resFile);
+                        res= restUtil.getGetFileResponse(reqSpecificationBuilder, pathParam);
                         break;
                     case "delete":
                         res=restUtil.getDeleteResponse(reqSpecificationBuilder, pathParam);
@@ -84,6 +91,29 @@ public class RestExecutor {
                 /*****************Response validation********************/
                 if((resposneColData!=null) && !resposneColData.equalsIgnoreCase(""))
                     new ResponseUtil(res, resposneColData, extentUtil, globalData).responseHelper();
+                if(operation.equalsIgnoreCase("getFile")){
+                    if(res.getStatusCode()==200){
+                        String[] resArr= resFile.split(",");
+                        File outputFile = new File(resArr[0], resArr[1]);
+                        if (outputFile.exists()) {
+                            outputFile.delete();
+                        }
+                        byte[] fileContents = res.getBody().asByteArray();
+                        // output contents to file
+                        OutputStream outStream=null;
+
+                        try {
+                            outStream = new FileOutputStream(outputFile);
+                            outStream.write(fileContents);
+                        }catch(Exception e){
+                            System.out.println("Error writing file " + outputFile.getAbsolutePath());
+                        }finally {
+                            if(outStream!=null){
+                                outStream.close();
+                            }
+                        }
+                    }
+                }
                 /*************************************/
                 ObjectMapper mapper= new ObjectMapper();
                 mapper.enable(SerializationFeature.INDENT_OUTPUT);

@@ -99,28 +99,30 @@ public class RestUtil {
                 .thenReturn();
     }
 
-    public void getGetFileResponse(ReqSpecificationBuilder reqSpecificationBuilder, String url, String localPath){
-        byte[] img;
-        if (url==null)
-            img= reqSpec(reqSpecificationBuilder)
-                    .when()
-                    .get()
-                    .asByteArray();
-        else
-            img= reqSpec(reqSpecificationBuilder)
-                    .when()
-                    .get(url)
-                    .asByteArray();
+    public Response getGetFileResponse(ReqSpecificationBuilder reqSpecificationBuilder, String url){
+        return getGetResponse(reqSpecificationBuilder, url);
 
-        OutputStream outStream = null;
-        try {
-            Files.deleteIfExists(Paths.get(localPath));
-            outStream = new FileOutputStream(localPath);
-            outStream.write(img);
-            outStream.close();
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+//        byte[] img;
+//        if (url==null)
+//            img= reqSpec(reqSpecificationBuilder)
+//                    .when()
+//                    .get()
+//                    .asByteArray();
+//        else
+//            img= reqSpec(reqSpecificationBuilder)
+//                    .when()
+//                    .get(url)
+//                    .asByteArray();
+//
+//        OutputStream outStream = null;
+//        try {
+//            Files.deleteIfExists(Paths.get(localPath));
+//            outStream = new FileOutputStream(localPath);
+//            outStream.write(img);
+//            outStream.close();
+//        } catch (Exception e) {
+//            throw new RuntimeException(e);
+//        }
 
     }
 

@@ -1,1 +1,0 @@
-"Query URI: http://localhost:8080/api/v1/file/20230425020135_nfWqZqbIARQr_194.pdf\nHeader Data: {Authorization=Basic YXJ0aTFAYXJ0aS5jb206TmlpdEAxMjM=, accept=application/json}\n"
